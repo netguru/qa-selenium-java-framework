@@ -8,6 +8,7 @@
 *.iml
 *.iws
 .DS_Store
+.metadata
 
 # Maven
 log/

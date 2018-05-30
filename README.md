@@ -25,7 +25,7 @@ Automation framework designed as a proof of concept for web project - Lemonfrog.
     │   ├── main
     │   │   └── java
     │   │       ├── pages
-    │   │       └── TestBase.class
+    │   │       └── base.TestBase.class
     │   └── test
     │       ├── java
     │       │   └── steps
