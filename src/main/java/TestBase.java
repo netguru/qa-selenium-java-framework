@@ -1,12 +1,17 @@
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TestBase {
+import java.util.concurrent.TimeUnit;
+
+public abstract class TestBase {
 
     // Static declaration of WebDriver variable to be used by test classes
-    public static WebDriver driver;
+    protected static WebDriver driver;
 
-    public static WebDriver setupDriver() {
+    @Before
+    public static void setupDriver() {
 
         // TO-DO: add the method to choose the browser from initConfig.properties file
         String browserType = "Chrome";
@@ -18,13 +23,15 @@ public class TestBase {
                 break;
             // TO-DO: add case for other drivers and default case.
         }
-        // TO-DO: add implicit wait functionality
-        return driver;
+        driver.manage().window().maximize();
+
+        // Manage timeouts
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    // REMOVE this later - added only to test if driver works
-    public static void main(String[] args) {
-        setupDriver();
-        driver.navigate().to("https://www.google.com/");
+    @After
+    public static void tearDown() {
+        driver.quit();
     }
+
 }
