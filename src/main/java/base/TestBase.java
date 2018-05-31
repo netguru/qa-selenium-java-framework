@@ -1,10 +1,9 @@
 package base;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,48 +15,43 @@ public abstract class TestBase {
     // Static declaration of WebDriver variable to be used by test classes
     protected static WebDriver driver;
 
-    @Before
-    public void setupDriver() throws IOException {
+    public void setupEnvironment() throws IOException {
         Properties props = new Properties();
         props.load( new FileInputStream("initConfig.properties") );
 
-        // Adds cookie to bypass rack password
-        String baseUrl = props.getProperty("base_url").toLowerCase();
-        String cookieName = props.getProperty("cookie_name");
-        String cookieValue = props.getProperty("cookie_value");
-        Cookie ck = new Cookie(cookieName, cookieValue);
-
-        driver.navigate().to(baseUrl);
-        driver.manage().addCookie(ck);
-
-        // Initializes browser
+        // Initialize browser
         String browserType = props.getProperty("browser").toLowerCase();
-
         switch(browserType) {
+            // TODO: add cases for safari and edge?
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
                 driver = new ChromeDriver();
                 break;
             case "firefox":
-                break;
-            case "safari":
+                System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver");
+                driver = new FirefoxDriver();
                 break;
             default:
                 System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
                 driver = new ChromeDriver();
                 break;
-            // TODO: add case for other drivers
         }
         driver.manage().window().maximize();
 
         // Manage timeouts
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        // Add cookie to bypass rack password
+        String baseUrl = props.getProperty("base_url").toLowerCase();
+        String cookieName = props.getProperty("cookie_name");
+        String cookieValue = props.getProperty("cookie_value");
+        Cookie ck = new Cookie(cookieName, cookieValue);
+        driver.navigate().to(baseUrl);
+        driver.manage().addCookie(ck);
     }
 
-    @After
     public static void tearDown() {
         if(driver != null)
             driver.quit();
     }
-
 }
