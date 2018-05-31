@@ -1,7 +1,5 @@
 Feature: Login
 
-Background: User navigates to login page
-
 Scenario Outline: Successful login as <user_type>
     When User provides correct email: "<email>" and password
     And User selects Log in button
