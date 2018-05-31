@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.io.IOException;
 
-public class PageLogIn extends PageBase {
+public class LogInPage extends PageBase {
 
     @FindBy(id = "user_login")
     WebElement emailInput;
@@ -30,7 +30,7 @@ public class PageLogIn extends PageBase {
     @FindBy(css = ".flash-message")
     WebElement alertTextElement;
 
-    public PageLogIn(WebDriver driver) throws IOException {
+    public LogInPage(WebDriver driver) throws IOException {
         super(driver);
 
         relativeUrl = "sign_in";
@@ -42,11 +42,23 @@ public class PageLogIn extends PageBase {
     }
 
     public void logIn(String email, String password, boolean rememberMe) {
-        emailInput.sendKeys(email);
-        passwordInput.sendKeys(password);
+        provideEmail(email);
+        providePassword(password);
         if(rememberMe)
-            rememberMeCheckbox.click();
-        loginButton.click();
+            clickRememberMeCheckbox();
+        clickLogInButton();
+    }
+
+    public void provideEmail(String email) {
+        emailInput.sendKeys(email);
+    }
+
+    public void providePassword(String password) {
+        passwordInput.sendKeys(password);
+    }
+
+    public void clickRememberMeCheckbox() {
+        rememberMeCheckbox.click();
     }
 
     public void clickForgotPasswordButton() {
@@ -55,6 +67,10 @@ public class PageLogIn extends PageBase {
 
     public void clickSignUpNowButton() {
         signUpButton.click();
+    }
+
+    public void clickLogInButton() {
+        loginButton.click();
     }
 
     public String getAlertText() {
