@@ -19,7 +19,7 @@ Scenario: Cannot login with empty credentials
     When User does not provide the credentials
     And User selects Log in button
     Then User cannot login
-    And "Invalid login data." alert shows up
+    And "Invalid login data." message shows up
 
 Scenario Outline: Cannot login with wrong credentials
     When User provides email: "<email>" and password: "<password>"

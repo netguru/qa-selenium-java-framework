@@ -86,11 +86,6 @@ public class LogInSteps extends TestBase {
         Assert.assertTrue(logInPage.isInitialized());
     }
 
-    @Then("^\"([^\"]*)\" alert shows up$")
-    public void alert_shows_up(String alert) {
-        Assert.assertTrue(alert.equals(logInPage.getAlertText()));
-    }
-
     @Then("^\"([^\"]*)\" message shows up$")
     public void message_shows_up(String alert) {
         Assert.assertTrue(alert.equals(logInPage.getAlertText()));
