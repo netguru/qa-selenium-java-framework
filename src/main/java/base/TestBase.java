@@ -49,9 +49,4 @@ public abstract class TestBase {
         driver.navigate().to(baseUrl);
         driver.manage().addCookie(ck);
     }
-
-    public static void tearDown() {
-        if(driver != null)
-            driver.quit();
-    }
 }

@@ -15,7 +15,7 @@ public class LogInSteps extends TestBase {
     LogInPage logInPage;
 
     @Before
-    public void beforeScenario() throws IOException {
+    public void initPageObjects() throws IOException {
         setupEnvironment();
 
         logInPage = new LogInPage(driver);
@@ -25,8 +25,9 @@ public class LogInSteps extends TestBase {
     }
 
     @After
-    public void afterScenario() {
-        tearDown();
+    public static void tearDown() {
+        if(driver != null)
+            driver.quit();
     }
 
     @When("^User provides email: \"([^\"]*)\" and password: \"([^\"]*)\"$")
