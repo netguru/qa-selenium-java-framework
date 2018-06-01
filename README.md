@@ -27,17 +27,17 @@ Automation framework designed as a proof of concept for web project - Lemonfrog.
     │   │       ├── base
     │   │       │   ├── PageBase.java
     │   │       │   ├── SectionBase.java
-    │   │       │   └── TestBase.java
     │   │       └── pages
     │   └── test
     │       ├── java
+    │       │   ├── base
+    │       │   │   └── TestBase.java
     │       │   └── steps
     │       └── resources
     │           ├── drivers
     │           └── features
     ├── pom.xml
     ├── testng.xml
-    ├── initConfig.properties
     ├── README.md
     └── .gitignore
 ```
