@@ -21,15 +21,19 @@ Automation framework designed as a proof of concept for web project - Lemonfrog.
 
 ```bash
 └── lemonfrog
-    └── src
+    ├── src
     │   ├── main
     │   │   └── java
-    │   │       ├── pages
-    │   │       └── base.TestBase.class
+    │   │       ├── base
+    │   │       │   ├── PageBase.java
+    │   │       │   ├── SectionBase.java
+    │   │       │   └── TestBase.java
+    │   │       └── pages
     │   └── test
     │       ├── java
     │       │   └── steps
     │       └── resources
+    │           ├── drivers
     │           └── features
     ├── pom.xml
     ├── testng.xml
