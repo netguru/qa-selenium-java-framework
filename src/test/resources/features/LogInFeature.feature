@@ -5,16 +5,16 @@ Background: User navigates to login page
     Then They should see the Log in button
 
 Scenario Outline: Successful login as <user_type>
-    When User provides email: "<email>" and password: "<password>"
+    When User provides valid credentials for "<user_type>"
     And User selects Log in button
     Then User is logged in and taken to the dashboard page
     Examples:
-        |   user_type           |   email                       |   password    |
-        |   admin               |   admin@netguru.pl            |   password    |
-        |   provider            |   provider@netguru.pl         |   password    |
-        |   paid consumer       |   consumer_paid@netguru.pl    |   password    |
-        |   unpaid consumer     |   consumer_unpaid@netguru.pl  |   password    |
-        |   special consumer    |   consumer_special@netguru.pl |   password    |
+        |   user_type           |
+        |   ADMIN               |
+        |   PROVIDER            |
+        |   CUSTOMER_PAID       |
+        |   CUSTOMER_UNPAID     |
+        |   CUSTOMER_SPECIAL    |
 
 Scenario: Successful logout
     Given User is logged in

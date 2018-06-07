@@ -1,6 +1,7 @@
 package steps;
 
 import base.TestBase;
+import base.UserType;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -37,10 +38,9 @@ public class LogInSteps extends TestBase {
         Assert.assertTrue(logInPage.isInitialized());
     }
 
-    @When("^User provides email: \"([^\"]*)\" and password: \"([^\"]*)\"$")
-    public void userProvidesEmailAndPassword(String email, String password) {
-        logInPage.provideEmail(email);
-        logInPage.providePassword(password);
+    @When("^User provides valid credentials for \"([^\"]*)\"$")
+    public void userProvidesValidCredentialsFor(String userType) throws IOException {
+        logInPage.logIn(UserType.valueOf(userType), false);
     }
 
     @And("^User selects Log in button$")
