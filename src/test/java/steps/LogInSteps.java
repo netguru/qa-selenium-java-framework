@@ -38,8 +38,14 @@ public class LogInSteps extends TestBase {
         Assert.assertTrue(logInPage.isInitialized());
     }
 
-    @When("^User provides valid credentials for \"([^\"]*)\"$")
-    public void userProvidesValidCredentialsFor(String userType) throws IOException {
+    @When("^User provides email: \"([^\"]*)\" and password: \"([^\"]*)\"$")
+    public void userProvidesEmailAndPassword(String email, String password) {
+        logInPage.provideEmail(email);
+        logInPage.providePassword(password);
+    }
+
+    @When("^User logs in as: \"([^\"]*)\"$")
+    public void userLogsInAs(String userType) throws IOException {
         logInPage.logIn(UserType.valueOf(userType), false);
     }
 

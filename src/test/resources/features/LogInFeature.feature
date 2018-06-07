@@ -5,16 +5,15 @@ Background: User navigates to login page
     Then They should see the Log in button
 
 Scenario Outline: Successful login as <user_type>
-    When User provides valid credentials for "<user_type>"
-    And User selects Log in button
+    When User logs in as: "<user_type>"
     Then User is logged in and taken to the dashboard page
     Examples:
         |   user_type           |
         |   ADMIN               |
         |   PROVIDER            |
-        |   CUSTOMER_PAID       |
-        |   CUSTOMER_UNPAID     |
-        |   CUSTOMER_SPECIAL    |
+        |   CONSUMER_PAID       |
+        |   CONSUMER_UNPAID     |
+        |   CONSUMER_SPECIAL    |
 
 Scenario: Successful logout
     Given User is logged in
