@@ -56,33 +56,9 @@ public abstract class TestBase {
             driver.quit();
     }
 
-    protected void logInAs(UserType userType) throws IOException {
-        Properties props = new Properties();
-        props.load( new FileInputStream("initConfig.properties") );
-
-        String email = "";
-        String password = props.getProperty("common_password");
-
-        switch (userType) {
-            case ADMIN:
-                email = props.getProperty("admin_email");
-                break;
-            case PROVIDER:
-                email = props.getProperty("provider_email");
-                break;
-            case CONSUMER_PAID:
-                email = props.getProperty("paid_consumer_email");
-                break;
-            case CONSUMER_UNPAID:
-                email = props.getProperty("unpaid_consumer_email");
-                break;
-            case CONSUMER_SPECIAL:
-                email = props.getProperty("special_consumer_email");
-                break;
-        }
-
+    protected void logInAs(UserType userType, boolean rememberMe) throws IOException {
         LogInPage logInPage = new LogInPage(driver);
-        logInPage.logIn(email, password, false);
+        logInPage.logIn(userType, rememberMe);
     }
 }
 

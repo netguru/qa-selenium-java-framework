@@ -1,11 +1,14 @@
 package pages;
 
 import base.PageBase;
+import base.UserType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Properties;
 
 public class LogInPage extends PageBase {
 
@@ -47,6 +50,34 @@ public class LogInPage extends PageBase {
         if(rememberMe)
             clickRememberMeCheckbox();
         clickLogInButton();
+    }
+
+    public void logIn(UserType userType, boolean rememberMe) throws IOException {
+        Properties props = new Properties();
+        props.load( new FileInputStream("initConfig.properties") );
+
+        String email = "";
+        String password = props.getProperty("common_password");
+
+        switch (userType) {
+            case ADMIN:
+                email = props.getProperty("admin_email");
+                break;
+            case PROVIDER:
+                email = props.getProperty("provider_email");
+                break;
+            case CONSUMER_PAID:
+                email = props.getProperty("paid_consumer_email");
+                break;
+            case CONSUMER_UNPAID:
+                email = props.getProperty("unpaid_consumer_email");
+                break;
+            case CONSUMER_SPECIAL:
+                email = props.getProperty("special_consumer_email");
+                break;
+        }
+
+        logIn(email, password, rememberMe);
     }
 
     public void provideEmail(String email) {
