@@ -3,6 +3,7 @@ package steps;
 import base.TestBase;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -19,9 +20,6 @@ public class LogInSteps extends TestBase {
         setupEnvironment();
 
         logInPage = new LogInPage(driver);
-        logInPage.goTo();
-
-        Assert.assertTrue(logInPage.isInitialized());
     }
 
     @After
@@ -29,31 +27,41 @@ public class LogInSteps extends TestBase {
         tearDown();
     }
 
+    @Given("^The User is on login page$")
+    public void theUserIsOnLoginPage() {
+        logInPage.goTo();
+    }
+
+    @Then("^They should see the Log in button$")
+    public void theyShouldSeeTheLogInButton() {
+        Assert.assertTrue(logInPage.isInitialized());
+    }
+
     @When("^User provides email: \"([^\"]*)\" and password: \"([^\"]*)\"$")
-    public void user_provides_email_and_password(String email, String password) {
+    public void userProvidesEmailAndPassword(String email, String password) {
         logInPage.provideEmail(email);
         logInPage.providePassword(password);
     }
 
-    @When("^User selects Log in button$")
-    public void user_selects_Log_in_button() {
+    @And("^User selects Log in button$")
+    public void userSelectsLogInButton() {
         logInPage.clickLogInButton();
     }
 
     @Then("^User is logged in and taken to the dashboard page$")
-    public void user_is_logged_in_and_taken_to_the_dashboard_page() throws IOException {
+    public void userIsLoggedInAndTakenToTheDashboardPage() throws IOException {
         DashboardPage dashboardPage = new DashboardPage(driver);
 
         Assert.assertTrue(dashboardPage.isInitialized());
     }
 
     @Given("^User is logged in$")
-    public void user_is_logged_in() {
+    public void userIsLoggedIn() {
         logInPage.logIn("consumer_unpaid@netguru.pl", "password", false);
     }
 
     @When("^User selects Logout button$")
-    public void user_selects_Logout_button() throws IOException {
+    public void userSelectsLogoutButton() throws IOException {
         DashboardPage dashboardPage = new DashboardPage(driver);
 
         Assert.assertTrue(dashboardPage.isInitialized());
@@ -62,14 +70,14 @@ public class LogInSteps extends TestBase {
     }
 
     @Then("^User is redirected to home page$")
-    public void user_is_redirected_to_home_page() throws IOException {
+    public void userIsRedirectedToHomePage() throws IOException {
         HomePage homePage = new HomePage(driver);
 
         Assert.assertTrue(homePage.isInitialized());
     }
 
-    @Then("^User cannot access the dashboard$")
-    public void user_cannot_access_the_dashboard() throws IOException {
+    @And("^User cannot access the dashboard$")
+    public void userCannotAccessTheDashboard() throws IOException {
         DashboardPage dashboardPage = new DashboardPage(driver);
         dashboardPage.goTo();
 
@@ -77,39 +85,39 @@ public class LogInSteps extends TestBase {
     }
 
     @When("^User does not provide the credentials$")
-    public void user_does_not_provide_the_credentials() {
+    public void userDoesNotProvideTheCredentials() {
         logInPage.clickLogInButton();
     }
 
     @Then("^User cannot login$")
-    public void user_cannot_login() {
+    public void userCannotLogin() {
         Assert.assertTrue(logInPage.isInitialized());
     }
 
-    @Then("^\"([^\"]*)\" message shows up$")
-    public void message_shows_up(String alert) {
+    @And("^\"([^\"]*)\" message shows up$")
+    public void messageShowsUp(String alert) {
         Assert.assertTrue(alert.equals(logInPage.getAlertText()));
     }
 
     @When("^User selects Forgot Password button$")
-    public void user_selects_Forgot_Password_button() {
+    public void userSelectsForgotPasswordButton() {
         logInPage.clickForgotPasswordButton();
     }
 
     @Then("^User is redirected to Forgot Password page$")
-    public void user_is_redirected_to_Forgot_Password_page() throws IOException {
+    public void userIsRedirectedToForgotPasswordPage() throws IOException {
         ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage(driver);
 
         Assert.assertTrue(forgotPasswordPage.isInitialized());
     }
 
     @When("^User selects Sign up now button$")
-    public void user_selects_Sign_up_now_button() {
+    public void userSelectsSignUpNowButton() {
         logInPage.clickSignUpNowButton();
     }
 
     @Then("^User is redirected to Register page$")
-    public void user_is_redirected_to_Register_page() throws IOException {
+    public void userIsRedirectedToRegisterPage() throws IOException {
         SignUpPage signUpPage = new SignUpPage(driver);
 
         Assert.assertTrue(signUpPage.isInitialized());

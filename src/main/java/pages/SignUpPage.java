@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class SignUpPage extends PageBase {
 
-    @FindBy(id = "new_user")
-    WebElement signUpButton;
+    @FindBy(id = "user_email")
+    private WebElement emailInput;
 
     public SignUpPage(WebDriver driver) throws IOException {
         super(driver);
@@ -20,6 +20,6 @@ public class SignUpPage extends PageBase {
 
     @Override
     public boolean isInitialized() {
-        return signUpButton.isDisplayed() ? true : false;
+        return emailInput.isDisplayed();
     }
 }

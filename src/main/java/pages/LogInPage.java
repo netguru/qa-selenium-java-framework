@@ -10,25 +10,25 @@ import java.io.IOException;
 public class LogInPage extends PageBase {
 
     @FindBy(id = "user_login")
-    WebElement emailInput;
+    private WebElement emailInput;
 
     @FindBy(id = "user_password")
-    WebElement passwordInput;
+    private WebElement passwordInput;
 
     @FindBy(css = ".checkbox__button")
-    WebElement rememberMeCheckbox;
+    private WebElement rememberMeCheckbox;
 
     @FindBy(css = ".pull-right")
-    WebElement forgotPasswordButton;
+    private WebElement forgotPasswordButton;
 
     @FindBy(id = "login-btn")
-    WebElement loginButton;
+    private WebElement loginButton;
 
     @FindBy(id = "signup-link")
-    WebElement signUpButton;
+    private WebElement signUpButton;
 
     @FindBy(css = ".flash-message")
-    WebElement alertTextElement;
+    private WebElement alertTextElement;
 
     public LogInPage(WebDriver driver) throws IOException {
         super(driver);
@@ -38,7 +38,7 @@ public class LogInPage extends PageBase {
 
     @Override
     public boolean isInitialized() {
-        return loginButton.isDisplayed() ? true : false;
+        return loginButton.isDisplayed();
     }
 
     public void logIn(String email, String password, boolean rememberMe) {

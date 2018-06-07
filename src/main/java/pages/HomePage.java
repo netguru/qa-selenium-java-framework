@@ -10,17 +10,17 @@ import java.io.IOException;
 
 public class HomePage extends PageBase {
 
-    @FindBy(how = How.LINK_TEXT, using = "LOGIN")
-    WebElement loginButton;
+    @FindBy(id = "signup-link")
+    private WebElement signUpFreeButton;
 
     public HomePage(WebDriver driver) throws IOException {
         super(driver);
 
-        relativeUrl = ""; // It's supposed to be empty
+        relativeUrl = "#";
     }
 
     @Override
     public boolean isInitialized() {
-        return loginButton.isDisplayed() ? true : false;
+        return signUpFreeButton.isDisplayed();
     }
 }
