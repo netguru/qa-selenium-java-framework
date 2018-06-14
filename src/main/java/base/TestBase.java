@@ -4,6 +4,7 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import pages.LogInPage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,7 +16,7 @@ public abstract class TestBase {
     // Static declaration of WebDriver variable to be used by test classes
     protected static WebDriver driver;
 
-    public void setupEnvironment() throws IOException {
+    protected void setupEnvironment() throws IOException {
         Properties props = new Properties();
         props.load( new FileInputStream("initConfig.properties") );
 
@@ -50,8 +51,14 @@ public abstract class TestBase {
         driver.manage().addCookie(ck);
     }
 
-    public static void tearDown() {
+    protected static void tearDown() {
         if(driver != null)
             driver.quit();
     }
+
+    protected void logInAs(UserType userType, boolean rememberMe) throws IOException {
+        LogInPage logInPage = new LogInPage(driver);
+        logInPage.logIn(userType, rememberMe);
+    }
 }
+
