@@ -1,13 +1,19 @@
 Feature: Login
 
+Background: User navigates to login page
+    Given The User is on login page
+    Then They should see the Log in button
+
 Scenario Outline: Successful login as <user_type>
-    When User provides email: "<email>" and password: "<password>"
-    And User selects Log in button
+    When User logs in as: "<user_type>"
     Then User is logged in and taken to the dashboard page
     Examples:
-        |   user_type   |   email               | password    |
-        |   admin       |   admin@netguru.pl    | password    |
-        |   provider    |   provider@netguru.pl | password    |
+        |   user_type           |
+        |   ADMIN               |
+        |   PROVIDER            |
+        |   CONSUMER_PAID       |
+        |   CONSUMER_UNPAID     |
+        |   CONSUMER_SPECIAL    |
 
 Scenario: Successful logout
     Given User is logged in

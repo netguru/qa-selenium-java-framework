@@ -10,7 +10,7 @@ public class MainHeaderSection extends SectionBase {
     @FindBy(css = ".nav-link-holder--user-details .dropdown-toggle")
     WebElement profileDropdown;
 
-    @FindBy(css = ".navbar-right [rel]")
+    @FindBy(xpath = "//ul[@class='dropdown-menu']/li/a[contains(text(), 'Logout')]")
     WebElement logOutButton;
 
     public MainHeaderSection(WebDriver driver) {

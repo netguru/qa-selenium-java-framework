@@ -11,9 +11,9 @@ import java.io.IOException;
 public class DashboardPage extends PageBase {
 
     @FindBy(id = "q_place")
-    WebElement searchInput;
+    private WebElement searchInput;
 
-    MainHeaderSection mainHeaderSection;
+    private MainHeaderSection mainHeaderSection;
 
     public DashboardPage(WebDriver driver) throws IOException {
         super(driver);
@@ -25,7 +25,7 @@ public class DashboardPage extends PageBase {
 
     @Override
     public boolean isInitialized() {
-        return searchInput.isDisplayed() ? true : false;
+        return searchInput.isDisplayed();
     }
 
     public MainHeaderSection getMainHeaderSection() {

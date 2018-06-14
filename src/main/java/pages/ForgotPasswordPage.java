@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class ForgotPasswordPage extends PageBase {
 
-    @FindBy(css = "[action=\"\\/en\\/forgot_passwords\"] [type=\"submit\"]")
-    WebElement submitButton;
+    @FindBy(xpath = "//input[@type='submit']")
+    private WebElement submitButton;
 
     public ForgotPasswordPage(WebDriver driver) throws IOException {
         super(driver);
@@ -20,6 +20,6 @@ public class ForgotPasswordPage extends PageBase {
 
     @Override
     public boolean isInitialized() {
-        return submitButton.isDisplayed() ? true : false;
+        return submitButton.isDisplayed();
     }
 }
