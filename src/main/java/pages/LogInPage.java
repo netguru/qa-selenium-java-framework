@@ -75,6 +75,11 @@ public class LogInPage extends PageBase {
             case CONSUMER_SPECIAL:
                 email = props.getProperty("special_consumer_email");
                 break;
+            default:
+                // TODO: Use a proper logger here
+                System.out.println("Wrong UserType. Accepted values are: ADMIN, PROVIDER, CONSUMER_PAID" +
+                        "CONSUMER_UNPAID, CONSUMER_SPECIAL");
+                break;
         }
 
         logIn(email, password, rememberMe);
