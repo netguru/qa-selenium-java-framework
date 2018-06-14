@@ -7,17 +7,12 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = {"src/test/resources/features"}
-<<<<<<< HEAD
         , glue={"steps"}
         , snippets = SnippetType.CAMELCASE
         , monochrome = true
         , tags = {}
-=======
-        , glue = {"steps"}
-        , snippets = SnippetType.CAMELCASE
->>>>>>> master
 )
 
-public class TestRunner extends AbstractTestNGCucumberTests {
+public class TestRunner_regression extends AbstractTestNGCucumberTests {
 
 }

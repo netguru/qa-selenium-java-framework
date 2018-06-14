@@ -50,18 +50,5 @@ public abstract class TestBase {
         driver.navigate().to(baseUrl);
         driver.manage().addCookie(ck);
     }
-<<<<<<< HEAD
-=======
-
-    protected static void tearDown() {
-        if(driver != null)
-            driver.quit();
-    }
-
-    protected void logInAs(UserType userType, boolean rememberMe) throws IOException {
-        LogInPage logInPage = new LogInPage(driver);
-        logInPage.logIn(userType, rememberMe);
-    }
->>>>>>> master
 }
 

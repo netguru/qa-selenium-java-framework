@@ -17,7 +17,7 @@
     </properties>
 
     <build>
-        <!--Add plugins here with comment info of what it does-->
+        <!--Add plugins here with comment info of whatg it does-->
         <plugins>
             <!--This plugin is responsible for separating the output of main and test directories.-->
             <plugin>
