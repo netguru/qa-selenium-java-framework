@@ -9,6 +9,28 @@ Automation framework designed as a proof of concept for web project - Lemonfrog.
 * TestNG
 * Cucumber
 
+## How to run tests
+1.Open up terminal and create project folder
+```bash
+mkdir NAME_OF_FOLDER
+cd NAME_OF_FOLDER
+```
+2.Clone our git repo and navigate to project
+```bash
+git clone REPO_URL_FROM_GITHUB
+cd qa-selenium
+```
+3.Copy `initConfig.properties` file from 1pass lemonfrog vault and paste to `qa-selenium` project folder
+
+4a.Compile project files and run tests
+```bash
+mvn clean install
+```
+4b.To run tests from previous build type
+```bash
+mvn test
+```
+
 ## Git Branching Model
 * Create new branch per feature/test - describe it with JIRA ticket + description with dashes (eg. QA-188-initial-project-setup)
 * Commit changes often and try to describe them well
@@ -27,15 +49,25 @@ Automation framework designed as a proof of concept for web project - Lemonfrog.
     │   │       ├── base
     │   │       │   ├── PageBase.java
     │   │       │   ├── SectionBase.java
+    │   │       │   ├── TestBase.java
+    │   │       │   └── UserType.java
     │   │       └── pages
+    │   │           ├── DashboardPage.java
+    │   │           ├── ForgotPasswordPage.java
+    │   │           ├── HomePage.java
+    │   │           ├── LogInPage.java
+    │   │           └── SignUpPage.java    
     │   └── test
     │       ├── java
-    │       │   ├── base
-    │       │   │   └── TestBase.java
+    │       │   ├── TestRunner_regression.java
     │       │   └── steps
+    │       │       └── LoginSteps.java
     │       └── resources
     │           ├── drivers
+    │           │   ├── chromedriver.exe
+    │           │   └── geckodriver.exe
     │           └── features
+    │               └── LogInFeature.feature      
     ├── pom.xml
     ├── testng.xml
     ├── README.md

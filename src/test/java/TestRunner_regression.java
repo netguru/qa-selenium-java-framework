@@ -10,7 +10,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
         , glue={"steps"}
         , snippets = SnippetType.CAMELCASE
         , monochrome = true
-        , tags = {}
+        , tags = {"@Regression"}
 )
 
 public class TestRunner_regression extends AbstractTestNGCucumberTests {
