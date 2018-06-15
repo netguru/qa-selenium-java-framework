@@ -6,6 +6,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.LogInPage;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -15,13 +18,17 @@ public abstract class TestBase {
 
     // Static declaration of WebDriver variable to be used by test classes
     protected static WebDriver driver;
+    private static final Logger log = LogManager.getLogger(Logger.class.getName());
 
     protected void setupEnvironment() throws IOException {
+        log.info(getClass().getName() + " -> Starting tests...");
+
         Properties props = new Properties();
         props.load( new FileInputStream("initConfig.properties") );
 
         // Initialize browser
         String browserType = props.getProperty("browser").toLowerCase();
+        log.info("Initializing browser: " + browserType);
         switch(browserType) {
             // TODO: add cases for safari and edge?
             case "chrome":
@@ -35,6 +42,7 @@ public abstract class TestBase {
             default:
                 System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
                 driver = new ChromeDriver();
+                log.warn("Wrong browser type \"" + browserType + "\". Initializing Chrome");
                 break;
         }
         driver.manage().window().maximize();
@@ -51,9 +59,13 @@ public abstract class TestBase {
         driver.manage().addCookie(ck);
     }
 
-    protected static void tearDown() {
-        if(driver != null)
+    protected void tearDown() {
+        if(driver != null) {
             driver.quit();
+            log.info("Quitting the driver");
+        }
+
+        log.info(getClass().getName() + " -> Ending tests...");
     }
 
     protected void logInAs(UserType userType, boolean rememberMe) throws IOException {
@@ -61,4 +73,3 @@ public abstract class TestBase {
         logInPage.logIn(userType, rememberMe);
     }
 }
-
