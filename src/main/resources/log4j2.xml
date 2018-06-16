@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="debug">
+<Configuration status="warn">
 
     <Properties>
         <Property name="basePath">logs </Property>
@@ -23,7 +23,7 @@
     </Appenders>
 
     <Loggers>
-        <Root level="debug" additivity="false">
+        <Root level="warn" additivity="false">
             <AppenderRef ref="STDOUT" />
             <AppenderRef ref="FILE" />
         </Root>
