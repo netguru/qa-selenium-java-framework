@@ -33,6 +33,7 @@ public abstract class PageBase {
 
     public void goTo() {
         driver.navigate().to(getUrl());
+        log.info("Navigating to: " + getClass().getName());
     }
 
     public String getUrl() {
