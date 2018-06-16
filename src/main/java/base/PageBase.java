@@ -26,7 +26,7 @@ public abstract class PageBase {
         this.driver = driver;
 
         PageFactory.initElements(this.driver, this);
-        log.info(getClass().getName() + " -> Initializing elements");
+        log.debug(getClass().getName() + " -> Initializing elements");
     }
 
     public abstract boolean isInitialized();

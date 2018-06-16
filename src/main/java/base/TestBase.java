@@ -21,7 +21,7 @@ public abstract class TestBase {
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
 
     protected void setupEnvironment() throws IOException {
-        log.info(getClass().getName() + " -> Starting tests...");
+        log.debug(getClass().getName() + " -> Starting tests...");
 
         Properties props = new Properties();
         props.load( new FileInputStream("initConfig.properties") );
@@ -62,10 +62,10 @@ public abstract class TestBase {
     protected void tearDown() {
         if(driver != null) {
             driver.quit();
-            log.info("Quitting the driver");
+            log.info("Quitting the browser");
         }
 
-        log.info(getClass().getName() + " -> Ending tests...");
+        log.debug(getClass().getName() + " -> Ending tests...");
     }
 
     protected void logInAs(UserType userType, boolean rememberMe) throws IOException {
