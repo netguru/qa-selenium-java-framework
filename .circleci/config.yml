@@ -7,8 +7,8 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/openjdk:8-jdk
-      
+      - image: circleci/openjdk:8-jdk-browsers
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -20,7 +20,7 @@ jobs:
       # Customize the JVM maximum heap limit
       JVM_OPTS: -Xmx3200m
       TERM: dumb
-    
+
     steps:
       - checkout
 
@@ -31,15 +31,40 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: gradle dependencies
+       name:
+                        Install Chromedriver latest version
+                command: |
+                        sudo apt-get update
+                        sudo apt-get install lsb-release libappindicator3-1
+                        curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                        sudo dpkg -i google-chrome.deb
+                        sudo sed -i 's|HERE/chrome"|HERE/chrome" --no-sandbox|g' /opt/google/chrome/google-chrome
+                        rm google-chrome.deb
 
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
-        
-      # run tests!
-      - run: gradle test
+            # Download and cache dependencies
+            - restore_cache:
+                keys:
+                - v1-dependencies-{{ checksum "pom.xml" }}
+                # fallback to using the latest cache if no exact match is found
+                - v1-dependencies-
 
+            - run: mvn dependency:go-offline
 
+            - save_cache:
+                paths:
+                  - ~/.m2
+                key: v1-dependencies-{{ checksum "pom.xml" }}
+
+            # run tests!
+            - run:
+                command: >
+                        mvn clean test
+
+                no_output_timeout: 20m
+
+            - store_artifacts:
+                path: ./target/site/artifacts
+                destination: artifacts
+            - store_test_results:
+                path: ./target/site/cucumber-pretty/
 
