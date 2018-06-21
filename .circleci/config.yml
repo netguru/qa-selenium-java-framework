@@ -24,15 +24,9 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "build.gradle" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-       name:
-                        Install Chromedriver latest version
+      - run:
+                name:
+                       Install Chromedriver latest version
                 command: |
                         sudo apt-get update
                         sudo apt-get install lsb-release libappindicator3-1
