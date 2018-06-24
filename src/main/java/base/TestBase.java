@@ -1,9 +1,6 @@
 package base;
 
 import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.LogInPage;
 
 import org.apache.logging.log4j.LogManager;
@@ -12,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public abstract class TestBase {
 
