@@ -15,12 +15,10 @@ public class DashboardPage extends PageBase {
 
     private MainHeaderSection mainHeaderSection;
 
-    public DashboardPage(WebDriver driver) throws IOException {
-        super(driver);
-
+    public DashboardPage() throws IOException {
         relativeUrl = "dashboard";
 
-        mainHeaderSection = new MainHeaderSection(this.driver);
+        mainHeaderSection = new MainHeaderSection();
     }
 
     @Override

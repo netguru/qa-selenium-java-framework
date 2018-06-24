@@ -33,9 +33,7 @@ public class LogInPage extends PageBase {
     @FindBy(css = ".flash-message")
     private WebElement alertTextElement;
 
-    public LogInPage(WebDriver driver) throws IOException {
-        super(driver);
-
+    public LogInPage() throws IOException {
         relativeUrl = "sign_in";
     }
 

@@ -12,9 +12,7 @@ public class HomePage extends PageBase {
     @FindBy(id = "signup-link")
     private WebElement signUpFreeButton;
 
-    public HomePage(WebDriver driver) throws IOException {
-        super(driver);
-
+    public HomePage() throws IOException {
         relativeUrl = "#";
     }
 

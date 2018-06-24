@@ -12,9 +12,7 @@ public class ForgotPasswordPage extends PageBase {
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement submitButton;
 
-    public ForgotPasswordPage(WebDriver driver) throws IOException {
-        super(driver);
-
+    public ForgotPasswordPage() throws IOException {
         relativeUrl = "forgot_passwords/new";
     }
 

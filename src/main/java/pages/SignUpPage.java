@@ -12,9 +12,7 @@ public class SignUpPage extends PageBase {
     @FindBy(id = "user_email")
     private WebElement emailInput;
 
-    public SignUpPage(WebDriver driver) throws IOException {
-        super(driver);
-
+    public SignUpPage() throws IOException {
         relativeUrl = "register/new";
     }
 
