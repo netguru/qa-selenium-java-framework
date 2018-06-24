@@ -18,7 +18,13 @@ public class MainHeaderSection extends SectionBase {
     }
 
     public void logOut() {
-        profileDropdown.click();
+        clickProfileDropdown();
         logOutButton.click();
+        log.info("Selecting Log Out button");
+    }
+
+    public void clickProfileDropdown() {
+        profileDropdown.click();
+        log.info("Expanding profile dropdown");
     }
 }

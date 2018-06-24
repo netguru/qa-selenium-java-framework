@@ -76,8 +76,7 @@ public class LogInPage extends PageBase {
                 email = props.getProperty("special_consumer_email");
                 break;
             default:
-                // TODO: Use a proper logger here
-                System.out.println("Wrong UserType. Accepted values are: ADMIN, PROVIDER, CONSUMER_PAID" +
+                log.error("Wrong UserType. Accepted values are: ADMIN, PROVIDER, CONSUMER_PAID" +
                         "CONSUMER_UNPAID, CONSUMER_SPECIAL");
                 break;
         }
@@ -87,26 +86,32 @@ public class LogInPage extends PageBase {
 
     public void provideEmail(String email) {
         emailInput.sendKeys(email);
+        log.info("Providing email: " + email);
     }
 
     public void providePassword(String password) {
         passwordInput.sendKeys(password);
+        log.info("Providing password: " + password);
     }
 
     public void clickRememberMeCheckbox() {
         rememberMeCheckbox.click();
+        log.info("Selecting Remember Me checkbox");
     }
 
     public void clickForgotPasswordButton() {
         forgotPasswordButton.click();
+        log.info("Selecting Forgot Password? button");
     }
 
     public void clickSignUpNowButton() {
         signUpButton.click();
+        log.info("Selecting Sign Up Now button");
     }
 
     public void clickLogInButton() {
         loginButton.click();
+        log.info("Selecting Log In button");
     }
 
     public String getAlertText() {
