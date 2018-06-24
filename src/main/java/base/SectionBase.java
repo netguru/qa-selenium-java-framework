@@ -6,13 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public abstract class SectionBase {
-    protected WebDriver driver;
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
 
-    public SectionBase(WebDriver driver) {
-        this.driver = driver;
-
-        PageFactory.initElements(this.driver, this);
+    public SectionBase() {
+        PageFactory.initElements(Driver.getDriver(), this);
         log.debug(getClass().getName() + " -> Initializing elements");
     }
 }
