@@ -16,9 +16,13 @@ public abstract class PageBase {
     protected String relativeUrl;
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
 
-    public PageBase(WebDriver driver) throws IOException {
+    public PageBase(WebDriver driver) {
         Properties props = new Properties();
-        props.load( new FileInputStream("initConfig.properties") );
+        try {
+            props.load( new FileInputStream("initConfig.properties") );
+        } catch (IOException e) {
+            log.warn("Failed to load initConfig.properties file.");
+        }
 
         baseUrl = props.getProperty("base_url").toLowerCase();
         language = props.getProperty("language").toLowerCase();
