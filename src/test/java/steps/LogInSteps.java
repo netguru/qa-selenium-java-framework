@@ -17,16 +17,15 @@ public class LogInSteps extends TestBase {
     LogInPage logInPage;
 
     @Before
-    public void initPageObjects() throws IOException {
+    public void setupTestCase() throws IOException {
         setupEnvironment();
 
         logInPage = new LogInPage(driver);
     }
 
     @After
-    public static void tearDown() {
-        if(driver != null)
-            driver.quit();
+    public void ceaseTestCase() {
+        tearDown();
     }
 
     @Given("^The User is on login page$")

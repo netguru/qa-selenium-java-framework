@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class TestBase {
 
-    // Static declaration of WebDriver variable to be used by test classes
+    // Static declaration of WebDriver variable to be used by runners classes
     protected static WebDriver driver;
 
     protected void setupEnvironment() throws IOException {
@@ -50,5 +50,17 @@ public abstract class TestBase {
         driver.navigate().to(baseUrl);
         driver.manage().addCookie(ck);
     }
+
+    protected static void tearDown() {
+        if(driver != null) {
+            driver.quit();
+        }
+    }
+
+    protected void logInAs(UserType userType, boolean rememberMe) throws IOException {
+        LogInPage logInPage = new LogInPage(driver);
+        logInPage.logIn(userType, rememberMe);
+    }
+
 }
 

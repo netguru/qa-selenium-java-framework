@@ -28,13 +28,13 @@ mvn clean install
 ```
 4b.To run tests from previous build type
 ```bash
-mvn test
+mvn runners
 ```
 
 ## Git Branching Model
-* Create new branch per feature/test - describe it with JIRA ticket + description with dashes (eg. QA-188-initial-project-setup)
+* Create new branch per feature/runners - describe it with JIRA ticket + description with dashes (eg. QA-188-initial-project-setup)
 * Commit changes often and try to describe them well
-* After finishing feature or test create a Pull Request
+* After finishing feature or runners create a Pull Request
 * Share it with team members for review
 * If changes are needed, the author of PR will apply them
 * Merge the PR to master
@@ -52,12 +52,7 @@ mvn test
     │   │       │   ├── TestBase.java
     │   │       │   └── UserType.java
     │   │       └── pages
-    │   │           ├── DashboardPage.java
-    │   │           ├── ForgotPasswordPage.java
-    │   │           ├── HomePage.java
-    │   │           ├── LogInPage.java
-    │   │           └── SignUpPage.java    
-    │   └── test
+    │   └── runners
     │       ├── java
     │       │   ├── TestRunner_regression.java
     │       │   └── steps

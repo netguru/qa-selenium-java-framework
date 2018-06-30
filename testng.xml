@@ -4,7 +4,7 @@
 <suite name="All tests" verbose="2">
     <test name="regressionTests" annotations="JDK">
         <classes>
-            <class name="TestRunner_regression"/>
+            <class name="runners.TestRunnerRegression"/>
         </classes>
     </test>
 </suite>
