@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class TestBase {
 
-    // Static declaration of WebDriver variable to be used by runners classes
+    // Static declaration of WebDriver variable to be used by test classes
     protected static WebDriver driver;
 
     protected void setupEnvironment() throws IOException {

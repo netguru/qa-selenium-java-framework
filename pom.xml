@@ -19,7 +19,7 @@
     <build>
         <!--Add plugins here with comment info of what it does-->
         <plugins>
-            <!--This plugin is responsible for separating the output of main and runners directories.-->
+            <!--This plugin is responsible for separating the output of main and test directories.-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
