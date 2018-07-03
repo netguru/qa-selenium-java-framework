@@ -1,5 +1,7 @@
 package base;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -12,6 +14,7 @@ public abstract class PageBase {
     protected static String baseUrl;
     protected static String language;
     protected String relativeUrl;
+    protected static final Logger log = LogManager.getLogger(Logger.class.getName());
 
     public PageBase(WebDriver driver) throws IOException {
         Properties props = new Properties();
@@ -23,12 +26,14 @@ public abstract class PageBase {
         this.driver = driver;
 
         PageFactory.initElements(this.driver, this);
+        log.debug(getClass().getName() + " -> Initializing elements");
     }
 
     public abstract boolean isInitialized();
 
     public void goTo() {
         driver.navigate().to(getUrl());
+        log.info("Navigating to: " + getClass().getName());
     }
 
     public String getUrl() {
