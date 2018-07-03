@@ -72,4 +72,5 @@ public abstract class TestBase {
         LogInPage logInPage = new LogInPage(driver);
         logInPage.logIn(userType, rememberMe);
     }
+
 }

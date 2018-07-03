@@ -17,14 +17,14 @@ public class LogInSteps extends TestBase {
     LogInPage logInPage;
 
     @Before
-    public void beforeScenario() throws IOException {
+    public void setupTestCase() throws IOException {
         setupEnvironment();
 
         logInPage = new LogInPage(driver);
     }
 
     @After
-    public void afterScenario() {
+    public void ceaseTestCase() {
         tearDown();
     }
 
