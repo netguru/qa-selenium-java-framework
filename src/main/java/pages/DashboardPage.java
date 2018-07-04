@@ -5,16 +5,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import sections.MainHeaderSection;
 
-import java.io.IOException;
-
-public class DashboardPage extends PageBase {
+public final class DashboardPage extends PageBase {
 
     @FindBy(id = "q_place")
     private WebElement searchInput;
 
     private MainHeaderSection mainHeaderSection;
 
-    public DashboardPage() throws IOException {
+    public DashboardPage() {
         relativeUrl = "dashboard";
 
         mainHeaderSection = new MainHeaderSection();

@@ -11,13 +11,11 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 import pages.*;
 
-import java.io.IOException;
-
 public class LogInSteps extends TestBase {
     LogInPage logInPage;
 
     @Before
-    public void setupTestCase() throws IOException {
+    public void setupTestCase() {
         setupEnvironment();
 
         logInPage = new LogInPage();
@@ -45,7 +43,7 @@ public class LogInSteps extends TestBase {
     }
 
     @When("^User logs in as: \"([^\"]*)\"$")
-    public void userLogsInAs(String userType) throws IOException {
+    public void userLogsInAs(String userType) {
         logInPage.logIn(UserType.valueOf(userType), false);
     }
 
@@ -55,7 +53,7 @@ public class LogInSteps extends TestBase {
     }
 
     @Then("^User is logged in and taken to the dashboard page$")
-    public void userIsLoggedInAndTakenToTheDashboardPage() throws IOException {
+    public void userIsLoggedInAndTakenToTheDashboardPage() {
         DashboardPage dashboardPage = new DashboardPage();
 
         Assert.assertTrue(dashboardPage.isInitialized());
@@ -63,11 +61,11 @@ public class LogInSteps extends TestBase {
 
     @Given("^User is logged in$")
     public void userIsLoggedIn() {
-        logInPage.logIn("consumer_unpaid@netguru.pl", "password", false);
+        logInPage.logIn(UserType.CONSUMER_UNPAID, false);
     }
 
     @When("^User selects Logout button$")
-    public void userSelectsLogoutButton() throws IOException {
+    public void userSelectsLogoutButton() {
         DashboardPage dashboardPage = new DashboardPage();
 
         Assert.assertTrue(dashboardPage.isInitialized());
@@ -76,14 +74,14 @@ public class LogInSteps extends TestBase {
     }
 
     @Then("^User is redirected to home page$")
-    public void userIsRedirectedToHomePage() throws IOException {
+    public void userIsRedirectedToHomePage() {
         HomePage homePage = new HomePage();
 
         Assert.assertTrue(homePage.isInitialized());
     }
 
     @And("^User cannot access the dashboard$")
-    public void userCannotAccessTheDashboard() throws IOException {
+    public void userCannotAccessTheDashboard() {
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.goTo();
 
@@ -111,7 +109,7 @@ public class LogInSteps extends TestBase {
     }
 
     @Then("^User is redirected to Forgot Password page$")
-    public void userIsRedirectedToForgotPasswordPage() throws IOException {
+    public void userIsRedirectedToForgotPasswordPage() {
         ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
 
         Assert.assertTrue(forgotPasswordPage.isInitialized());
@@ -123,7 +121,7 @@ public class LogInSteps extends TestBase {
     }
 
     @Then("^User is redirected to Register page$")
-    public void userIsRedirectedToRegisterPage() throws IOException {
+    public void userIsRedirectedToRegisterPage() {
         SignUpPage signUpPage = new SignUpPage();
 
         Assert.assertTrue(signUpPage.isInitialized());

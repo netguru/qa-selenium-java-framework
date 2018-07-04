@@ -14,7 +14,7 @@ public abstract class TestBase {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
 
-    protected void setupEnvironment() throws IOException {
+    protected void setupEnvironment() {
         log.debug(getClass().getName() + " -> Starting tests...");
 
         Driver.initializeDriver();
@@ -23,7 +23,11 @@ public abstract class TestBase {
 
         // Add cookie to bypass rack password
         Properties props = new Properties();
-        props.load( new FileInputStream("initConfig.properties") );
+        try {
+            props.load( new FileInputStream("initConfig.properties") );
+        } catch (IOException e) {
+            log.warn("Failed to load initConfig.properties file.");
+        }
 
         String baseUrl = props.getProperty("base_url").toLowerCase();
         String cookieName = props.getProperty("cookie_name");
@@ -37,10 +41,4 @@ public abstract class TestBase {
         Driver.quit();
         log.debug(getClass().getName() + " -> Ending tests...");
     }
-
-    protected void logInAs(UserType userType, boolean rememberMe) throws IOException {
-        LogInPage logInPage = new LogInPage();
-        logInPage.logIn(userType, rememberMe);
-    }
-
 }

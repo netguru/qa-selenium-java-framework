@@ -9,7 +9,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class LogInPage extends PageBase {
+public final class LogInPage extends PageBase {
 
     @FindBy(id = "user_login")
     private WebElement emailInput;
@@ -32,7 +32,7 @@ public class LogInPage extends PageBase {
     @FindBy(css = ".flash-message")
     private WebElement alertTextElement;
 
-    public LogInPage() throws IOException {
+    public LogInPage() {
         relativeUrl = "sign_in";
     }
 
@@ -49,9 +49,13 @@ public class LogInPage extends PageBase {
         clickLogInButton();
     }
 
-    public void logIn(UserType userType, boolean rememberMe) throws IOException {
+    public void logIn(UserType userType, boolean rememberMe) {
         Properties props = new Properties();
-        props.load( new FileInputStream("initConfig.properties") );
+        try {
+            props.load( new FileInputStream("initConfig.properties") );
+        } catch (IOException e) {
+            log.warn("Failed to load initConfig.properties file.");
+        }
 
         String email = "";
         String password = props.getProperty("common_password");
