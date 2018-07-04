@@ -29,15 +29,12 @@ public final class Driver {
         switch(browserType) {
             // TODO: add cases for safari and edge?
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
                 driver = new ChromeDriver();
                 break;
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver");
                 driver = new FirefoxDriver();
                 break;
             default:
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
                 driver = new ChromeDriver();
                 log.warn("Wrong browser type \"" + browserType + "\". Initializing Chrome");
                 break;
