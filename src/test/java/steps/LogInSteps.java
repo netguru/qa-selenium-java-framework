@@ -2,8 +2,6 @@ package steps;
 
 import base.TestBase;
 import base.UserType;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -12,19 +10,7 @@ import org.testng.Assert;
 import pages.*;
 
 public class LogInSteps extends TestBase {
-    LogInPage logInPage;
-
-    @Before
-    public void setupTestCase() {
-        setupEnvironment();
-
-        logInPage = new LogInPage();
-    }
-
-    @After
-    public void ceaseTestCase() {
-        tearDown();
-    }
+    LogInPage logInPage = new LogInPage();
 
     @Given("^The User is on login page$")
     public void theUserIsOnLoginPage() {
