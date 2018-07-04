@@ -4,7 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -34,6 +36,10 @@ public final class Driver {
             case "firefox":
                 driver = new FirefoxDriver();
                 break;
+            case "safari":
+                driver = new SafariDriver();
+            case "edge":
+                driver = new EdgeDriver();
             default:
                 driver = new ChromeDriver();
                 log.warn("Wrong browser type \"" + browserType + "\". Initializing Chrome");
