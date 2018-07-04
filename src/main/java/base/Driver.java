@@ -42,7 +42,7 @@ public final class Driver {
 
     public static void maximize(){
         driver.manage().window().maximize();
-        log.debug("Quitting the browser");
+        log.info("Maximizing browser window");
     }
 
     public static void setImplicitWait(int seconds) {
