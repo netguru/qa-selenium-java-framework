@@ -1,7 +1,6 @@
 package pages;
 
 import base.PageBase;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import sections.MainHeaderSection;
@@ -15,12 +14,10 @@ public class DashboardPage extends PageBase {
 
     private MainHeaderSection mainHeaderSection;
 
-    public DashboardPage(WebDriver driver) throws IOException {
-        super(driver);
-
+    public DashboardPage() throws IOException {
         relativeUrl = "dashboard";
 
-        mainHeaderSection = new MainHeaderSection(this.driver);
+        mainHeaderSection = new MainHeaderSection();
     }
 
     @Override

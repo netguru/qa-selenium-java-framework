@@ -20,7 +20,7 @@ public class LogInSteps extends TestBase {
     public void setupTestCase() throws IOException {
         setupEnvironment();
 
-        logInPage = new LogInPage(driver);
+        logInPage = new LogInPage();
     }
 
     @After
@@ -56,7 +56,7 @@ public class LogInSteps extends TestBase {
 
     @Then("^User is logged in and taken to the dashboard page$")
     public void userIsLoggedInAndTakenToTheDashboardPage() throws IOException {
-        DashboardPage dashboardPage = new DashboardPage(driver);
+        DashboardPage dashboardPage = new DashboardPage();
 
         Assert.assertTrue(dashboardPage.isInitialized());
     }
@@ -68,7 +68,7 @@ public class LogInSteps extends TestBase {
 
     @When("^User selects Logout button$")
     public void userSelectsLogoutButton() throws IOException {
-        DashboardPage dashboardPage = new DashboardPage(driver);
+        DashboardPage dashboardPage = new DashboardPage();
 
         Assert.assertTrue(dashboardPage.isInitialized());
 
@@ -77,14 +77,14 @@ public class LogInSteps extends TestBase {
 
     @Then("^User is redirected to home page$")
     public void userIsRedirectedToHomePage() throws IOException {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
 
         Assert.assertTrue(homePage.isInitialized());
     }
 
     @And("^User cannot access the dashboard$")
     public void userCannotAccessTheDashboard() throws IOException {
-        DashboardPage dashboardPage = new DashboardPage(driver);
+        DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.goTo();
 
         Assert.assertTrue(logInPage.isInitialized());
@@ -112,7 +112,7 @@ public class LogInSteps extends TestBase {
 
     @Then("^User is redirected to Forgot Password page$")
     public void userIsRedirectedToForgotPasswordPage() throws IOException {
-        ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage(driver);
+        ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
 
         Assert.assertTrue(forgotPasswordPage.isInitialized());
     }
@@ -124,7 +124,7 @@ public class LogInSteps extends TestBase {
 
     @Then("^User is redirected to Register page$")
     public void userIsRedirectedToRegisterPage() throws IOException {
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage();
 
         Assert.assertTrue(signUpPage.isInitialized());
     }
