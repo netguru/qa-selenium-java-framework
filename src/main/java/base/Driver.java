@@ -29,7 +29,6 @@ public final class Driver {
         String browserType = props.getProperty("browser").toLowerCase();
         log.info("Initializing browser: " + browserType);
         switch(browserType) {
-            // TODO: add cases for safari and edge?
             case "chrome":
                 driver = new ChromeDriver();
                 break;
@@ -38,8 +37,10 @@ public final class Driver {
                 break;
             case "safari":
                 driver = new SafariDriver();
+                break;
             case "edge":
                 driver = new EdgeDriver();
+                break;
             default:
                 driver = new ChromeDriver();
                 log.warn("Wrong browser type \"" + browserType + "\". Initializing Chrome");
