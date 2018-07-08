@@ -15,13 +15,15 @@ log/
 logs/
 target/
 
-# Package Files #
+# Package Files
 *.jar
 *.war
 *.ear
 *.zip
 *.tar.gz
 *.rar
+
+*.png
 
 # Confidential
 initConfig.properties
