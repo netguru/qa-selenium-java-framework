@@ -23,6 +23,7 @@ target/
 *.tar.gz
 *.rar
 
+# Screenshots
 *.png
 
 # Confidential
