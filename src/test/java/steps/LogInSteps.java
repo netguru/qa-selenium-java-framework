@@ -45,11 +45,6 @@ public class LogInSteps extends TestBase {
         Assert.assertTrue(dashboardPage.isInitialized());
     }
 
-    @Given("^User is logged in$")
-    public void userIsLoggedIn() {
-        logInPage.logIn(UserType.CONSUMER_UNPAID, false);
-    }
-
     @When("^User selects Logout button$")
     public void userSelectsLogoutButton() {
         DashboardPage dashboardPage = new DashboardPage();
