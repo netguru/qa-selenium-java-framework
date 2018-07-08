@@ -24,11 +24,11 @@ cd qa-selenium
 
 4a.Compile project files and run tests
 ```bash
-mvn clean install
+mvn clean install test -DsuiteFile=yourSuite.xml
 ```
 4b.To run tests from previous build type
 ```bash
-mvn test
+mvn test -DsuiteFile=yourSuite.xml
 ```
 
 ## Git Branching Model
