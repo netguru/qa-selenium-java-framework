@@ -2,6 +2,7 @@ package steps;
 
 import base.TestBase;
 import base.UserType;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -14,7 +15,9 @@ public class StepsHelper extends TestBase {
     }
 
     @After
-    public void ceaseTestCase() {
+    public void ceaseTestCase(Scenario scenario) {
+        if(scenario.isFailed())
+            takeScreenshot(scenario);
         tearDown();
     }
 

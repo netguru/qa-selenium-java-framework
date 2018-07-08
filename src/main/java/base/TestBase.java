@@ -1,13 +1,19 @@
 package base;
 
+import cucumber.api.Scenario;
 import org.openqa.selenium.Cookie;
-import pages.LogInPage;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.io.FileHandler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 public abstract class TestBase {
@@ -40,5 +46,23 @@ public abstract class TestBase {
     protected void tearDown() {
         Driver.quit();
         log.debug(getClass().getName() + " -> Ending tests...");
+    }
+
+    protected void takeScreenshot(Scenario scenario) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime currentTime = LocalDateTime.now();
+        String timeToPrint = dateTimeFormatter.format(currentTime);
+
+        try {
+            File screenSource = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.FILE);
+            FileHandler.copy(
+                    screenSource,
+                    new File("screenshots/" + scenario.getName() + "_" + timeToPrint + "_failScreen.png")
+            );
+
+        } catch (Exception e) {
+            log.error("Failed to take screenshot on test fail");
+            e.printStackTrace();
+        }
     }
 }
