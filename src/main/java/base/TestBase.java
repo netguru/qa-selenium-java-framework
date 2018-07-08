@@ -49,12 +49,12 @@ public abstract class TestBase {
     }
 
     protected void takeScreenshot(Scenario scenario) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH.mm.ss");
         LocalDateTime currentTime = LocalDateTime.now();
         String timeToPrint = dateTimeFormatter.format(currentTime);
 
         try {
-            File screenSource = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.FILE);
+            File screenSource = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.FILE);
             FileHandler.copy(
                     screenSource,
                     new File("screenshots/" + scenario.getName() + "_" + timeToPrint + "_failScreen.png")
