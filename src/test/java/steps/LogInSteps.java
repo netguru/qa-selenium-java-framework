@@ -30,7 +30,7 @@ public class LogInSteps extends TestBase {
 
     @When("^User logs in as: \"([^\"]*)\"$")
     public void userLogsInAs(String userType) {
-        logInPage.logIn(UserType.valueOf(userType), false);
+        logInPage.logInUserAndRememberMe(UserType.valueOf(userType), false);
     }
 
     @And("^User selects Log in button$")

@@ -5,8 +5,6 @@ import base.UserType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
 public final class LogInPage extends PageBase {
@@ -41,7 +39,7 @@ public final class LogInPage extends PageBase {
         return loginButton.isDisplayed();
     }
 
-    public void logIn(String email, String password, boolean rememberMe) {
+    public void logInUserAndRememberMe(String email, String password, boolean rememberMe) {
         provideEmail(email);
         providePassword(password);
         if (rememberMe)
@@ -49,7 +47,7 @@ public final class LogInPage extends PageBase {
         clickLogInButton();
     }
 
-    public void logIn(UserType userType, boolean rememberMe) {
+    public void logInUserAndRememberMe(UserType userType, boolean rememberMe) {
         Properties props = loadFile("initConfig.properties");
 
         String email = "";
@@ -77,7 +75,7 @@ public final class LogInPage extends PageBase {
                 break;
         }
 
-        logIn(email, password, rememberMe);
+        logInUserAndRememberMe(email, password, rememberMe);
     }
 
     public void provideEmail(String email) {

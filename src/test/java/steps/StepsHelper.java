@@ -16,7 +16,7 @@ public class StepsHelper extends TestBase {
 
     @After
     public void ceaseTestCase(Scenario scenario) {
-        if(scenario.isFailed())
+        if (scenario.isFailed())
             takeScreenshot(scenario);
         tearDown();
     }
@@ -25,6 +25,6 @@ public class StepsHelper extends TestBase {
     public void userIsLoggedInAs(String userType) {
         LogInPage logInPage = new LogInPage();
 
-        logInPage.logIn(UserType.valueOf(userType), false);
+        logInPage.logInUserAndRememberMe(UserType.valueOf(userType), false);
     }
 }
