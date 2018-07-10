@@ -28,7 +28,7 @@ public final class Driver {
 
         String browserType = props.getProperty("browser").toLowerCase();
         log.info("Initializing browser: " + browserType);
-        switch(browserType) {
+        switch (browserType) {
             case "chrome":
                 driver = new ChromeDriver();
                 break;
