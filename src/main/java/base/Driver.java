@@ -4,7 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,18 +28,20 @@ public final class Driver {
 
         String browserType = props.getProperty("browser").toLowerCase();
         log.info("Initializing browser: " + browserType);
-        switch (browserType) {
-            // TODO: add cases for safari and edge?
+        switch(browserType) {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
                 driver = new ChromeDriver();
                 break;
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver");
                 driver = new FirefoxDriver();
                 break;
+            case "safari":
+                driver = new SafariDriver();
+                break;
+            case "edge":
+                driver = new EdgeDriver();
+                break;
             default:
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
                 driver = new ChromeDriver();
                 log.warn("Wrong browser type \"" + browserType + "\". Initializing Chrome");
                 break;
