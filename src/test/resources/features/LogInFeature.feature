@@ -1,3 +1,4 @@
+@Regression
 Feature: Login
 
 Background: User navigates to login page

@@ -1,7 +1,6 @@
 package pages;
 
 import base.PageBase;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,8 +17,7 @@ public class SearchResultsPage extends PageBase {
     @FindBy(xpath = "//div[@class='row redesign-search-results-row']")
     private List<WebElement> searchResults;
 
-    public SearchResultsPage(WebDriver driver) {
-        super(driver);
+    public SearchResultsPage() {
     }
 
     @Override
@@ -31,7 +29,7 @@ public class SearchResultsPage extends PageBase {
         searchResults.get(0).click();
     }
 
-    public String getMaxDistance(){
+    public String getMaxDistance() {
         return distanceText.getText();
     }
 }

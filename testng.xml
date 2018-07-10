@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<!--Here goes the content of future TestNG configuration-->
-
-<suite name="">
-
+<suite name="All tests" verbose="2">
+    <test name="regressionTests" annotations="JDK">
+        <classes>
+            <class name="runners.TestRunnerRegression"/>
+        </classes>
+    </test>
 </suite>

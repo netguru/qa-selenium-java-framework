@@ -23,10 +23,10 @@ public class SearchSteps extends TestBase {
     public void beforeScenario() throws IOException {
         setupEnvironment();
 
-        dashboardPage = new DashboardPage(driver);
-        searchResultsPage = new SearchResultsPage(driver);
-        tutorProfilePage = new TutorProfilePage(driver);
-        studentProfilePage = new StudentProfilePage(driver);
+        dashboardPage = new DashboardPage();
+        searchResultsPage = new SearchResultsPage();
+        tutorProfilePage = new TutorProfilePage();
+        studentProfilePage = new StudentProfilePage();
     }
 
     @After
@@ -35,7 +35,7 @@ public class SearchSteps extends TestBase {
     }
 
     @When("^User searches a profile in \"([^\"]*)\"$")
-    public void tutorSearchesAJobIn(String location){
+    public void tutorSearchesAJobIn(String location) {
         dashboardPage.setLocation(location);
         dashboardPage.clickSearchButton();
     }
