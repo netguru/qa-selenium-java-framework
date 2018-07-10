@@ -7,20 +7,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import sections.MainHeaderSection;
 
-import java.io.IOException;
-
 public class DashboardPage extends PageBase {
 
+    private final MainHeaderSection mainHeaderSection;
     @FindBy(id = "q_place")
     private WebElement searchInput;
-
     @FindBy(xpath = "//div[@class='col-xs-24 col-sm-6']")
     private WebElement searchButton;
-
     @FindBy(id="q_distance")
-    private WebElement distanceElement;
-
-    private MainHeaderSection mainHeaderSection;
+    private WebElement distanceDropdown;
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -56,7 +51,7 @@ public class DashboardPage extends PageBase {
      * Select a distance from drop-down menu.
      * @param distance - 1, 5, 10, 20, 50 or 100 [km]
      */
-    public void setDistance(String distance){
-        new Select(distanceElement).selectByValue(distance);
+    public void setDistance(String distance) {
+        new Select(distanceDropdown).selectByValue(distance);
     }
 }

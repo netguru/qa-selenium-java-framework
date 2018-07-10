@@ -52,9 +52,13 @@ public class LogInPage extends PageBase {
         clickLogInButton();
     }
 
-    public void logIn(UserType userType, boolean rememberMe) throws IOException {
+    public void logIn(UserType userType, boolean rememberMe) {
         Properties props = new Properties();
-        props.load( new FileInputStream("initConfig.properties") );
+        try {
+            props.load(new FileInputStream("initConfig.properties"));
+        } catch (IOException e) {
+            log.warn("Failed to load initConfig.properties file.");
+        }
 
         String email = "";
         String password = props.getProperty("common_password");

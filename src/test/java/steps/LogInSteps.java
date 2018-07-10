@@ -66,6 +66,12 @@ public class LogInSteps extends TestBase {
         logInPage.logIn("consumer_unpaid@netguru.pl", "password", false);
     }
 
+    @Given("^User is logged in as: \"([^\"]*)\"$")
+    public void userIsLoggedInAs(String userType) {
+        logInPage.goTo();
+        logInPage.logIn(UserType.valueOf(userType), false);
+    }
+
     @When("^User selects Logout button$")
     public void userSelectsLogoutButton() throws IOException {
         DashboardPage dashboardPage = new DashboardPage(driver);

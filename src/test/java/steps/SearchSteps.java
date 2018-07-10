@@ -1,7 +1,8 @@
 package steps;
 
 import base.TestBase;
-import cucumber.api.java.en.And;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
@@ -10,11 +11,28 @@ import pages.SearchResultsPage;
 import pages.StudentProfilePage;
 import pages.TutorProfilePage;
 
-public class SearchSteps  extends TestBase {
-    DashboardPage dashboardPage= new DashboardPage(driver);
-    SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
-    TutorProfilePage tutorProfilePage = new TutorProfilePage(driver);
-    StudentProfilePage studentProfilePage = new StudentProfilePage(driver);
+import java.io.IOException;
+
+public class SearchSteps extends TestBase {
+    DashboardPage dashboardPage;
+    SearchResultsPage searchResultsPage;
+    TutorProfilePage tutorProfilePage;
+    StudentProfilePage studentProfilePage;
+
+    @Before
+    public void beforeScenario() throws IOException {
+        setupEnvironment();
+
+        dashboardPage = new DashboardPage(driver);
+        searchResultsPage = new SearchResultsPage(driver);
+        tutorProfilePage = new TutorProfilePage(driver);
+        studentProfilePage = new StudentProfilePage(driver);
+    }
+
+    @After
+    public void afterScenario() {
+        tearDown();
+    }
 
     @When("^User searches a profile in \"([^\"]*)\"$")
     public void tutorSearchesAJobIn(String location){
@@ -22,7 +40,7 @@ public class SearchSteps  extends TestBase {
         dashboardPage.clickSearchButton();
     }
 
-    @And("^Opens first profile$")
+    @When("^Opens first profile$")
     public void openFirstProfile() {
         searchResultsPage.openFirstSearchResult();
     }
@@ -43,7 +61,7 @@ public class SearchSteps  extends TestBase {
     }
 
     @Then("^Search results match distance of (1|5|10|20|50|100) km$")
-    public void searchResultsMatchMatchDistanceOfKm(String expectedDistance){
+    public void searchResultsMatchDistanceOfKm(String expectedDistance) {
         Assert.assertEquals(searchResultsPage.getMaxDistance(), expectedDistance + " km");
     }
 }

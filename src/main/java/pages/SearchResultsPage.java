@@ -10,7 +10,7 @@ import java.util.List;
 public class SearchResultsPage extends PageBase {
 
     @FindBy(xpath = "//span[@class='slider-form__description']")
-    private WebElement distance;
+    private WebElement distanceText;
 
     @FindBy(xpath = "//div[@class='slider-form-group clearfix']")
     private WebElement distanceSlider;
@@ -32,6 +32,6 @@ public class SearchResultsPage extends PageBase {
     }
 
     public String getMaxDistance(){
-        return distance.getText();
+        return distanceText.getText();
     }
 }
