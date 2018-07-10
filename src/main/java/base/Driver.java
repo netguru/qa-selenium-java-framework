@@ -19,14 +19,14 @@ public final class Driver {
     public static void initializeDriver() {
         Properties props = new Properties();
         try {
-            props.load( new FileInputStream("initConfig.properties") );
+            props.load(new FileInputStream("initConfig.properties"));
         } catch (IOException e) {
             log.warn("Failed to load initConfig.properties file.");
         }
 
         String browserType = props.getProperty("browser").toLowerCase();
         log.info("Initializing browser: " + browserType);
-        switch(browserType) {
+        switch (browserType) {
             // TODO: add cases for safari and edge?
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
@@ -44,7 +44,7 @@ public final class Driver {
         }
     }
 
-    public static void maximize(){
+    public static void maximize() {
         driver.manage().window().maximize();
         log.info("Maximizing browser window");
     }
@@ -55,14 +55,14 @@ public final class Driver {
     }
 
     public static void quit() {
-        if(driver != null) {
+        if (driver != null) {
             driver.quit();
             log.info("Quitting the browser");
         }
     }
 
     public static WebDriver getDriver() {
-        if(driver == null)
+        if (driver == null)
             log.error("Driver not initialized!");
         return driver;
     }

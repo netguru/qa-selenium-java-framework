@@ -15,12 +15,7 @@ public abstract class PageBase {
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
 
     public PageBase() {
-        Properties props = new Properties();
-        try {
-                props.load( new FileInputStream("initConfig.properties") );
-        } catch (IOException e) {
-            log.warn("Failed to load initConfig.properties file.");
-        }
+        Properties props = loadFile("initConfig.properties");
 
         baseUrl = props.getProperty("base_url").toLowerCase();
         language = props.getProperty("language").toLowerCase();
@@ -38,5 +33,16 @@ public abstract class PageBase {
 
     public String getUrl() {
         return baseUrl + "/" + language + "/" + relativeUrl;
+    }
+
+    protected Properties loadFile(String fileName) {
+        Properties props = new Properties();
+        try {
+            props.load(new FileInputStream(fileName));
+        } catch (IOException e) {
+            log.warn("Failed to load " + fileName + " file.");
+        }
+
+        return props;
     }
 }

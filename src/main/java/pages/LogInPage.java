@@ -44,18 +44,13 @@ public final class LogInPage extends PageBase {
     public void logIn(String email, String password, boolean rememberMe) {
         provideEmail(email);
         providePassword(password);
-        if(rememberMe)
+        if (rememberMe)
             clickRememberMeCheckbox();
         clickLogInButton();
     }
 
     public void logIn(UserType userType, boolean rememberMe) {
-        Properties props = new Properties();
-        try {
-            props.load( new FileInputStream("initConfig.properties") );
-        } catch (IOException e) {
-            log.warn("Failed to load initConfig.properties file.");
-        }
+        Properties props = loadFile("initConfig.properties");
 
         String email = "";
         String password = props.getProperty("common_password");
