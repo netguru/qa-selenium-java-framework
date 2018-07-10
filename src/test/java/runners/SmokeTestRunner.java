@@ -12,9 +12,9 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
         , glue = {"steps"}
         , snippets = SnippetType.CAMELCASE
         , monochrome = true
-        , tags = {"@Regression"}
+        , tags = {"@Smoke"}
 )
 
-public class TestRunnerRegression extends AbstractTestNGCucumberTests {
+public class SmokeTestRunner extends AbstractTestNGCucumberTests {
 
 }
