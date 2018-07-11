@@ -1,10 +1,11 @@
-@Regression
+@Login
 Feature: Login
 
 Background: User navigates to login page
     Given The User is on login page
     Then They should see the Log in button
 
+@Smoke
 Scenario Outline: Successful login as <user_type>
     When User logs in as: "<user_type>"
     Then User is logged in and taken to the dashboard page
@@ -17,7 +18,7 @@ Scenario Outline: Successful login as <user_type>
         |   CONSUMER_SPECIAL    |
 
 Scenario: Successful logout
-    Given User is logged in
+    Given User is logged in as "CONSUMER_UNPAID"
     When User selects Logout button
     Then User is redirected to home page
     And User cannot access the dashboard
@@ -28,6 +29,7 @@ Scenario: Cannot login with empty credentials
     Then User cannot login
     And "Invalid login data." message shows up
 
+@Smoke
 Scenario Outline: Cannot login with wrong credentials
     When User provides email: "<email>" and password: "<password>"
     And User selects Log in button

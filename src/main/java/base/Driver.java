@@ -1,13 +1,15 @@
 package base;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import utilities.UtilitiesFunctions;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -16,31 +18,36 @@ public final class Driver {
     private static WebDriver driver = null;
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
 
-    public static void initializeDriver() throws IOException {
-        Properties props = new Properties();
-        props.load( new FileInputStream("initConfig.properties") );
+    public static void initializeDriver() {
+        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
 
         String browserType = props.getProperty("browser").toLowerCase();
         log.info("Initializing browser: " + browserType);
-        switch(browserType) {
-            // TODO: add cases for safari and edge?
+        switch (browserType) {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
                 break;
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver");
+                WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
                 break;
+            case "safari":
+                driver = new SafariDriver();
+                break;
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+                break;
             default:
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
                 log.warn("Wrong browser type \"" + browserType + "\". Initializing Chrome");
                 break;
         }
     }
 
-    public static void maximize(){
+    public static void maximize() {
         driver.manage().window().maximize();
         log.info("Maximizing browser window");
     }
@@ -51,14 +58,14 @@ public final class Driver {
     }
 
     public static void quit() {
-        if(driver != null) {
+        if (driver != null) {
             driver.quit();
             log.info("Quitting the browser");
         }
     }
 
     public static WebDriver getDriver() {
-        if(driver == null)
+        if (driver == null)
             log.error("Driver not initialized!");
         return driver;
     }

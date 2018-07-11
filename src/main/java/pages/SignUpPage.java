@@ -4,7 +4,7 @@ import base.PageBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SignUpPage extends PageBase {
+public final class SignUpPage extends PageBase {
 
     @FindBy(id = "user_email")
     private WebElement emailInput;

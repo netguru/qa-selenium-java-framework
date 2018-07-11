@@ -4,7 +4,7 @@ import base.SectionBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MainHeaderSection extends SectionBase {
+public final class MainHeaderSection extends SectionBase {
 
     @FindBy(css = ".nav-link-holder--user-details .dropdown-toggle")
     WebElement profileDropdown;

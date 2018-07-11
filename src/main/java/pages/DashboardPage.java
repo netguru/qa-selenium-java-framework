@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import sections.MainHeaderSection;
 
-public class DashboardPage extends PageBase {
+public final class DashboardPage extends PageBase {
 
     @FindBy(id = "q_place")
     private WebElement searchInput;
