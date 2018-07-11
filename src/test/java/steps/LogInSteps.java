@@ -91,17 +91,19 @@ public class LogInSteps extends TestBase {
 
     @Then("User is redirected to {string}")
     public void userIsRedirectedToPage(String page) {
-        if (page == "Register page") {
-            SignUpPage signUpPage = new SignUpPage();
-            Assert.assertTrue(signUpPage.isInitialized());
-        }
-        if (page == "Forgot Password page") {
-            ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
-            Assert.assertTrue(forgotPasswordPage.isInitialized());
-        }
-        if (page == "home page") {
-            HomePage homePage = new HomePage();
-            Assert.assertTrue(homePage.isInitialized());
+        switch (page) {
+            case "Register page":
+                SignUpPage signUpPage = new SignUpPage();
+                Assert.assertTrue(signUpPage.isInitialized());
+                break;
+            case "Forgot Password page":
+                ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
+                Assert.assertTrue(forgotPasswordPage.isInitialized());
+                break;
+            case "home page":
+                HomePage homePage = new HomePage();
+                Assert.assertTrue(homePage.isInitialized());
+                break;
         }
     }
 }
