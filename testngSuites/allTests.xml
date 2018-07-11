@@ -4,5 +4,6 @@
 <suite name="allTests" verbose="2">
     <suite-files>
         <suite-file path="loginTests.xml" />
+        <suite-file path="searchTests.xml" />
     </suite-files>
 </suite>
