@@ -1,4 +1,4 @@
-@Regression @Search
+@Search
 Feature: Search
 
   Scenario: Student finds a tutor
