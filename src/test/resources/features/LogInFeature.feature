@@ -3,7 +3,6 @@ Feature: Login
 
 Background: User navigates to login page
     Given The User is on login page
-    Then They should see the Log in button
 
 @Smoke
 Scenario Outline: Successful login as <user_type>
@@ -19,7 +18,7 @@ Scenario Outline: Successful login as <user_type>
 
 Scenario: Successful logout
     When User logs in as: "CONSUMER_UNPAID"
-    When User selects Logout button
+    And User selects Logout button
     Then User is redirected to "Home page"
     And User cannot access the dashboard
 

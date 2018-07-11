@@ -17,10 +17,6 @@ public class LogInSteps extends TestBase {
         logInPage.goTo();
     }
 
-    @Then("^They should see the Log in button$")
-    public void theyShouldSeeTheLogInButton() {
-        Assert.assertTrue(logInPage.isInitialized());
-    }
 
     @When("^User provides email: \"([^\"]*)\" and password: \"([^\"]*)\"$")
     public void userProvidesEmailAndPassword(String email, String password) {
@@ -33,7 +29,7 @@ public class LogInSteps extends TestBase {
         logInPage.logInUserAndRememberMe(UserType.valueOf(userType), false);
     }
 
-    @And("^User selects Log in button$")
+    @When("^User selects Log in button$")
     public void userSelectsLogInButton() {
         logInPage.clickLogInButton();
     }
@@ -41,20 +37,16 @@ public class LogInSteps extends TestBase {
     @Then("^User is logged in and taken to the dashboard page$")
     public void userIsLoggedInAndTakenToTheDashboardPage() {
         DashboardPage dashboardPage = new DashboardPage();
-
         Assert.assertTrue(dashboardPage.isInitialized());
     }
 
     @When("^User selects Logout button$")
     public void userSelectsLogoutButton() {
         DashboardPage dashboardPage = new DashboardPage();
-
-        Assert.assertTrue(dashboardPage.isInitialized());
-
         dashboardPage.getMainHeaderSection().logOut();
     }
 
-    @And("^User cannot access the dashboard$")
+    @Then("^User cannot access the dashboard$")
     public void userCannotAccessTheDashboard() {
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.goTo();
@@ -72,7 +64,7 @@ public class LogInSteps extends TestBase {
         Assert.assertTrue(logInPage.isInitialized());
     }
 
-    @And("^\"([^\"]*)\" message shows up$")
+    @Then("^\"([^\"]*)\" message shows up$")
     public void messageShowsUp(String alert) {
         Assert.assertTrue(alert.equals(logInPage.getAlertText()));
     }
