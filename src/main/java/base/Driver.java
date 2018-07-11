@@ -1,5 +1,6 @@
 package base;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -30,18 +31,22 @@ public final class Driver {
         log.info("Initializing browser: " + browserType);
         switch (browserType) {
             case "chrome":
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
                 break;
             case "firefox":
+                WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
                 break;
             case "safari":
                 driver = new SafariDriver();
                 break;
             case "edge":
+                WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
                 break;
             default:
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
                 log.warn("Wrong browser type \"" + browserType + "\". Initializing Chrome");
                 break;
