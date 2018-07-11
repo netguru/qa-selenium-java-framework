@@ -20,7 +20,7 @@ Scenario Outline: Successful login as <user_type>
 Scenario: Successful logout
     When User logs in as: "CONSUMER_UNPAID"
     When User selects Logout button
-    Then User is redirected to home page
+    Then User is redirected to "Home page"
     And User cannot access the dashboard
 
 Scenario: Cannot login with empty credentials
@@ -43,8 +43,8 @@ Scenario Outline: Cannot login with wrong credentials
 
 Scenario: Selecting Forgot Password button
     When User selects Forgot Password button
-    Then User is redirected to Forgot Password page
+    Then User is redirected to "Forgot Password page"
 
 Scenario: Selecting Sign up now button
     When User selects Sign up now button
-    Then User is redirected to Register page
+    Then User is redirected to "Register page"

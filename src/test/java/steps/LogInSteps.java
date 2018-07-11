@@ -54,13 +54,6 @@ public class LogInSteps extends TestBase {
         dashboardPage.getMainHeaderSection().logOut();
     }
 
-    @Then("^User is redirected to home page$")
-    public void userIsRedirectedToHomePage() {
-        HomePage homePage = new HomePage();
-
-        Assert.assertTrue(homePage.isInitialized());
-    }
-
     @And("^User cannot access the dashboard$")
     public void userCannotAccessTheDashboard() {
         DashboardPage dashboardPage = new DashboardPage();
@@ -89,22 +82,28 @@ public class LogInSteps extends TestBase {
         logInPage.clickForgotPasswordButton();
     }
 
-    @Then("^User is redirected to Forgot Password page$")
-    public void userIsRedirectedToForgotPasswordPage() {
-        ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
-
-        Assert.assertTrue(forgotPasswordPage.isInitialized());
-    }
 
     @When("^User selects Sign up now button$")
     public void userSelectsSignUpNowButton() {
         logInPage.clickSignUpNowButton();
     }
 
-    @Then("^User is redirected to Register page$")
-    public void userIsRedirectedToRegisterPage() {
-        SignUpPage signUpPage = new SignUpPage();
 
-        Assert.assertTrue(signUpPage.isInitialized());
+    @Then("User is redirected to {string}")
+    public void userIsRedirectedToPage(String page) {
+        switch (page.toLowerCase()) {
+            case "register page":
+                SignUpPage signUpPage = new SignUpPage();
+                Assert.assertTrue(signUpPage.isInitialized());
+                break;
+            case "forgot password page":
+                ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
+                Assert.assertTrue(forgotPasswordPage.isInitialized());
+                break;
+            case "home page":
+                HomePage homePage = new HomePage();
+                Assert.assertTrue(homePage.isInitialized());
+                break;
+        }
     }
 }
