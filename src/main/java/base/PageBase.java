@@ -5,8 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.support.PageFactory;
 import utilities.UtilitiesFunctions;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
 public abstract class PageBase {
