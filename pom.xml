@@ -126,6 +126,11 @@
             <artifactId>selenium-safari-driver</artifactId>
             <version>3.13.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>2.2.4</version>
+        </dependency>
     </dependencies>
 
 </project>
