@@ -17,9 +17,6 @@ public class SearchResultsPage extends PageBase {
     @FindBy(xpath = "//div[@class='row redesign-search-results-row']")
     private List<WebElement> searchResults;
 
-    public SearchResultsPage() {
-    }
-
     @Override
     public boolean isInitialized() {
         return distanceSlider.isDisplayed();

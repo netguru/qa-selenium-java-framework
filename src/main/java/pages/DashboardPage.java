@@ -15,7 +15,7 @@ public final class DashboardPage extends PageBase {
     private WebElement searchButton;
 
     @FindBy(id = "q_distance")
-    private WebElement distanceElement;
+    private WebElement distanceDropdown;
 
     private MainHeaderSection mainHeaderSection;
 
@@ -28,10 +28,6 @@ public final class DashboardPage extends PageBase {
     @Override
     public boolean isInitialized() {
         return searchInput.isDisplayed();
-    }
-
-    public MainHeaderSection getMainHeaderSection() {
-        return mainHeaderSection;
     }
 
     public void clickSearchButton() {
@@ -52,6 +48,10 @@ public final class DashboardPage extends PageBase {
      * @param distance - 1, 5, 10, 20, 50 or 100 [km]
      */
     public void setDistance(String distance) {
-        new Select(distanceElement).selectByValue(distance);
+        new Select(distanceDropdown).selectByValue(distance);
+    }
+
+    public MainHeaderSection getMainHeaderSection() {
+        return mainHeaderSection;
     }
 }
