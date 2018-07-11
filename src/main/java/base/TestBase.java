@@ -1,20 +1,25 @@
 package base;
 
+import cucumber.api.Scenario;
 import org.openqa.selenium.Cookie;
-import pages.LogInPage;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.io.FileHandler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import utilities.UtilitiesFunctions;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 public abstract class TestBase {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
 
-    protected void setupEnvironment() throws IOException {
+    protected void setupEnvironment() {
         log.debug(getClass().getName() + " -> Starting tests...");
 
         Driver.initializeDriver();
@@ -22,8 +27,7 @@ public abstract class TestBase {
         Driver.setImplicitWait(10);
 
         // Add cookie to bypass rack password
-        Properties props = new Properties();
-        props.load( new FileInputStream("initConfig.properties") );
+        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
 
         String baseUrl = props.getProperty("base_url").toLowerCase();
         String cookieName = props.getProperty("cookie_name");
@@ -38,9 +42,21 @@ public abstract class TestBase {
         log.debug(getClass().getName() + " -> Ending tests...");
     }
 
-    protected void logInAs(UserType userType, boolean rememberMe) throws IOException {
-        LogInPage logInPage = new LogInPage();
-        logInPage.logIn(userType, rememberMe);
-    }
+    protected void takeScreenshot(Scenario scenario) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH.mm.ss");
+        LocalDateTime currentTime = LocalDateTime.now();
+        String timeToPrint = dateTimeFormatter.format(currentTime);
 
+        try {
+            File screenSource = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.FILE);
+            FileHandler.copy(
+                    screenSource,
+                    new File("screenshots/" + scenario.getName() + "_" + timeToPrint + "_failScreen.png")
+            );
+
+        } catch (Exception e) {
+            log.error("Failed to take screenshot on test fail");
+            e.printStackTrace();
+        }
+    }
 }

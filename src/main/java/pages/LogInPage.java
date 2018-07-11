@@ -1,15 +1,14 @@
 package pages;
 
 import base.PageBase;
-import base.UserType;
+import utilities.UserType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utilities.UtilitiesFunctions;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
-public class LogInPage extends PageBase {
+public final class LogInPage extends PageBase {
 
     @FindBy(id = "user_login")
     private WebElement emailInput;
@@ -32,7 +31,7 @@ public class LogInPage extends PageBase {
     @FindBy(css = ".flash-message")
     private WebElement alertTextElement;
 
-    public LogInPage() throws IOException {
+    public LogInPage() {
         relativeUrl = "sign_in";
     }
 
@@ -41,17 +40,16 @@ public class LogInPage extends PageBase {
         return loginButton.isDisplayed();
     }
 
-    public void logIn(String email, String password, boolean rememberMe) {
+    public void logInUserAndRememberMe(String email, String password, boolean rememberMe) {
         provideEmail(email);
         providePassword(password);
-        if(rememberMe)
+        if (rememberMe)
             clickRememberMeCheckbox();
         clickLogInButton();
     }
 
-    public void logIn(UserType userType, boolean rememberMe) throws IOException {
-        Properties props = new Properties();
-        props.load( new FileInputStream("initConfig.properties") );
+    public void logInUserAndRememberMe(UserType userType, boolean rememberMe) {
+        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
 
         String email = "";
         String password = props.getProperty("common_password");
@@ -78,7 +76,7 @@ public class LogInPage extends PageBase {
                 break;
         }
 
-        logIn(email, password, rememberMe);
+        logInUserAndRememberMe(email, password, rememberMe);
     }
 
     public void provideEmail(String email) {
