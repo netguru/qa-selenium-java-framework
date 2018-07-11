@@ -1,12 +1,12 @@
 package steps;
 
 import base.TestBase;
-import utilities.UserType;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import pages.LogInPage;
+import utilities.UserType;
 
 public class StepsHelper extends TestBase {
     @Before
@@ -24,7 +24,7 @@ public class StepsHelper extends TestBase {
     @Given("^User is logged in as \"([^\"]*)\"$")
     public void userIsLoggedInAs(String userType) {
         LogInPage logInPage = new LogInPage();
-
+        logInPage.goTo();
         logInPage.logInUserAndRememberMe(UserType.valueOf(userType), false);
     }
 }

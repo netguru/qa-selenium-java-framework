@@ -1,8 +1,6 @@
 package steps;
 
 import base.TestBase;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
@@ -11,28 +9,11 @@ import pages.SearchResultsPage;
 import pages.StudentProfilePage;
 import pages.TutorProfilePage;
 
-import java.io.IOException;
-
 public class SearchSteps extends TestBase {
-    DashboardPage dashboardPage;
-    SearchResultsPage searchResultsPage;
-    TutorProfilePage tutorProfilePage;
-    StudentProfilePage studentProfilePage;
-
-    @Before
-    public void beforeScenario() throws IOException {
-        setupEnvironment();
-
-        dashboardPage = new DashboardPage();
-        searchResultsPage = new SearchResultsPage();
-        tutorProfilePage = new TutorProfilePage();
-        studentProfilePage = new StudentProfilePage();
-    }
-
-    @After
-    public void afterScenario() {
-        tearDown();
-    }
+    DashboardPage dashboardPage = new DashboardPage();
+    SearchResultsPage searchResultsPage = new SearchResultsPage();
+    TutorProfilePage tutorProfilePage = new TutorProfilePage();
+    StudentProfilePage studentProfilePage = new StudentProfilePage();
 
     @When("^User searches a profile in \"([^\"]*)\"$")
     public void tutorSearchesAJobIn(String location) {

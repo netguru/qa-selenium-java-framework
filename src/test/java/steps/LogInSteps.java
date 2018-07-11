@@ -1,13 +1,13 @@
 package steps;
 
 import base.TestBase;
-import utilities.UserType;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
 import pages.*;
+import utilities.UserType;
 
 public class LogInSteps extends TestBase {
     LogInPage logInPage = new LogInPage();
