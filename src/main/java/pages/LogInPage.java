@@ -32,7 +32,7 @@ public class LogInPage extends PageBase {
     @FindBy(css = ".flash-message")
     private WebElement alertTextElement;
 
-    public LogInPage() throws IOException {
+    public LogInPage() {
         relativeUrl = "sign_in";
     }
 

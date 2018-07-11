@@ -3,7 +3,7 @@ Feature: Search
 
   Scenario: Student finds a tutor
     Given User is logged in as: "CONSUMER_PAID"
-    And User searches a profile in "Zurich"
+    When User searches a profile in "Zurich"
     And Opens first profile
     Then Tutor profile is displayed
 

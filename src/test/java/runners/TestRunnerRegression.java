@@ -13,6 +13,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
         , snippets = SnippetType.CAMELCASE
         , monochrome = true
         , tags = {"@Regression"}
+        , plugin = {"pretty"}
 )
 
 public class TestRunnerRegression extends AbstractTestNGCucumberTests {
