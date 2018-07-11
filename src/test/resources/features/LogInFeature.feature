@@ -18,7 +18,7 @@ Scenario Outline: Successful login as <user_type>
         |   CONSUMER_SPECIAL    |
 
 Scenario: Successful logout
-    Given User is logged in as "CONSUMER_UNPAID"
+    When User logs in as: "CONSUMER_UNPAID"
     When User selects Logout button
     Then User is redirected to home page
     And User cannot access the dashboard
