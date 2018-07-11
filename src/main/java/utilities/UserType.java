@@ -1,4 +1,4 @@
-package base;
+package utilities;
 
 public enum UserType {
     ADMIN,

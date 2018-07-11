@@ -1,9 +1,10 @@
 package pages;
 
 import base.PageBase;
-import base.UserType;
+import utilities.UserType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utilities.UtilitiesFunctions;
 
 import java.util.Properties;
 
@@ -48,7 +49,7 @@ public final class LogInPage extends PageBase {
     }
 
     public void logInUserAndRememberMe(UserType userType, boolean rememberMe) {
-        Properties props = loadFile("initConfig.properties");
+        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
 
         String email = "";
         String password = props.getProperty("common_password");

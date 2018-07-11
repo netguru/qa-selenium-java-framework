@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import utilities.UtilitiesFunctions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,12 +21,7 @@ public final class Driver {
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
 
     public static void initializeDriver() {
-        Properties props = new Properties();
-        try {
-            props.load(new FileInputStream("initConfig.properties"));
-        } catch (IOException e) {
-            log.warn("Failed to load initConfig.properties file.");
-        }
+        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
 
         String browserType = props.getProperty("browser").toLowerCase();
         log.info("Initializing browser: " + browserType);
