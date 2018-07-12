@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class SearchResultsPage extends PageBase {
+public final class SearchResultsPage extends PageBase {
 
     @FindBy(xpath = "//span[@class='slider-form__description']")
     private WebElement distanceText;

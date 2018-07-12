@@ -15,33 +15,33 @@ public class SearchSteps extends TestBase {
     TutorProfilePage tutorProfilePage = new TutorProfilePage();
     StudentProfilePage studentProfilePage = new StudentProfilePage();
 
-    @When("^User searches a profile in \"([^\"]*)\"$")
+    @When("User searches a profile in {string}")
     public void tutorSearchesAJobIn(String location) {
         dashboardPage.setLocation(location);
         dashboardPage.clickSearchButton();
     }
 
-    @When("^Opens first profile$")
+    @When("Opens first profile")
     public void openFirstProfile() {
         searchResultsPage.openFirstSearchResult();
     }
 
-    @Then("^Tutor profile is displayed$")
+    @Then("Tutor profile is displayed")
     public void tutorProfileIsDisplayed() {
         tutorProfilePage.isInitialized();
     }
 
-    @Then("^Student profile is displayed$")
+    @Then("Student profile is displayed")
     public void studentProfileIsDisplayed() {
         studentProfilePage.isInitialized();
     }
 
-    @When("^User sets the distance of (1|5|10|20|50|100) km$")
+    @When("User sets the distance of (1|5|10|20|50|100) km")
     public void userSetsTheDistanceOfKm(String distance) {
         dashboardPage.setDistance(distance);
     }
 
-    @Then("^Search results match distance of (1|5|10|20|50|100) km$")
+    @Then("Search results match distance of (1|5|10|20|50|100) km")
     public void searchResultsMatchDistanceOfKm(String expectedDistance) {
         Assert.assertEquals(searchResultsPage.getMaxDistance(), expectedDistance + " km");
     }
