@@ -1,6 +1,6 @@
 package pages;
 
-import base.PageBase;
+import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utilities.UserType;
@@ -8,7 +8,7 @@ import utilities.UtilitiesFunctions;
 
 import java.util.Properties;
 
-public final class LogInPage extends PageBase {
+public final class LogInPage extends BasePage {
 
     @FindBy(id = "user_login")
     private WebElement emailInput;

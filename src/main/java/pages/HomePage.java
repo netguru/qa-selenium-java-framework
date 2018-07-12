@@ -1,10 +1,10 @@
 package pages;
 
-import base.PageBase;
+import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public final class HomePage extends PageBase {
+public final class HomePage extends BasePage {
 
     @FindBy(id = "signup-link")
     private WebElement signUpFreeButton;

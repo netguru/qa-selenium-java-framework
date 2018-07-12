@@ -1,10 +1,10 @@
 package pages;
 
-import base.PageBase;
+import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public final class ForgotPasswordPage extends PageBase {
+public final class ForgotPasswordPage extends BasePage {
 
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement submitButton;

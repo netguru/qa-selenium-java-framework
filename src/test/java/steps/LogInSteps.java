@@ -1,6 +1,6 @@
 package steps;
 
-import base.TestBase;
+import base.TestingBase;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -8,8 +8,8 @@ import org.testng.Assert;
 import pages.*;
 import utilities.UserType;
 
-public class LogInSteps extends TestBase {
-    LogInPage logInPage = new LogInPage();
+public class LogInSteps extends TestingBase {
+    private LogInPage logInPage = new LogInPage();
 
     @Given("The User is on login page")
     public void theUserIsOnLoginPage() {
@@ -65,7 +65,7 @@ public class LogInSteps extends TestBase {
 
     @Then("{string} message shows up")
     public void messageShowsUp(String alert) {
-        Assert.assertTrue(alert.equals(logInPage.getAlertText()));
+        Assert.assertEquals(alert,logInPage.getAlertText());
     }
 
     @When("User selects Forgot Password button")

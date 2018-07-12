@@ -7,13 +7,13 @@ import utilities.UtilitiesFunctions;
 
 import java.util.Properties;
 
-public abstract class PageBase {
+public abstract class BasePage {
     protected static String baseUrl;
     protected static String language;
     protected String relativeUrl;
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
 
-    public PageBase() {
+    public BasePage() {
         Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
 
         baseUrl = props.getProperty("base_url").toLowerCase();

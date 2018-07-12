@@ -1,6 +1,6 @@
 package steps;
 
-import base.TestBase;
+import base.TestingBase;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
@@ -9,11 +9,11 @@ import pages.SearchResultsPage;
 import pages.StudentProfilePage;
 import pages.TutorProfilePage;
 
-public class SearchSteps extends TestBase {
-    DashboardPage dashboardPage = new DashboardPage();
-    SearchResultsPage searchResultsPage = new SearchResultsPage();
-    TutorProfilePage tutorProfilePage = new TutorProfilePage();
-    StudentProfilePage studentProfilePage = new StudentProfilePage();
+public class SearchSteps extends TestingBase {
+    private DashboardPage dashboardPage = new DashboardPage();
+    private SearchResultsPage searchResultsPage = new SearchResultsPage();
+    private TutorProfilePage tutorProfilePage = new TutorProfilePage();
+    private StudentProfilePage studentProfilePage = new StudentProfilePage();
 
     @When("User searches a profile in {string}")
     public void tutorSearchesAJobIn(String location) {

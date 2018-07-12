@@ -1,6 +1,6 @@
 package steps;
 
-import base.TestBase;
+import base.TestingBase;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -13,7 +13,7 @@ import pages.LogInPage;
 import pages.SignUpPage;
 import utilities.UserType;
 
-public class StepsHelper extends TestBase {
+public class StepsHelper extends TestingBase {
     @Before
     public void setupTestCase() {
         setupEnvironment();

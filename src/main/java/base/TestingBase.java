@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
-public abstract class TestBase {
+public abstract class TestingBase {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
 

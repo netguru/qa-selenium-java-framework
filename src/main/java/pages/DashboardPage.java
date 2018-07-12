@@ -1,12 +1,12 @@
 package pages;
 
-import base.PageBase;
+import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import sections.MainHeaderSection;
 
-public final class DashboardPage extends PageBase {
+public final class DashboardPage extends BasePage {
 
     @FindBy(id = "q_place")
     private WebElement searchInput;

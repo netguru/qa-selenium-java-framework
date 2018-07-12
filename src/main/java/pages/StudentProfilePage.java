@@ -1,10 +1,10 @@
 package pages;
 
-import base.PageBase;
+import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public final class StudentProfilePage extends PageBase {
+public final class StudentProfilePage extends BasePage {
 
     @FindBy(id = "consumer-teaching-group")
     private WebElement studentProfileDescription;
