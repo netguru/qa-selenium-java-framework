@@ -131,6 +131,11 @@
             <artifactId>webdrivermanager</artifactId>
             <version>2.2.4</version>
         </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.htmlelements</groupId>
+            <artifactId>htmlelements-java</artifactId>
+            <version>1.18</version> <!-- 1.18+ is SELENIUM 3.5.1+ compatible -->
+        </dependency>
     </dependencies>
 
 </project>

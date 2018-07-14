@@ -1,6 +1,7 @@
 package pages;
 
 import base.BasePage;
+import ngelements.Button;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utilities.UserType;
@@ -20,13 +21,13 @@ public final class LogInPage extends BasePage {
     private WebElement rememberMeCheckbox;
 
     @FindBy(css = ".pull-right")
-    private WebElement forgotPasswordButton;
+    private Button forgotPasswordButton;
 
     @FindBy(id = "login-btn")
-    private WebElement loginButton;
+    private Button loginButton;
 
     @FindBy(id = "signup-link")
-    private WebElement signUpButton;
+    private Button signUpButton;
 
     @FindBy(css = ".flash-message")
     private WebElement alertTextElement;
