@@ -1,7 +1,7 @@
 package pages;
 
 import base.BasePage;
-import ngelements.Button;
+import ngelements.NGButton;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 
@@ -9,7 +9,7 @@ public final class ForgotPasswordPage extends BasePage {
 
     @Name("submit button")
     @FindBy(xpath = "//input[@type='submit']")
-    private Button submitButton;
+    private NGButton submitNGButton;
 
     public ForgotPasswordPage() {
         relativeUrl = "forgot_passwords/new";
@@ -17,6 +17,6 @@ public final class ForgotPasswordPage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return submitButton.isDisplayed();
+        return submitNGButton.isDisplayed();
     }
 }

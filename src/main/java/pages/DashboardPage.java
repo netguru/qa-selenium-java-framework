@@ -1,7 +1,7 @@
 package pages;
 
 import base.BasePage;
-import ngelements.Button;
+import ngelements.NGButton;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Select;
@@ -16,7 +16,7 @@ public final class DashboardPage extends BasePage {
 
     @Name("search button")
     @FindBy(xpath = "//div[@class='col-xs-24 col-sm-6']")
-    private Button searchButton;
+    private NGButton searchNGButton;
 
     @Name("distance dropdown")
     @FindBy(id = "q_distance")
@@ -36,7 +36,7 @@ public final class DashboardPage extends BasePage {
     }
 
     public void clickSearchButton() {
-        searchButton.click();
+        searchNGButton.click();
     }
 
     /**

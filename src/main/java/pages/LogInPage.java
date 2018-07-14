@@ -1,7 +1,7 @@
 package pages;
 
 import base.BasePage;
-import ngelements.Button;
+import ngelements.NGButton;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utilities.UserType;
@@ -21,13 +21,13 @@ public final class LogInPage extends BasePage {
     private WebElement rememberMeCheckbox;
 
     @FindBy(css = ".pull-right")
-    private Button forgotPasswordButton;
+    private NGButton forgotPasswordNGButton;
 
     @FindBy(id = "login-btn")
-    private Button loginButton;
+    private NGButton loginNGButton;
 
     @FindBy(id = "signup-link")
-    private Button signUpButton;
+    private NGButton signUpNGButton;
 
     @FindBy(css = ".flash-message")
     private WebElement alertTextElement;
@@ -38,7 +38,7 @@ public final class LogInPage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return loginButton.isDisplayed();
+        return loginNGButton.isDisplayed();
     }
 
     public void logInUserAndRememberMe(String email, String password, boolean rememberMe) {
@@ -96,17 +96,17 @@ public final class LogInPage extends BasePage {
     }
 
     public void clickForgotPasswordButton() {
-        forgotPasswordButton.click();
+        forgotPasswordNGButton.click();
         log.info("Selecting Forgot Password? button");
     }
 
     public void clickSignUpNowButton() {
-        signUpButton.click();
+        signUpNGButton.click();
         log.info("Selecting Sign Up Now button");
     }
 
     public void clickLogInButton() {
-        loginButton.click();
+        loginNGButton.click();
         log.info("Selecting Log In button");
     }
 
