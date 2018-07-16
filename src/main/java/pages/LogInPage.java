@@ -2,6 +2,7 @@ package pages;
 
 import base.BasePage;
 import ngelements.NGButton;
+import ngelements.NGCheckbox;
 import ngelements.NGTextInput;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,7 +20,7 @@ public final class LogInPage extends BasePage {
     private NGTextInput passwordInput;
 
     @FindBy(css = ".checkbox__button")
-    private WebElement rememberMeCheckbox;
+    private NGCheckbox rememberMeCheckbox;
 
     @FindBy(css = ".pull-right")
     private NGButton forgotPasswordNGButton;
@@ -92,7 +93,7 @@ public final class LogInPage extends BasePage {
     }
 
     public void clickRememberMeCheckbox() {
-        rememberMeCheckbox.click();
+        rememberMeCheckbox.select();
         log.info("Selecting Remember Me checkbox");
     }
 
