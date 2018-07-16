@@ -2,6 +2,7 @@ package pages;
 
 import base.BasePage;
 import ngelements.NGButton;
+import ngelements.NGTextInput;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utilities.UserType;
@@ -12,10 +13,10 @@ import java.util.Properties;
 public final class LogInPage extends BasePage {
 
     @FindBy(id = "user_login")
-    private WebElement emailInput;
+    private NGTextInput emailInput;
 
     @FindBy(id = "user_password")
-    private WebElement passwordInput;
+    private NGTextInput passwordInput;
 
     @FindBy(css = ".checkbox__button")
     private WebElement rememberMeCheckbox;

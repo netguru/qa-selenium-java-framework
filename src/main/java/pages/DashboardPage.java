@@ -2,9 +2,9 @@ package pages;
 
 import base.BasePage;
 import ngelements.NGButton;
+import ngelements.NGSelect;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.Select;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 import sections.MainHeaderSection;
 
@@ -20,7 +20,7 @@ public final class DashboardPage extends BasePage {
 
     @Name("distance dropdown")
     @FindBy(id = "q_distance")
-    private Select distanceDropdown;
+    private NGSelect distanceDropdown;
 
     private MainHeaderSection mainHeaderSection;
 
