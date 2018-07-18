@@ -3,8 +3,8 @@ package pages;
 import base.BasePage;
 import ngelements.NGButton;
 import ngelements.NGCheckbox;
+import ngelements.NGTextBlock;
 import ngelements.NGTextInput;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utilities.UserType;
 import utilities.UtilitiesFunctions;
@@ -32,7 +32,7 @@ public final class LogInPage extends BasePage {
     private NGButton signUpButton;
 
     @FindBy(css = ".flash-message")
-    private WebElement alertTextElement;
+    private NGTextBlock alertTextElement;
 
     public LogInPage() {
         relativeUrl = "sign_in";
