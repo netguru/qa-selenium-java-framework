@@ -23,13 +23,13 @@ public final class LogInPage extends BasePage {
     private NGCheckbox rememberMeCheckbox;
 
     @FindBy(css = ".pull-right")
-    private NGButton forgotPasswordNGButton;
+    private NGButton forgotPasswordButton;
 
     @FindBy(id = "login-btn")
-    private NGButton loginNGButton;
+    private NGButton loginButton;
 
     @FindBy(id = "signup-link")
-    private NGButton signUpNGButton;
+    private NGButton signUpButton;
 
     @FindBy(css = ".flash-message")
     private WebElement alertTextElement;
@@ -40,7 +40,7 @@ public final class LogInPage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return loginNGButton.isDisplayed();
+        return loginButton.isDisplayed();
     }
 
     public void logInUserAndRememberMe(String email, String password, boolean rememberMe) {
@@ -98,17 +98,17 @@ public final class LogInPage extends BasePage {
     }
 
     public void clickForgotPasswordButton() {
-        forgotPasswordNGButton.click();
+        forgotPasswordButton.click();
         log.info("Selecting Forgot Password? button");
     }
 
     public void clickSignUpNowButton() {
-        signUpNGButton.click();
+        signUpButton.click();
         log.info("Selecting Sign Up Now button");
     }
 
     public void clickLogInButton() {
-        loginNGButton.click();
+        loginButton.click();
         log.info("Selecting Log In button");
     }
 

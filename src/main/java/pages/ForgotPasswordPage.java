@@ -9,7 +9,7 @@ public final class ForgotPasswordPage extends BasePage {
 
     @Name("submit button")
     @FindBy(xpath = "//input[@type='submit']")
-    private NGButton submitNGButton;
+    private NGButton submitButton;
 
     public ForgotPasswordPage() {
         relativeUrl = "forgot_passwords/new";
@@ -17,6 +17,6 @@ public final class ForgotPasswordPage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return submitNGButton.isDisplayed();
+        return submitButton.isDisplayed();
     }
 }
