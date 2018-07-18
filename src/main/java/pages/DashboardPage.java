@@ -16,7 +16,7 @@ public final class DashboardPage extends BasePage {
 
     @Name("search button")
     @FindBy(xpath = "//div[@class='col-xs-24 col-sm-6']")
-    private NGButton searchNGButton;
+    private NGButton searchButton;
 
     @Name("distance dropdown")
     @FindBy(id = "q_distance")
@@ -36,7 +36,7 @@ public final class DashboardPage extends BasePage {
     }
 
     public void clickSearchButton() {
-        searchNGButton.click();
+        searchButton.click();
     }
 
     /**
