@@ -1,25 +1,24 @@
 package sections;
 
 import base.BaseSection;
-import org.openqa.selenium.WebElement;
+import ngelements.NGButton;
+import ngelements.NGSelect;
 import org.openqa.selenium.support.FindBy;
 
 public final class MainHeaderSection extends BaseSection {
 
     @FindBy(css = ".nav-link-holder--user-details .dropdown-toggle")
-    private WebElement profileDropdown;
+    private NGSelect profileDropdown;
 
     @FindBy(xpath = "//ul[@class='dropdown-menu']/li/a[contains(text(), 'Logout')]")
-    private WebElement logOutButton;
+    private NGButton logOutButton;
 
     public void logOut() {
         clickProfileDropdown();
         logOutButton.click();
-        log.info("Selecting Log Out button");
     }
 
     public void clickProfileDropdown() {
         profileDropdown.click();
-        log.info("Expanding profile dropdown");
     }
 }
