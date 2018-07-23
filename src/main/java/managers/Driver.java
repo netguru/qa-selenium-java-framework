@@ -17,12 +17,10 @@ public final class Driver {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
     private static WebDriver driver = null;
-    private static String baseUrl;
     private PropertiesLoader propertiesLoader = new PropertiesLoader();
 
     public Driver() {
-        propertiesLoader.loadProperties("initConfig.properties");
-        String browserType = propertiesLoader.getProperties().getProperty("browser").toLowerCase();
+        String browserType = propertiesLoader.getBrowserType().toLowerCase();
         log.info("Initializing browser: " + browserType);
         switch (browserType) {
             case "chrome":
@@ -51,7 +49,7 @@ public final class Driver {
     public void initDriver() {
         maximize();
         setImplicitWait(10);
-        setBaseUrl();
+        setAndGoToBaseUrl();
         cookieAddition();
     }
 
@@ -61,12 +59,12 @@ public final class Driver {
         return driver;
     }
 
-    public void maximize() {
+    private void maximize() {
         driver.manage().window().maximize();
         log.info("Maximizing browser window");
     }
 
-    public void setImplicitWait(int seconds) {
+    private void setImplicitWait(int seconds) {
         driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
         log.debug("Setting implicit wait to " + seconds + "seconds");
     }
@@ -78,14 +76,14 @@ public final class Driver {
         }
     }
 
-    public void setBaseUrl() {
-        baseUrl = propertiesLoader.getProperties().getProperty("base_url").toLowerCase();
+    private void setAndGoToBaseUrl() {
+        String baseUrl = propertiesLoader.getBaseUrl().toLowerCase();
         driver.navigate().to(baseUrl);
     }
 
-    public void cookieAddition() {
-        String cookieName = propertiesLoader.getProperties().getProperty("cookie_name");
-        String cookieValue = propertiesLoader.getProperties().getProperty("cookie_value");
+    private void cookieAddition() {
+        String cookieName = propertiesLoader.getCookieName();
+        String cookieValue = propertiesLoader.getCookieValue();
         Cookie cookie = new Cookie(cookieName, cookieValue);
         driver.manage().addCookie(cookie);
     }

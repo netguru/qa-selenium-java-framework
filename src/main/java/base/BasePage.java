@@ -4,21 +4,19 @@ import managers.Driver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.support.PageFactory;
-import utilities.UtilitiesFunctions;
-
-import java.util.Properties;
+import utilities.PropertiesLoader;
 
 public abstract class BasePage {
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
-    protected static String baseUrl;
-    protected static String language;
+    private static String baseUrl;
+    private static String language;
     protected String relativeUrl;
+    private PropertiesLoader propertiesLoader;
 
     public BasePage() {
-        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
-
-        baseUrl = props.getProperty("base_url").toLowerCase();
-        language = props.getProperty("language").toLowerCase();
+        propertiesLoader = new PropertiesLoader();
+        baseUrl = propertiesLoader.getBaseUrl();
+        language = propertiesLoader.getLanguage();
 
         PageFactory.initElements(Driver.getDriver(), this);
         log.debug(getClass().getName() + " -> Initializing elements");
