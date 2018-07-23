@@ -1,64 +1,42 @@
-# Java Gradle CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/openjdk:8-jdk-browsers
+version: 2 # use CircleCI 2.0
+jobs: # a collection of steps
+  build: # runs not using Workflows must have a `build` job as entry point
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
+    working_directory: ~/circleci-selenium # directory where steps will run
 
-    working_directory: ~/repo
+    docker: # run the steps with Docker
+          - image: circleci/openjdk:8-jdk-browsers # ...with this image as the primary container; this is where all `steps` will run
 
-    environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
+           steps: # a collection of executable commands
 
-    steps:
-      - checkout
+                - checkout # check out source code to working directory
 
-      - run:
-                name:
-                       Install Chromedriver latest version
-                command: |
-                        sudo apt-get update
-                        sudo apt-get install lsb-release libappindicator3-1
-                        curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-                        sudo dpkg -i google-chrome.deb
-                        sudo sed -i 's|HERE/chrome"|HERE/chrome" --no-sandbox|g' /opt/google/chrome/google-chrome
-                        rm google-chrome.deb
+                name:  Install Chromedriver latest version
+                                command: |
+                                        sudo apt-get update
+                                        sudo apt-get install lsb-release libappindicator3-1
+                                        curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                                        sudo dpkg -i google-chrome.deb
+                                        sudo sed -i 's|HERE/chrome"|HERE/chrome" --no-sandbox|g' /opt/google/chrome/google-chrome
+                                        rm google-chrome.deb
 
-            # Download and cache dependencies
-            - restore_cache:
-                keys:
-                - v1-dependencies-{{ checksum "pom.xml" }}
-                # fallback to using the latest cache if no exact match is found
-                - v1-dependencies-
+                - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
+                    key: circleci-selenium-{{ checksum "pom.xml" }}
 
-            - run: mvn dependency:go-offline
+               - run: mvn dependency:go-offline # gets the project dependencies
 
-            - save_cache:
-                paths:
-                  - ~/.m2
-                key: v1-dependencies-{{ checksum "pom.xml" }}
+                    - save_cache: # saves the project dependencies
+                        paths:
+                          - ~/.m2
+                        key: circleci-selenium-{{ checksum "pom.xml" }}
 
-            # run tests!
-            - run:
-                command: >
-                        mvn clean test
+              - run: mvn test # run tests
 
-                no_output_timeout: 20m
-
-            - store_artifacts:
-                path: ./target/site/artifacts
-                destination: artifacts
-            - store_test_results:
-                path: ./target/site/cucumber-pretty/
-
+                    - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
+                        path: target/surefire-reports
+              - store_artifacts:
+                              path: ./target/site/artifacts
+                              destination: artifacts
+                          - store_test_results:
+                              path: ./target/site/cucumber-pretty/
+                    # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
