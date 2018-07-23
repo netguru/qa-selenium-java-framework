@@ -11,10 +11,7 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features"}
         , glue = {"steps"}
         , snippets = SnippetType.CAMELCASE
-        , tags = {"@Smoke"}
         , plugin = {"pretty"}
 )
-
-public class SmokeTestRunner extends AbstractTestNGCucumberTests {
-
+public class TestNGRunner extends AbstractTestNGCucumberTests {
 }
