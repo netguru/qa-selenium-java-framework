@@ -3,25 +3,26 @@ package managers;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import utilities.UtilitiesFunctions;
+import utilities.PropertiesLoader;
 
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public final class Driver {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
     private static WebDriver driver = null;
+    private static String baseUrl;
+    private PropertiesLoader propertiesLoader = new PropertiesLoader();
 
     public Driver() {
-        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
-
-        String browserType = props.getProperty("browser").toLowerCase();
+        propertiesLoader.loadProperties("initConfig.properties");
+        String browserType = propertiesLoader.getProperties().getProperty("browser").toLowerCase();
         log.info("Initializing browser: " + browserType);
         switch (browserType) {
             case "chrome":
@@ -47,6 +48,13 @@ public final class Driver {
         }
     }
 
+    public void initDriver() {
+        maximize();
+        setImplicitWait(10);
+        setBaseUrl();
+        cookieAddition();
+    }
+
     public static WebDriver getDriver() {
         if (driver == null)
             log.error("Driver not initialized!");
@@ -68,5 +76,17 @@ public final class Driver {
             driver.quit();
             log.info("Quitting the browser");
         }
+    }
+
+    public void setBaseUrl() {
+        baseUrl = propertiesLoader.getProperties().getProperty("base_url").toLowerCase();
+        driver.navigate().to(baseUrl);
+    }
+
+    public void cookieAddition() {
+        String cookieName = propertiesLoader.getProperties().getProperty("cookie_name");
+        String cookieValue = propertiesLoader.getProperties().getProperty("cookie_value");
+        Cookie cookie = new Cookie(cookieName, cookieValue);
+        driver.manage().addCookie(cookie);
     }
 }
