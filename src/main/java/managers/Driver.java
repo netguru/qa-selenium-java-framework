@@ -1,4 +1,4 @@
-package base;
+package managers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
@@ -15,10 +15,10 @@ import java.util.concurrent.TimeUnit;
 
 public final class Driver {
 
-    private static WebDriver driver = null;
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
+    private static WebDriver driver = null;
 
-    public static void initializeDriver() {
+    public Driver() {
         Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
 
         String browserType = props.getProperty("browser").toLowerCase();
@@ -47,26 +47,26 @@ public final class Driver {
         }
     }
 
-    public static void maximize() {
-        driver.manage().window().maximize();
-        log.info("Maximizing browser window");
-    }
-
-    public static void setImplicitWait(int seconds) {
-        driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
-        log.debug("Setting implicit wait to " + seconds + "seconds");
-    }
-
-    public static void quit() {
-        if (driver != null) {
-            driver.quit();
-            log.info("Quitting the browser");
-        }
-    }
-
     public static WebDriver getDriver() {
         if (driver == null)
             log.error("Driver not initialized!");
         return driver;
+    }
+
+    public void maximize() {
+        driver.manage().window().maximize();
+        log.info("Maximizing browser window");
+    }
+
+    public void setImplicitWait(int seconds) {
+        driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+        log.debug("Setting implicit wait to " + seconds + "seconds");
+    }
+
+    public void quit() {
+        if (driver != null) {
+            driver.quit();
+            log.info("Quitting the browser");
+        }
     }
 }

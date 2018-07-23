@@ -1,13 +1,13 @@
 package base;
 
 import cucumber.api.Scenario;
+import managers.Context;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.io.FileHandler;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import utilities.UtilitiesFunctions;
 
 import java.io.File;
@@ -18,13 +18,14 @@ import java.util.Properties;
 public abstract class TestingBase {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
+    protected static Context context;
 
     protected void setupEnvironment() {
         log.debug(getClass().getName() + " -> Starting tests...");
+        TestingBase.context = new Context();
 
-        Driver.initializeDriver();
-        Driver.maximize();
-        Driver.setImplicitWait(10);
+        context.driver.maximize();
+        context.driver.setImplicitWait(10);
 
         // Add cookie to bypass rack password
         Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
@@ -33,12 +34,12 @@ public abstract class TestingBase {
         String cookieName = props.getProperty("cookie_name");
         String cookieValue = props.getProperty("cookie_value");
         Cookie ck = new Cookie(cookieName, cookieValue);
-        Driver.getDriver().navigate().to(baseUrl);
-        Driver.getDriver().manage().addCookie(ck);
+        context.driver.getDriver().navigate().to(baseUrl);
+        context.driver.getDriver().manage().addCookie(ck);
     }
 
     protected void tearDown() {
-        Driver.quit();
+        context.driver.quit();
         log.debug(getClass().getName() + " -> Ending tests...");
     }
 
@@ -48,7 +49,7 @@ public abstract class TestingBase {
         String timeToPrint = dateTimeFormatter.format(currentTime);
 
         try {
-            File screenSource = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.FILE);
+            File screenSource = ((TakesScreenshot) context.driver.getDriver()).getScreenshotAs(OutputType.FILE);
             FileHandler.copy(
                     screenSource,
                     new File("screenshots/" + scenario.getName() + "_" + timeToPrint + "_failScreen.png")
