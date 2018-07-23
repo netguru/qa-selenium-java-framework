@@ -24,11 +24,11 @@ cd qa-selenium
 
 4a.Compile project files and run tests
 ```bash
-mvn clean install test -DsuiteFile=yourSuite.xml
+mvn clean install test -Dcucumber.options="--tags @{name of tag, with upper/lowercase letters}"
 ```
 4b.To run tests from previous build type
 ```bash
-mvn test -DsuiteFile=yourSuite.xml
+mvn test -Dcucumber.options="--tags @{name of tag, with upper/lowercase letters}"
 ```
 
 ## Git Branching Model

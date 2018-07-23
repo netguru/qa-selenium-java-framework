@@ -15,7 +15,7 @@ Feature: Login
             |   CONSUMER_PAID       |
             |   CONSUMER_UNPAID     |
             |   CONSUMER_SPECIAL    |
-
+    @Logout
     Scenario: Successful logout
         When User logs in as: "CONSUMER_UNPAID"
         And User selects Logout button
