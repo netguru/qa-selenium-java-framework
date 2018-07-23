@@ -1,16 +1,14 @@
 package pages;
 
-import base.PageBase;
-import base.UserType;
-import org.openqa.selenium.WebDriver;
+import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utilities.UserType;
+import utilities.UtilitiesFunctions;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
-public class LogInPage extends PageBase {
+public final class LogInPage extends BasePage {
 
     @FindBy(id = "user_login")
     private WebElement emailInput;
@@ -33,9 +31,7 @@ public class LogInPage extends PageBase {
     @FindBy(css = ".flash-message")
     private WebElement alertTextElement;
 
-    public LogInPage(WebDriver driver) throws IOException {
-        super(driver);
-
+    public LogInPage() {
         relativeUrl = "sign_in";
     }
 
@@ -44,17 +40,16 @@ public class LogInPage extends PageBase {
         return loginButton.isDisplayed();
     }
 
-    public void logIn(String email, String password, boolean rememberMe) {
+    public void logInUserAndRememberMe(String email, String password, boolean rememberMe) {
         provideEmail(email);
         providePassword(password);
-        if(rememberMe)
+        if (rememberMe)
             clickRememberMeCheckbox();
         clickLogInButton();
     }
 
-    public void logIn(UserType userType, boolean rememberMe) throws IOException {
-        Properties props = new Properties();
-        props.load( new FileInputStream("initConfig.properties") );
+    public void logInUserAndRememberMe(UserType userType, boolean rememberMe) {
+        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
 
         String email = "";
         String password = props.getProperty("common_password");
@@ -76,37 +71,42 @@ public class LogInPage extends PageBase {
                 email = props.getProperty("special_consumer_email");
                 break;
             default:
-                // TODO: Use a proper logger here
-                System.out.println("Wrong UserType. Accepted values are: ADMIN, PROVIDER, CONSUMER_PAID" +
+                log.error("Wrong UserType. Accepted values are: ADMIN, PROVIDER, CONSUMER_PAID" +
                         "CONSUMER_UNPAID, CONSUMER_SPECIAL");
                 break;
         }
 
-        logIn(email, password, rememberMe);
+        logInUserAndRememberMe(email, password, rememberMe);
     }
 
     public void provideEmail(String email) {
         emailInput.sendKeys(email);
+        log.info("Providing email: " + email);
     }
 
     public void providePassword(String password) {
         passwordInput.sendKeys(password);
+        log.info("Providing password: " + password);
     }
 
     public void clickRememberMeCheckbox() {
         rememberMeCheckbox.click();
+        log.info("Selecting Remember Me checkbox");
     }
 
     public void clickForgotPasswordButton() {
         forgotPasswordButton.click();
+        log.info("Selecting Forgot Password? button");
     }
 
     public void clickSignUpNowButton() {
         signUpButton.click();
+        log.info("Selecting Sign Up Now button");
     }
 
     public void clickLogInButton() {
         loginButton.click();
+        log.info("Selecting Log In button");
     }
 
     public String getAlertText() {

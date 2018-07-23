@@ -1,20 +1,15 @@
 package pages;
 
-import base.PageBase;
-import org.openqa.selenium.WebDriver;
+import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.io.IOException;
-
-public class ForgotPasswordPage extends PageBase {
+public final class ForgotPasswordPage extends BasePage {
 
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement submitButton;
 
-    public ForgotPasswordPage(WebDriver driver) throws IOException {
-        super(driver);
-
+    public ForgotPasswordPage() {
         relativeUrl = "forgot_passwords/new";
     }
 

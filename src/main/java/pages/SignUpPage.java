@@ -1,20 +1,15 @@
 package pages;
 
-import base.PageBase;
-import org.openqa.selenium.WebDriver;
+import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.io.IOException;
-
-public class SignUpPage extends PageBase {
+public final class SignUpPage extends BasePage {
 
     @FindBy(id = "user_email")
     private WebElement emailInput;
 
-    public SignUpPage(WebDriver driver) throws IOException {
-        super(driver);
-
+    public SignUpPage() {
         relativeUrl = "register/new";
     }
 
