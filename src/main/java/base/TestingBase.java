@@ -34,7 +34,6 @@ public abstract class TestingBase {
         Cookie ck = new Cookie(cookieName, cookieValue);
         Driver.getDriver().navigate().to(baseUrl);
         Driver.getDriver().manage().addCookie(ck);
-        Driver.maximize();
     }
 
     protected void tearDown() {
