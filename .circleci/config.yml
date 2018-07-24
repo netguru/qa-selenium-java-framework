@@ -5,29 +5,27 @@ jobs: # a collection of steps
     working_directory: ~/circleci-selenium # directory where steps will run
 
     docker: # run the steps with Docker
-          - image: circleci/openjdk:8-jdk-browsers # ...with this image as the primary container; this is where all `steps` will run
+      - image: circleci/openjdk:8-jdk-browsers # ...with this image as the primary container; this is where all `steps` will run
 
-           steps: # a collection of executable commands
+    steps: # a collection of executable commands
 
-                - checkout # check out source code to working directory
+      - checkout # check out source code to working directory
 
-                - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
-                    key: circleci-selenium-{{ checksum "pom.xml" }}
+      - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
+          key: circleci-selenium-{{ checksum "pom.xml" }}
 
-               - run: mvn dependency:go-offline # gets the project dependencies
+      - run: mvn dependency:go-offline # gets the project dependencies
 
-                    - save_cache: # saves the project dependencies
-                        paths:
-                          - ~/.m2
-                        key: circleci-selenium-{{ checksum "pom.xml" }}
+      - save_cache: # saves the project dependencies
+          paths:
+            - ~/.m2
+          key: circleci-selenium-{{ checksum "pom.xml" }}
 
-              - run: mvn test # run tests
+      - run: mvn test # run the actual tests
 
-                    - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
-                        path: target/surefire-reports
-              - store_artifacts:
-                              path: ./target/site/artifacts
-                              destination: artifacts
-                          - store_test_results:
-                              path: ./target/site/cucumber-pretty/
-                    # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
+      - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
+          path: target/cucumber-pretty/
+
+      - store_artifacts: # store the uberjar as an artifact
+          path: target/artifacts
+      # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
