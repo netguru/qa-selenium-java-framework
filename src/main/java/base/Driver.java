@@ -21,7 +21,7 @@ public final class Driver {
     public static void initializeDriver() {
         Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
 
-        String browserType = props.getProperty("browser").toLowerCase();
+        String browserType = props.getProperty("BROWSER").toLowerCase();
         log.info("Initializing browser: " + browserType);
         switch (browserType) {
             case "chrome":

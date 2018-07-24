@@ -20,4 +20,11 @@ public final class UtilitiesFunctions {
 
         return props;
     }
+
+    public static boolean isCircleCI() {
+        boolean isCircleCI = false;
+        if ("true".equals(System.getProperty("CIRCLECI").toLowerCase()))
+            isCircleCI = true;
+        return isCircleCI;
+    }
 }

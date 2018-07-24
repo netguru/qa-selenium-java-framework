@@ -16,8 +16,8 @@ public abstract class BasePage {
     public BasePage() {
         Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
 
-        baseUrl = props.getProperty("base_url").toLowerCase();
-        language = props.getProperty("language").toLowerCase();
+        baseUrl = props.getProperty("BASE_URL").toLowerCase();
+        language = props.getProperty("LANGUAGE").toLowerCase();
 
         PageFactory.initElements(Driver.getDriver(), this);
         log.debug(getClass().getName() + " -> Initializing elements");
