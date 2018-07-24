@@ -32,6 +32,7 @@ public final class UtilitiesFunctions {
                 , "COMMON_PASSWORD"}) {
             if (System.getProperty(key) != null) {
                 props.put(key, System.getProperty(key));
+                log.info("property key: " + key + " property value: " + System.getProperty(key));
             }
         }
 
