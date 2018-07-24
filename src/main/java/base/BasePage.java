@@ -3,6 +3,7 @@ package base;
 import managers.Driver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import utilities.PropertiesLoader;
 
@@ -13,12 +14,13 @@ public abstract class BasePage {
     protected String relativeUrl;
     private PropertiesLoader propertiesLoader;
 
-    public BasePage() {
+
+    public BasePage(WebDriver driver) {
         propertiesLoader = new PropertiesLoader();
         baseUrl = propertiesLoader.getBaseUrl();
         language = propertiesLoader.getLanguage();
 
-        PageFactory.initElements(Driver.getDriver(), this);
+        PageFactory.initElements(driver, this);
         log.debug(getClass().getName() + " -> Initializing elements");
     }
 

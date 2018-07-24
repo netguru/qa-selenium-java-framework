@@ -1,6 +1,7 @@
 package pages;
 
 import base.BasePage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utilities.UserType;
@@ -31,7 +32,8 @@ public final class LogInPage extends BasePage {
     @FindBy(css = ".flash-message")
     private WebElement alertTextElement;
 
-    public LogInPage() {
+    public LogInPage(WebDriver driver) {
+        super(driver);
         relativeUrl = "sign_in";
     }
 

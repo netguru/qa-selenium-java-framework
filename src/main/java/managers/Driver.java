@@ -13,7 +13,7 @@ import utilities.PropertiesLoader;
 
 import java.util.concurrent.TimeUnit;
 
-public final class Driver {
+public class Driver {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
     private static WebDriver driver = null;
