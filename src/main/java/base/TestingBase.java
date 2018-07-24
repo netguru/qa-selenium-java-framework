@@ -23,7 +23,6 @@ public abstract class TestingBase {
         log.debug(getClass().getName() + " -> Starting tests...");
 
         Driver.initializeDriver();
-        Driver.maximize();
         Driver.setImplicitWait(10);
 
         // Add cookie to bypass rack password
@@ -35,6 +34,7 @@ public abstract class TestingBase {
         Cookie ck = new Cookie(cookieName, cookieValue);
         Driver.getDriver().navigate().to(baseUrl);
         Driver.getDriver().manage().addCookie(ck);
+        Driver.maximize();
     }
 
     protected void tearDown() {
