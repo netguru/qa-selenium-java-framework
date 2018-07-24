@@ -13,10 +13,10 @@ import utilities.PropertiesLoader;
 
 import java.util.concurrent.TimeUnit;
 
-public final class Driver {
+public class Driver {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
-    private static WebDriver driver = null;
+    private WebDriver driver = null;
     private PropertiesLoader propertiesLoader = new PropertiesLoader();
 
     public Driver() {
@@ -53,7 +53,7 @@ public final class Driver {
         cookieAddition();
     }
 
-    public static WebDriver getDriver() {
+    public WebDriver getDriver() {
         if (driver == null)
             log.error("Driver not initialized!");
         return driver;
@@ -87,4 +87,6 @@ public final class Driver {
         Cookie cookie = new Cookie(cookieName, cookieValue);
         driver.manage().addCookie(cookie);
     }
+
+
 }

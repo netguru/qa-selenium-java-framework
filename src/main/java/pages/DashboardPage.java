@@ -1,6 +1,7 @@
 package pages;
 
 import base.BasePage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -19,7 +20,8 @@ public final class DashboardPage extends BasePage {
 
     private MainHeaderSection mainHeaderSection;
 
-    public DashboardPage() {
+    public DashboardPage(WebDriver driver) {
+        super(driver);
         relativeUrl = "dashboard";
 
         mainHeaderSection = new MainHeaderSection();
