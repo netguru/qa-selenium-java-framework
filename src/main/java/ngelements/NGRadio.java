@@ -30,7 +30,7 @@ public class NGRadio extends NGHtmlElement {
         if (index >= 0 && index < buttons.size()) {
             this.selectButton(buttons.get(index));
         } else {
-            log.info("Cannot locate radiot button with value: " + Integer.toString(index));
+            log.info("Cannot locate radio button with value: " + Integer.toString(index));
             throw new NoSuchElementException("Cannot locate radio button with index: " + Integer.toString(index));
         }
         log.info("Radio button: " + getName() + " selected element by index: " + Integer.toString(index));
