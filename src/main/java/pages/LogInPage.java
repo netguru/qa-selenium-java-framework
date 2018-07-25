@@ -1,7 +1,10 @@
 package pages;
 
 import base.BasePage;
-import org.openqa.selenium.WebElement;
+import ngelements.NGButton;
+import ngelements.NGCheckbox;
+import ngelements.NGTextBlock;
+import ngelements.NGTextInput;
 import org.openqa.selenium.support.FindBy;
 import utilities.UserType;
 import utilities.UtilitiesFunctions;
@@ -11,25 +14,25 @@ import java.util.Properties;
 public final class LogInPage extends BasePage {
 
     @FindBy(id = "user_login")
-    private WebElement emailInput;
+    private NGTextInput emailInput;
 
     @FindBy(id = "user_password")
-    private WebElement passwordInput;
+    private NGTextInput passwordInput;
 
     @FindBy(css = ".checkbox__button")
-    private WebElement rememberMeCheckbox;
+    private NGCheckbox rememberMeCheckbox;
 
     @FindBy(css = ".pull-right")
-    private WebElement forgotPasswordButton;
+    private NGButton forgotPasswordButton;
 
     @FindBy(id = "login-btn")
-    private WebElement loginButton;
+    private NGButton loginButton;
 
     @FindBy(id = "signup-link")
-    private WebElement signUpButton;
+    private NGButton signUpButton;
 
     @FindBy(css = ".flash-message")
-    private WebElement alertTextElement;
+    private NGTextBlock alertTextElement;
 
     public LogInPage() {
         relativeUrl = "sign_in";
@@ -81,32 +84,26 @@ public final class LogInPage extends BasePage {
 
     public void provideEmail(String email) {
         emailInput.sendKeys(email);
-        log.info("Providing email: " + email);
     }
 
     public void providePassword(String password) {
         passwordInput.sendKeys(password);
-        log.info("Providing password: " + password);
     }
 
     public void clickRememberMeCheckbox() {
-        rememberMeCheckbox.click();
-        log.info("Selecting Remember Me checkbox");
+        rememberMeCheckbox.select();
     }
 
     public void clickForgotPasswordButton() {
         forgotPasswordButton.click();
-        log.info("Selecting Forgot Password? button");
     }
 
     public void clickSignUpNowButton() {
         signUpButton.click();
-        log.info("Selecting Sign Up Now button");
     }
 
     public void clickLogInButton() {
         loginButton.click();
-        log.info("Selecting Log In button");
     }
 
     public String getAlertText() {

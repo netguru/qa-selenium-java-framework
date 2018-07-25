@@ -1,13 +1,13 @@
 package pages;
 
 import base.BasePage;
-import org.openqa.selenium.WebElement;
+import ngelements.NGTextInput;
 import org.openqa.selenium.support.FindBy;
 
 public final class SignUpPage extends BasePage {
 
     @FindBy(id = "user_email")
-    private WebElement emailInput;
+    private NGTextInput emailInput;
 
     public SignUpPage() {
         relativeUrl = "register/new";
