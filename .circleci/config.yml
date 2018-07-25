@@ -33,6 +33,7 @@ jobs: # a collection of steps
                             -DUNPAID_CONSUMER_EMAIL=$UNPAID_CONSUMER_EMAIL
                             -DSPECIAL_CONSUMER_EMAIL=$SPECIAL_CONSUMER_EMAIL
                             -DCOMMON_PASSWORD=$COMMON_PASSWORD
+                            -DCIRCLECI=true
 
       - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
           path: target/cucumber-pretty/
