@@ -16,10 +16,6 @@ jobs: # a collection of steps
 
       - run: mvn dependency:go-offline # gets the project dependencies
 
-      - run:
-          name: Running X virtual framebuffer
-          command: Xvfb :0 -ac &
-
       - save_cache: # saves the project dependencies
           paths:
             - ~/.m2

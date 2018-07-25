@@ -27,3 +27,4 @@ target/
 *.png
 
 # Confidential
+initConfig.properties
