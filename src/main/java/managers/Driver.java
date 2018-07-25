@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class Driver {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
-    private WebDriver driver = null;
+    private WebDriver driver;
     private PropertiesLoader propertiesLoader = new PropertiesLoader();
 
     public Driver() {
