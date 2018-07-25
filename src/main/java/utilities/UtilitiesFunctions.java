@@ -41,8 +41,9 @@ public final class UtilitiesFunctions {
     public static boolean isCircleCI() {
         boolean isCircleCI = false;
         try {
-            if ("true".equals(System.getProperty("CIRCLECI").toLowerCase()))
+            if ("true".equals(System.getProperty("CIRCLECI").toLowerCase())) {
                 isCircleCI = true;
+            }
         } catch (Exception e) {
             log.info("Undefined CIRCLECI property.");
         }

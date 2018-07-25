@@ -22,9 +22,11 @@ public abstract class TestingBase {
         log.debug(getClass().getName() + " -> Starting tests...");
 
         Driver.initializeDriver();
-        if (!UtilitiesFunctions.isCircleCI())
-            Driver.maximize();
         Driver.setImplicitWait(10);
+
+        if (!UtilitiesFunctions.isCircleCI()) {
+            Driver.maximize();
+        }
 
         // Add cookie to bypass rack password
         Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
