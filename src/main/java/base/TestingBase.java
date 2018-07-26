@@ -29,7 +29,7 @@ public abstract class TestingBase {
         }
 
         // Add cookie to bypass rack password
-        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
+        Properties props = UtilitiesFunctions.loadProperties();
 
         String baseUrl = props.getProperty("BASE_URL").toLowerCase();
         String cookieName = props.getProperty("COOKIE_NAME");

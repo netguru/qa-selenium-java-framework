@@ -43,13 +43,14 @@ public final class LogInPage extends BasePage {
     public void logInUserAndRememberMe(String email, String password, boolean rememberMe) {
         provideEmail(email);
         providePassword(password);
-        if (rememberMe)
+        if (rememberMe) {
             clickRememberMeCheckbox();
+        }
         clickLogInButton();
     }
 
     public void logInUserAndRememberMe(UserType userType, boolean rememberMe) {
-        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
+        Properties props = UtilitiesFunctions.loadProperties();
 
         String email = "";
         String password = props.getProperty("COMMON_PASSWORD");

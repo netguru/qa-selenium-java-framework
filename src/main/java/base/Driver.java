@@ -19,7 +19,7 @@ public final class Driver {
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
 
     public static void initializeDriver() {
-        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
+        Properties props = UtilitiesFunctions.loadProperties();
 
         String browserType = props.getProperty("BROWSER").toLowerCase();
         log.info("Initializing browser: " + browserType);
@@ -65,8 +65,9 @@ public final class Driver {
     }
 
     public static WebDriver getDriver() {
-        if (driver == null)
+        if (driver == null) {
             log.error("Driver not initialized!");
+        }
         return driver;
     }
 }
