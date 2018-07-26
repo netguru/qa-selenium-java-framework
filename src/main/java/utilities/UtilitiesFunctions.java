@@ -18,20 +18,9 @@ public final class UtilitiesFunctions {
             log.warn("Failed to load " + fileName + " file.");
         }
 
-        for (String key : new String[]{
-                "BROWSER"
-                , "BASE_URL"
-                , "LANGUAGE"
-                , "COOKIE_NAME"
-                , "COOKIE_VALUE"
-                , "ADMIN_EMAIL"
-                , "PROVIDER_EMAIL"
-                , "PAID_CONSUMER_EMAIL"
-                , "UNPAID_CONSUMER_EMAIL"
-                , "SPECIAL_CONSUMER_EMAIL"
-                , "COMMON_PASSWORD"}) {
-            if (System.getProperty(key) != null) {
-                props.put(key, System.getProperty(key));
+        for (EnvironmentVariables variable : EnvironmentVariables.values()) {
+            if (System.getProperty(variable.name()) != null) {
+                props.put(variable.name(), System.getProperty(variable.name()));
             }
         }
 
@@ -39,14 +28,6 @@ public final class UtilitiesFunctions {
     }
 
     public static boolean isCircleCI() {
-        boolean isCircleCI = false;
-        try {
-            if ("true".equals(System.getProperty("CIRCLECI").toLowerCase())) {
-                isCircleCI = true;
-            }
-        } catch (Exception e) {
-            log.info("Undefined CIRCLECI property.");
-        }
-        return isCircleCI;
+        return Boolean.parseBoolean(System.getProperty("CIRCLECI"));
     }
 }
