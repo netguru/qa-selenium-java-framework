@@ -10,16 +10,16 @@ import utilities.UtilitiesFunctions;
 import java.util.Properties;
 
 public abstract class BasePage {
-    protected static String baseUrl;
-    protected static String language;
+    private static String baseUrl;
+    private static String language;
     protected String relativeUrl;
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
 
     public BasePage() {
-        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
+        Properties props = UtilitiesFunctions.loadProperties();
 
-        baseUrl = props.getProperty("base_url").toLowerCase();
-        language = props.getProperty("language").toLowerCase();
+        baseUrl = props.getProperty("BASE_URL").toLowerCase();
+        language = props.getProperty("LANGUAGE").toLowerCase();
 
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(Driver.getDriver())), this);
 

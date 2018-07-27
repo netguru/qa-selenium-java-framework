@@ -46,32 +46,33 @@ public final class LogInPage extends BasePage {
     public void logInUserAndRememberMe(String email, String password, boolean rememberMe) {
         provideEmail(email);
         providePassword(password);
-        if (rememberMe)
+        if (rememberMe) {
             clickRememberMeCheckbox();
+        }
         clickLogInButton();
     }
 
     public void logInUserAndRememberMe(UserType userType, boolean rememberMe) {
-        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
+        Properties props = UtilitiesFunctions.loadProperties();
 
         String email = "";
-        String password = props.getProperty("common_password");
+        String password = props.getProperty("COMMON_PASSWORD");
 
         switch (userType) {
             case ADMIN:
-                email = props.getProperty("admin_email");
+                email = props.getProperty("ADMIN_EMAIL");
                 break;
             case PROVIDER:
-                email = props.getProperty("provider_email");
+                email = props.getProperty("PROVIDER_EMAIL");
                 break;
             case CONSUMER_PAID:
-                email = props.getProperty("paid_consumer_email");
+                email = props.getProperty("PAID_CONSUMER_EMAIL");
                 break;
             case CONSUMER_UNPAID:
-                email = props.getProperty("unpaid_consumer_email");
+                email = props.getProperty("UNPAID_CONSUMER_EMAIL");
                 break;
             case CONSUMER_SPECIAL:
-                email = props.getProperty("special_consumer_email");
+                email = props.getProperty("SPECIAL_CONSUMER_EMAIL");
                 break;
             default:
                 log.error("Wrong UserType. Accepted values are: ADMIN, PROVIDER, CONSUMER_PAID" +

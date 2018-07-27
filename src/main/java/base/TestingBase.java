@@ -1,13 +1,12 @@
 package base;
 
 import cucumber.api.Scenario;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.io.FileHandler;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import utilities.UtilitiesFunctions;
 
 import java.io.File;
@@ -23,15 +22,18 @@ public abstract class TestingBase {
         log.debug(getClass().getName() + " -> Starting tests...");
 
         Driver.initializeDriver();
-        Driver.maximize();
         Driver.setImplicitWait(10);
 
-        // Add cookie to bypass rack password
-        Properties props = UtilitiesFunctions.loadFile("initConfig.properties");
+        if (!UtilitiesFunctions.isCircleCI()) {
+            Driver.maximize();
+        }
 
-        String baseUrl = props.getProperty("base_url").toLowerCase();
-        String cookieName = props.getProperty("cookie_name");
-        String cookieValue = props.getProperty("cookie_value");
+        // Add cookie to bypass rack password
+        Properties props = UtilitiesFunctions.loadProperties();
+
+        String baseUrl = props.getProperty("BASE_URL").toLowerCase();
+        String cookieName = props.getProperty("COOKIE_NAME");
+        String cookieValue = props.getProperty("COOKIE_VALUE");
         Cookie ck = new Cookie(cookieName, cookieValue);
         Driver.getDriver().navigate().to(baseUrl);
         Driver.getDriver().manage().addCookie(ck);

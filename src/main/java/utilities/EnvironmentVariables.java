@@ -1,0 +1,15 @@
+package utilities;
+
+public enum EnvironmentVariables {
+    BROWSER,
+    BASE_URL,
+    LANGUAGE,
+    COOKIE_NAME,
+    COOKIE_VALUE,
+    ADMIN_EMAIL,
+    PROVIDER_EMAIL,
+    PAID_CONSUMER_EMAIL,
+    UNPAID_CONSUMER_EMAIL,
+    SPECIAL_CONSUMER_EMAIL,
+    COMMON_PASSWORD
+}
