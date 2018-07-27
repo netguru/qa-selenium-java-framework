@@ -1,45 +1,48 @@
-# Java Gradle CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/openjdk:8-jdk
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
+version: 2 # use CircleCI 2.0
+jobs: # a collection of steps
+  build: # runs not using Workflows must have a `build` job as entry point
 
-    working_directory: ~/repo
+    working_directory: ~/circleci-selenium # directory where steps will run
 
-    environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
-    
-    steps:
-      - checkout
+    docker: # run the steps with Docker
+      - image: circleci/openjdk:8-jdk-browsers # ...with this image as the primary container; this is where all `steps` will run
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "build.gradle" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+    steps: # a collection of executable commands
 
-      - run: gradle dependencies
+      - checkout # check out source code to working directory
 
-      - save_cache:
+      - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
+          key: circleci-selenium-{{ checksum "pom.xml" }}
+
+      - run: mvn dependency:go-offline # gets the project dependencies
+
+      - save_cache: # saves the project dependencies
           paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
-        
-      # run tests!
-      - run: gradle test
+            - ~/.m2
+          key: circleci-selenium-{{ checksum "pom.xml" }}
+      # run the actual tests
+      - run: mvn clean test
+                            -DBROWSER=$BROWSER
+                            -DBASE_URL=$BASE_URL
+                            -DLANGUAGE=$LANGUAGE
+                            -DCOOKIE_NAME=$COOKIE_NAME
+                            -DCOOKIE_VALUE=$COOKIE_VALUE
+                            -DADMIN_EMAIL=$ADMIN_EMAIL
+                            -DPROVIDER_EMAIL=$PROVIDER_EMAIL
+                            -DPAID_CONSUMER_EMAIL=$PAID_CONSUMER_EMAIL
+                            -DUNPAID_CONSUMER_EMAIL=$UNPAID_CONSUMER_EMAIL
+                            -DSPECIAL_CONSUMER_EMAIL=$SPECIAL_CONSUMER_EMAIL
+                            -DCOMMON_PASSWORD=$COMMON_PASSWORD
+                            -DCIRCLECI=true
+      - run:
+          name: Create directory for test results
+          command: >+
+            if [[ ! -d ./target ]];
+            then mkdir ./target; fi
 
+      - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
+          path: target/
 
-
+      - store_artifacts: # store the uberjar as an artifact
+          path: target/
+      # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
