@@ -66,6 +66,7 @@ public final class LogInPage extends BasePage {
     }
 
     public void providePassword(String password) {
+        //TODO create function for protected data in NGTextInput
         passwordInput.sendKeys(password);
     }
 

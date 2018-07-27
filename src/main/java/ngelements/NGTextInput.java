@@ -1,6 +1,7 @@
 package ngelements;
 
 public class NGTextInput extends NGHtmlElement {
+    //TODO function for sending protected data
 
     @Override
     public void sendKeys(CharSequence... keysToSend) {

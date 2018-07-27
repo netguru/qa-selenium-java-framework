@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public final class MainHeaderSection extends BaseSection {
-
+    //TODO move it to PageObjects
     @FindBy(css = ".nav-link-holder--user-details .dropdown-toggle")
     private NGSelect profileDropdown;
 

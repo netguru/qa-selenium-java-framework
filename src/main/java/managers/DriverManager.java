@@ -47,7 +47,7 @@ public class DriverManager {
     }
 
     public void initDriver() {
-        if (!propertiesLoader.isCircleCI()) {
+        if (!propertiesLoader.isCI()) {
             maximize();
         }
         setImplicitWait();

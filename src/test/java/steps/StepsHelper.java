@@ -10,21 +10,21 @@ public class StepsHelper extends TestingBase {
 
     @Given("User is logged in as {string}")
     public void userIsLoggedInAs(String userType) {
-        context.pages.getLogInPage().goTo();
-        context.pages.getLogInPage().logInUserAndRememberMe(UserType.valueOf(userType), false);
+        pages.getLogInPage().goTo();
+        pages.getLogInPage().logInUserAndRememberMe(UserType.valueOf(userType), false);
     }
 
     @Then("User is redirected to {string}")
     public void userIsRedirectedToPage(String page) {
         switch (page.toLowerCase()) {
             case "register page":
-                Assert.assertTrue(context.pages.getSignUpPage().isInitialized());
+                Assert.assertTrue(pages.getSignUpPage().isInitialized());
                 break;
             case "forgot password page":
-                Assert.assertTrue(context.pages.getForgotPasswordPage().isInitialized());
+                Assert.assertTrue(pages.getForgotPasswordPage().isInitialized());
                 break;
             case "home page":
-                Assert.assertTrue(context.pages.getHomePage().isInitialized());
+                Assert.assertTrue(pages.getHomePage().isInitialized());
                 break;
         }
     }

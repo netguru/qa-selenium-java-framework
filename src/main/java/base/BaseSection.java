@@ -8,6 +8,7 @@ import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 public abstract class BaseSection {
+    //TODO delete it
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
 
     public BaseSection(WebDriver driver) {

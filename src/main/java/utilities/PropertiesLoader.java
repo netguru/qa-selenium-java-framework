@@ -17,16 +17,12 @@ public class PropertiesLoader {
         loadProperties();
     }
 
-    Properties loadProperties() {
-        if (isCircleCI()) {
-            return loadSystemProperties();
-        } else {
-            return loadFromFile();
-        }
+    private Properties loadProperties() {
+        return (isCI()) ? loadSystemProperties() : loadFromFile();
     }
 
-    public boolean isCircleCI() {
-        return Boolean.parseBoolean(System.getProperty("CIRCLECI"));
+    public boolean isCI() {
+        return Boolean.parseBoolean(System.getProperty("CI"));
     }
 
     private Properties loadSystemProperties() {

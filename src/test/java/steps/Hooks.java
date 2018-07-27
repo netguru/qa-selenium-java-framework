@@ -13,7 +13,7 @@ public class Hooks extends TestingBase {
     public void setupTestCase() {
         log.debug(getClass().getName() + " -> Starting tests...");
         TestingBase.context = new Context();
-
+        TestingBase.pages = context.pages;
         context.driverManager.initDriver();
     }
 

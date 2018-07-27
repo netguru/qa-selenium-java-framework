@@ -11,65 +11,65 @@ public class LogInSteps extends TestingBase {
 
     @Given("The User is on login page")
     public void theUserIsOnLoginPage() {
-        context.pages.getLogInPage().goTo();
+        pages.getLogInPage().goTo();
     }
 
 
     @When("User provides email: {string} and password: {string}")
     public void userProvidesEmailAndPassword(String email, String password) {
-        context.pages.getLogInPage().provideEmail(email);
-        context.pages.getLogInPage().providePassword(password);
+        pages.getLogInPage().provideEmail(email);
+        pages.getLogInPage().providePassword(password);
     }
 
     @When("User logs in as: {string}")
     public void userLogsInAs(String userType) {
-        context.pages.getLogInPage().logInUserAndRememberMe(UserType.valueOf(userType), false);
+        pages.getLogInPage().logInUserAndRememberMe(UserType.valueOf(userType), false);
     }
 
     @When("User selects Log in button")
     public void userSelectsLogInButton() {
-        context.pages.getLogInPage().clickLogInButton();
+        pages.getLogInPage().clickLogInButton();
     }
 
     @Then("User is logged in and taken to the dashboard page")
     public void userIsLoggedInAndTakenToTheDashboardPage() {
-        Assert.assertTrue(context.pages.getDashboardPage().isInitialized());
+        Assert.assertTrue(pages.getDashboardPage().isInitialized());
     }
 
     @When("User selects Logout button")
     public void userSelectsLogoutButton() {
-        context.pages.getDashboardPage().getMainHeaderSection().logOut();
+        pages.getDashboardPage().getMainHeaderSection().logOut();
     }
 
     @Then("User cannot access the dashboard")
     public void userCannotAccessTheDashboard() {
-        context.pages.getDashboardPage().goTo();
-        Assert.assertTrue(context.pages.getLogInPage().isInitialized());
+        pages.getDashboardPage().goTo();
+        Assert.assertTrue(pages.getLogInPage().isInitialized());
     }
 
     @When("User does not provide the credentials")
     public void userDoesNotProvideTheCredentials() {
-        context.pages.getLogInPage().clickLogInButton();
+        pages.getLogInPage().clickLogInButton();
     }
 
     @Then("User cannot login")
     public void userCannotLogin() {
-        Assert.assertTrue(context.pages.getLogInPage().isInitialized());
+        Assert.assertTrue(pages.getLogInPage().isInitialized());
     }
 
     @Then("{string} message shows up")
     public void messageShowsUp(String alert) {
-        Assert.assertEquals(alert, context.pages.getLogInPage().getAlertText());
+        Assert.assertEquals(alert, pages.getLogInPage().getAlertText());
     }
 
     @When("User selects Forgot Password button")
     public void userSelectsForgotPasswordButton() {
-        context.pages.getLogInPage().clickForgotPasswordButton();
+        pages.getLogInPage().clickForgotPasswordButton();
     }
 
 
     @When("User selects Sign up now button")
     public void userSelectsSignUpNowButton() {
-        context.pages.getLogInPage().clickSignUpNowButton();
+        pages.getLogInPage().clickSignUpNowButton();
     }
 }
