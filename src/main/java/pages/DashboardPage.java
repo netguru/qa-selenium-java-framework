@@ -24,7 +24,7 @@ public final class DashboardPage extends BasePage {
         super(driver);
         relativeUrl = "dashboard";
 
-        mainHeaderSection = new MainHeaderSection();
+        mainHeaderSection = new MainHeaderSection(driver);
     }
 
     @Override
