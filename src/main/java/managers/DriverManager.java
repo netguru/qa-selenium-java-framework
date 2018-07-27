@@ -47,7 +47,9 @@ public class DriverManager {
     }
 
     public void initDriver() {
-        maximize();
+        if (!propertiesLoader.isCircleCI()) {
+            maximize();
+        }
         setImplicitWait(10);
         setAndGoToBaseUrl();
         cookieAddition();

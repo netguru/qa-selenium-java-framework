@@ -4,22 +4,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import utilities.PropertiesLoader;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
-import utilities.UtilitiesFunctions;
-
-import java.util.Properties;
+import utilities.PropertiesLoader;
 
 public abstract class BasePage {
-    private static String baseUrl;
-    private static String language;
-    protected String relativeUrl;
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
     private static String baseUrl;
     private static String language;
     protected String relativeUrl;
-    private PropertiesLoader propertiesLoader;
+    protected PropertiesLoader propertiesLoader;
     private WebDriver driver;
 
 

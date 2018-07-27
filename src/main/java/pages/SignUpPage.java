@@ -1,9 +1,8 @@
 package pages;
 
 import base.BasePage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import ngelements.NGTextInput;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public final class SignUpPage extends BasePage {

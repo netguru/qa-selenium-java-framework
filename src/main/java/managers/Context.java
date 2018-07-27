@@ -1,9 +1,9 @@
 package managers;
 
 public class Context {
+    public static DriverManager driverManager;
     public PageObjectManager pages;
     public SectionManager sections;
-    public static DriverManager driverManager;
     public ScenarioContext scenarioContext;
 
     public Context() {

@@ -4,7 +4,6 @@ import base.BaseSection;
 import ngelements.NGButton;
 import ngelements.NGSelect;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public final class MainHeaderSection extends BaseSection {

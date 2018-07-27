@@ -1,17 +1,13 @@
 package pages;
 
 import base.BasePage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import ngelements.NGButton;
 import ngelements.NGCheckbox;
 import ngelements.NGTextBlock;
 import ngelements.NGTextInput;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import utilities.UserType;
-import utilities.UtilitiesFunctions;
-
-import java.util.Properties;
 
 public final class LogInPage extends BasePage {
 
@@ -56,32 +52,11 @@ public final class LogInPage extends BasePage {
     }
 
     public void logInUserAndRememberMe(UserType userType, boolean rememberMe) {
-        Properties props = UtilitiesFunctions.loadProperties();
 
-        String email = "";
-        String password = props.getProperty("COMMON_PASSWORD");
+        String email;
+        String password = propertiesLoader.getCommonPassword();
 
-        switch (userType) {
-            case ADMIN:
-                email = props.getProperty("ADMIN_EMAIL");
-                break;
-            case PROVIDER:
-                email = props.getProperty("PROVIDER_EMAIL");
-                break;
-            case CONSUMER_PAID:
-                email = props.getProperty("PAID_CONSUMER_EMAIL");
-                break;
-            case CONSUMER_UNPAID:
-                email = props.getProperty("UNPAID_CONSUMER_EMAIL");
-                break;
-            case CONSUMER_SPECIAL:
-                email = props.getProperty("SPECIAL_CONSUMER_EMAIL");
-                break;
-            default:
-                log.error("Wrong UserType. Accepted values are: ADMIN, PROVIDER, CONSUMER_PAID" +
-                        "CONSUMER_UNPAID, CONSUMER_SPECIAL");
-                break;
-        }
+        email = propertiesLoader.getEmailByUserType(userType);
 
         logInUserAndRememberMe(email, password, rememberMe);
     }

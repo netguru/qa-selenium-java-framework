@@ -1,10 +1,9 @@
 package pages;
 
 import base.BasePage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import ngelements.NGButton;
 import ngelements.NGSelect;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.TextInput;
