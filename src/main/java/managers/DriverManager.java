@@ -50,7 +50,7 @@ public class DriverManager {
         if (!propertiesLoader.isCircleCI()) {
             maximize();
         }
-        setImplicitWait(10);
+        setImplicitWait();
         setAndGoToBaseUrl();
         cookieAddition();
     }
@@ -66,7 +66,8 @@ public class DriverManager {
         log.info("Maximizing browser window");
     }
 
-    private void setImplicitWait(int seconds) {
+    private void setImplicitWait() {
+        int seconds = propertiesLoader.getImplicitWait();
         driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
         log.debug("Setting implicit wait to " + seconds + "seconds");
     }

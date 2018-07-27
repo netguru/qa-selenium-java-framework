@@ -77,6 +77,10 @@ public class PropertiesLoader {
         return properties.getProperty("COMMON_PASSWORD");
     }
 
+    public int getImplicitWait() {
+        return Integer.parseInt(properties.getProperty("IMPLICIT_WAIT"));
+    }
+
     public String getEmailByUserType(UserType userType) {
         String email = null;
         switch (userType) {
