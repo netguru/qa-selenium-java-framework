@@ -1,6 +1,7 @@
 package sections;
 
 import base.BaseSection;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -11,6 +12,10 @@ public final class MainHeaderSection extends BaseSection {
 
     @FindBy(xpath = "//ul[@class='dropdown-menu']/li/a[contains(text(), 'Logout')]")
     private WebElement logOutButton;
+
+    public MainHeaderSection(WebDriver driver) {
+        super(driver);
+    }
 
     public void logOut() {
         clickProfileDropdown();

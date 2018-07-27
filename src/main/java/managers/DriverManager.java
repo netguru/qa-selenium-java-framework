@@ -13,13 +13,13 @@ import utilities.PropertiesLoader;
 
 import java.util.concurrent.TimeUnit;
 
-public class Driver {
+public class DriverManager {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
     private WebDriver driver;
     private PropertiesLoader propertiesLoader = new PropertiesLoader();
 
-    public Driver() {
+    public DriverManager() {
         String browserType = propertiesLoader.getBrowserType().toLowerCase();
         log.info("Initializing browser: " + browserType);
         switch (browserType) {
@@ -55,7 +55,7 @@ public class Driver {
 
     public WebDriver getDriver() {
         if (driver == null)
-            log.error("Driver not initialized!");
+            log.error("DriverManager not initialized!");
         return driver;
     }
 

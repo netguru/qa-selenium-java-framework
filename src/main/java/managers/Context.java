@@ -2,13 +2,18 @@ package managers;
 
 public class Context {
     public PageObjectManager pages;
-    public Driver driver;
+    public SectionManager sections;
+    public static DriverManager driverManager;
     public ScenarioContext scenarioContext;
 
     public Context() {
-        driver = new Driver();
-        pages = new PageObjectManager(driver.getDriver());
+        driverManager = new DriverManager();
+        pages = new PageObjectManager(driverManager.getDriver());
+        sections = new SectionManager(driverManager.getDriver());
         scenarioContext = new ScenarioContext();
     }
 
+    public static DriverManager getDriverManager() {
+        return driverManager;
+    }
 }

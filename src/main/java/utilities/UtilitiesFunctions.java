@@ -1,7 +1,7 @@
 package utilities;
 
 import cucumber.api.Scenario;
-import managers.Driver;
+import managers.Context;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -35,7 +35,7 @@ public final class UtilitiesFunctions {
         String timeToPrint = dateTimeFormatter.format(currentTime);
 
         try {
-            File screenSource = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.FILE);
+            File screenSource = ((TakesScreenshot) Context.getDriverManager().getDriver()).getScreenshotAs(OutputType.FILE);
             FileHandler.copy(
                     screenSource,
                     new File("screenshots/" + scenario.getName() + "_" + timeToPrint + "_failScreen.png")

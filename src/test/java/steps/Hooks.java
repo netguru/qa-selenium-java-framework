@@ -14,14 +14,14 @@ public class Hooks extends TestingBase {
         log.debug(getClass().getName() + " -> Starting tests...");
         TestingBase.context = new Context();
 
-        context.driver.initDriver();
+        context.driverManager.initDriver();
     }
 
     @After
     public void ceaseTestCase(Scenario scenario) {
         if (scenario.isFailed())
             UtilitiesFunctions.takeScreenshot(scenario);
-        context.driver.quit();
+        context.driverManager.quit();
         log.debug(getClass().getName() + " -> Ending tests...");
     }
 
