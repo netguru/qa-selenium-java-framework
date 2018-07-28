@@ -3,6 +3,7 @@ package pages;
 import base.BasePage;
 import ngelements.NGButton;
 import ngelements.NGSelect;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.TextInput;
@@ -24,10 +25,11 @@ public final class DashboardPage extends BasePage {
 
     private MainHeaderSection mainHeaderSection;
 
-    public DashboardPage() {
+    public DashboardPage(WebDriver driver) {
+        super(driver);
         relativeUrl = "dashboard";
 
-        mainHeaderSection = new MainHeaderSection();
+        mainHeaderSection = new MainHeaderSection(driver);
     }
 
     @Override

@@ -1,27 +1,26 @@
-package base;
+package managers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import utilities.UtilitiesFunctions;
+import utilities.PropertiesLoader;
 
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public final class Driver {
+public class DriverManager {
 
-    private static WebDriver driver = null;
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
+    private WebDriver driver;
+    private PropertiesLoader propertiesLoader = new PropertiesLoader();
 
-    public static void initializeDriver() {
-        Properties props = UtilitiesFunctions.loadProperties();
-
-        String browserType = props.getProperty("BROWSER").toLowerCase();
+    public DriverManager() {
+        String browserType = propertiesLoader.getBrowserType().toLowerCase();
         log.info("Initializing browser: " + browserType);
         switch (browserType) {
             case "chrome":
@@ -47,27 +46,50 @@ public final class Driver {
         }
     }
 
-    public static void maximize() {
+    public void initDriver() {
+        if (!propertiesLoader.isCI()) {
+            maximize();
+        }
+        setImplicitWait();
+        setAndGoToBaseUrl();
+        cookieAddition();
+    }
+
+    public WebDriver getDriver() {
+        if (driver == null)
+            log.error("DriverManager not initialized!");
+        return driver;
+    }
+
+    private void maximize() {
         driver.manage().window().maximize();
         log.info("Maximizing browser window");
     }
 
-    public static void setImplicitWait(int seconds) {
+    private void setImplicitWait() {
+        int seconds = propertiesLoader.getImplicitWait();
         driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
         log.debug("Setting implicit wait to " + seconds + "seconds");
     }
 
-    public static void quit() {
+    public void quit() {
         if (driver != null) {
             driver.quit();
             log.info("Quitting the browser");
         }
     }
 
-    public static WebDriver getDriver() {
-        if (driver == null) {
-            log.error("Driver not initialized!");
-        }
-        return driver;
+    private void setAndGoToBaseUrl() {
+        String baseUrl = propertiesLoader.getBaseUrl().toLowerCase();
+        driver.navigate().to(baseUrl);
     }
+
+    private void cookieAddition() {
+        String cookieName = propertiesLoader.getCookieName();
+        String cookieValue = propertiesLoader.getCookieValue();
+        Cookie cookie = new Cookie(cookieName, cookieValue);
+        driver.manage().addCookie(cookie);
+    }
+
+
 }

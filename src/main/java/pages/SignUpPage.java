@@ -2,6 +2,7 @@ package pages;
 
 import base.BasePage;
 import ngelements.NGTextInput;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public final class SignUpPage extends BasePage {
@@ -9,7 +10,8 @@ public final class SignUpPage extends BasePage {
     @FindBy(id = "user_email")
     private NGTextInput emailInput;
 
-    public SignUpPage() {
+    public SignUpPage(WebDriver driver) {
+        super(driver);
         relativeUrl = "register/new";
     }
 

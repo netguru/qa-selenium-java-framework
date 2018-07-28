@@ -23,8 +23,6 @@ target/
 *.tar.gz
 *.rar
 
-# Screenshots
-*.png
 
 # Confidential
 initConfig.properties

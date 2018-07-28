@@ -1,49 +1,49 @@
 @Login
 Feature: Login
 
-    Background: User navigates to login page
-        Given The User is on login page
+  Background: User navigates to login page
+    Given The User is on login page
 
-    @Smoke
-    Scenario Outline: Successful login as <user_type>
-        When User logs in as: "<user_type>"
-        Then User is logged in and taken to the dashboard page
-        Examples:
-            |   user_type           |
-            |   ADMIN               |
-            |   PROVIDER            |
-            |   CONSUMER_PAID       |
-            |   CONSUMER_UNPAID     |
-            |   CONSUMER_SPECIAL    |
-    @Logout
-    Scenario: Successful logout
-        When User logs in as: "CONSUMER_UNPAID"
-        And User selects Logout button
-        Then User is redirected to "Home page"
-        And User cannot access the dashboard
+  @Smoke
+  Scenario Outline: Successful login as <user_type>
+    When User logs in as: "<user_type>"
+    Then User is logged in and taken to the dashboard page
+    Examples:
+      | user_type        |
+      | ADMIN            |
+      | PROVIDER         |
+      | CONSUMER_PAID    |
+      | CONSUMER_UNPAID  |
+      | CONSUMER_SPECIAL |
 
-    Scenario: Cannot login with empty credentials
-        When User does not provide the credentials
-        And User selects Log in button
-        Then User cannot login
-        And "Invalid login data." message shows up
+  Scenario: Successful logout
+    When User logs in as: "CONSUMER_UNPAID"
+    And User selects Logout button
+    Then User is redirected to "Home page"
+    And User cannot access the dashboard
 
-    @Smoke
-    Scenario Outline: Cannot login with wrong credentials
-        When User provides email: "<email>" and password: "<password>"
-        And User selects Log in button
-        Then User cannot login
-        And "<alert>" message shows up
-        Examples:
-            |   email               |   password        |   alert                       |
-            |   invalid_email       |   password        |   Invalid email or password.  |
-            |   some@wrong.email    |   password        |   Invalid email or password.  |
-            |   provider@netguru.pl |   wrong_password  |   Invalid login data.         |
+  Scenario: Cannot login with empty credentials
+    When User does not provide the credentials
+    And User selects Log in button
+    Then User cannot login
+    And "Invalid login data." message shows up
 
-    Scenario: Selecting Forgot Password button
-        When User selects Forgot Password button
-        Then User is redirected to "Forgot Password page"
+  @Smoke
+  Scenario Outline: Cannot login with wrong credentials
+    When User provides email: "<email>" and password: "<password>"
+    And User selects Log in button
+    Then User cannot login
+    And "<alert>" message shows up
+    Examples:
+      | email               | password       | alert                      |
+      | invalid_email       | password       | Invalid email or password. |
+      | some@wrong.email    | password       | Invalid email or password. |
+      | provider@netguru.pl | wrong_password | Invalid login data.        |
 
-    Scenario: Selecting Sign up now button
-        When User selects Sign up now button
-        Then User is redirected to "Register page"
+  Scenario: Selecting Forgot Password button
+    When User selects Forgot Password button
+    Then User is redirected to "Forgot Password page"
+
+  Scenario: Selecting Sign up now button
+    When User selects Sign up now button
+    Then User is redirected to "Register page"
