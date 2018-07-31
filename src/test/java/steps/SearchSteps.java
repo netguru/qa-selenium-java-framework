@@ -7,7 +7,7 @@ import org.testng.Assert;
 
 public class SearchSteps extends TestingBase {
 
-    @When("User searches a profile in {string}")
+    @When("User searches a profile in \"([^\"]*)\"")
     public void tutorSearchesAJobIn(String location) {
         pages.getDashboardPage().setLocation(location);
         pages.getDashboardPage().clickSearchButton();

@@ -15,13 +15,13 @@ public class LogInSteps extends TestingBase {
     }
 
 
-    @When("User provides email: {string} and password: {string}")
+    @When("User provides email: \"([^\"]*)\" and password: \"([^\"]*)\"")
     public void userProvidesEmailAndPassword(String email, String password) {
         pages.getLogInPage().provideEmail(email);
         pages.getLogInPage().providePassword(password);
     }
 
-    @When("User logs in as: {string}")
+    @When("User logs in as: \"([^\"]*)\"")
     public void userLogsInAs(String userType) {
         pages.getLogInPage().logInUserAndRememberMe(UserType.valueOf(userType), false);
     }
@@ -38,7 +38,7 @@ public class LogInSteps extends TestingBase {
 
     @When("User selects Logout button")
     public void userSelectsLogoutButton() {
-        pages.getDashboardPage().getMainHeaderSection().logOut();
+        pages.getDashboardPage().getMainHeaderPage().logOut();
     }
 
     @Then("User cannot access the dashboard")
@@ -57,7 +57,7 @@ public class LogInSteps extends TestingBase {
         Assert.assertTrue(pages.getLogInPage().isInitialized());
     }
 
-    @Then("{string} message shows up")
+    @Then("\"([^\"]*)\" message shows up")
     public void messageShowsUp(String alert) {
         Assert.assertEquals(alert, pages.getLogInPage().getAlertText());
     }

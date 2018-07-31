@@ -8,13 +8,13 @@ import utilities.UserType;
 
 public class StepsHelper extends TestingBase {
 
-    @Given("User is logged in as {string}")
+    @Given("User is logged in as \"([^\"]*)\"")
     public void userIsLoggedInAs(String userType) {
         pages.getLogInPage().goTo();
         pages.getLogInPage().logInUserAndRememberMe(UserType.valueOf(userType), false);
     }
 
-    @Then("User is redirected to {string}")
+    @Then("User is redirected to \"([^\"]*)\"")
     public void userIsRedirectedToPage(String page) {
         switch (page.toLowerCase()) {
             case "register page":
