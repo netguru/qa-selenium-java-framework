@@ -33,6 +33,7 @@ jobs: # a collection of steps
                             -DUNPAID_CONSUMER_EMAIL=$UNPAID_CONSUMER_EMAIL
                             -DSPECIAL_CONSUMER_EMAIL=$SPECIAL_CONSUMER_EMAIL
                             -DCOMMON_PASSWORD=$COMMON_PASSWORD
+          -DIMPLICIT_WAIT=$IMPLICIT_WAIT
           -DCI=true
       - run:
           name: Create directory for test results
