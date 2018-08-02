@@ -38,7 +38,7 @@ public class LogInSteps extends TestingBase {
 
     @When("User selects Logout button")
     public void userSelectsLogoutButton() {
-        pages.getDashboardPage().getMainHeaderSection().logOut();
+        pages.getDashboardPage().getMainHeaderPage().logOut();
     }
 
     @Then("User cannot access the dashboard")
