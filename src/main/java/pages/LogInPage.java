@@ -62,12 +62,11 @@ public final class LogInPage extends BasePage {
     }
 
     public void provideEmail(String email) {
-        emailInput.sendKeys(email);
+        emailInput.sendVulnerableData(email);
     }
 
     public void providePassword(String password) {
-        //TODO create function for protected data in NGTextInput
-        passwordInput.sendKeys(password);
+        passwordInput.sendVulnerableData(password);
     }
 
     public void clickRememberMeCheckbox() {
