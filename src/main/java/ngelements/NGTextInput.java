@@ -1,12 +1,18 @@
 package ngelements;
 
+import java.util.Arrays;
+
 public class NGTextInput extends NGHtmlElement {
-    //TODO function for sending protected data
+
+    public void sendVulnerableData(CharSequence... keysToSend) {
+        super.sendKeys(keysToSend);
+        log.info("Text was send to element: " + getName());
+    }
 
     @Override
     public void sendKeys(CharSequence... keysToSend) {
         super.sendKeys(keysToSend);
-        log.info("Text: " + keysToSend + " was send to element: " + getName());
+        log.info("Text: " + Arrays.toString(keysToSend) + " was send to element: " + getName());
     }
 
     @Override
