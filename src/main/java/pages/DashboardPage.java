@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.TextInput;
+import sections.MainHeaderSection;
 
 public final class DashboardPage extends BasePage {
 
@@ -22,13 +23,13 @@ public final class DashboardPage extends BasePage {
     @FindBy(id = "q_distance")
     private NGSelect distanceDropdown;
 
-    private MainHeaderPage mainHeaderPage;
+    private MainHeaderSection mainHeaderSection;
 
     public DashboardPage(WebDriver driver) {
         super(driver);
         relativeUrl = "dashboard";
 
-        mainHeaderPage = new MainHeaderPage(driver);
+        mainHeaderSection = new MainHeaderSection(driver);
     }
 
     @Override
@@ -57,7 +58,7 @@ public final class DashboardPage extends BasePage {
         distanceDropdown.selectByValue(distance);
     }
 
-    public MainHeaderPage getMainHeaderPage() {
-        return mainHeaderPage;
+    public MainHeaderSection getMainHeaderSection() {
+        return mainHeaderSection;
     }
 }

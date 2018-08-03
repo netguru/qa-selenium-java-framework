@@ -1,4 +1,4 @@
-package pages;
+package sections;
 
 import base.BasePage;
 import ngelements.NGButton;
@@ -6,7 +6,7 @@ import ngelements.NGSelect;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public final class MainHeaderPage extends BasePage {
+public final class MainHeaderSection extends BasePage {
 
     @FindBy(css = ".nav-link-holder--user-details .dropdown-toggle")
     private NGSelect profileDropdown;
@@ -14,7 +14,7 @@ public final class MainHeaderPage extends BasePage {
     @FindBy(xpath = "//ul[@class='dropdown-menu']/li/a[contains(text(), 'Logout')]")
     private NGButton logOutButton;
 
-    public MainHeaderPage(WebDriver driver) {
+    public MainHeaderSection(WebDriver driver) {
         super(driver);
     }
 
