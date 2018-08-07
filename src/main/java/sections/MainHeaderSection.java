@@ -1,13 +1,13 @@
 package sections;
 
-import base.BaseSection;
+import base.BasePage;
 import ngelements.NGButton;
 import ngelements.NGSelect;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public final class MainHeaderSection extends BaseSection {
-    //TODO move it to PageObjects
+public final class MainHeaderSection extends BasePage {
+
     @FindBy(css = ".nav-link-holder--user-details .dropdown-toggle")
     private NGSelect profileDropdown;
 
@@ -16,6 +16,11 @@ public final class MainHeaderSection extends BaseSection {
 
     public MainHeaderSection(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public boolean isInitialized() {
+        return false;
     }
 
     public void logOut() {
