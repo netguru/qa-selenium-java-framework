@@ -3,7 +3,6 @@ package runners;
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
 import cucumber.api.junit.Cucumber;
-import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
@@ -13,5 +12,5 @@ import org.junit.runner.RunWith;
         , snippets = SnippetType.CAMELCASE
         , plugin = {"pretty"}
 )
-public class TestNGRunner extends AbstractTestNGCucumberTests {
+public class JUnitRunner {
 }

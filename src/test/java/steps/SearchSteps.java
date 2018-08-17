@@ -3,7 +3,8 @@ package steps;
 import base.TestingBase;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.testng.Assert;
+import org.junit.Assert;
+
 
 public class SearchSteps extends TestingBase {
 
@@ -35,6 +36,6 @@ public class SearchSteps extends TestingBase {
 
     @Then("Search results match distance of (1|5|10|20|50|100) km")
     public void searchResultsMatchDistanceOfKm(String expectedDistance) {
-        Assert.assertEquals(pages.getSearchResultsPage().getMaxDistance(), expectedDistance + " km");
+        Assert.assertEquals(expectedDistance + " km", pages.getSearchResultsPage().getMaxDistance());
     }
 }
