@@ -1,0 +1,28 @@
+## I added here the most common gitignores for Maven project
+
+# Compiled class file
+*.class
+
+# Intellij
+.idea/
+*.iml
+*.iws
+.DS_Store
+.metadata
+
+# Maven
+log/
+logs/
+target/
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+
+# Confidential
+initConfig.properties
