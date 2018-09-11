@@ -52,11 +52,7 @@ public class PropertiesLoader {
     public String getBaseUrl() {
         return properties.getProperty("BASE_URL");
     }
-
-    public String getLanguage() {
-        return properties.getProperty("LANGUAGE");
-    }
-
+    
     public String getBrowserType() {
         return properties.getProperty("BROWSER");
     }
