@@ -24,17 +24,8 @@ jobs: # a collection of steps
       - run: mvn clean test
                             -DBROWSER=$BROWSER
                             -DBASE_URL=$BASE_URL
-                            -DLANGUAGE=$LANGUAGE
-                            -DCOOKIE_NAME=$COOKIE_NAME
-                            -DCOOKIE_VALUE=$COOKIE_VALUE
-                            -DADMIN_EMAIL=$ADMIN_EMAIL
-                            -DPROVIDER_EMAIL=$PROVIDER_EMAIL
-                            -DPAID_CONSUMER_EMAIL=$PAID_CONSUMER_EMAIL
-                            -DUNPAID_CONSUMER_EMAIL=$UNPAID_CONSUMER_EMAIL
-                            -DSPECIAL_CONSUMER_EMAIL=$SPECIAL_CONSUMER_EMAIL
-                            -DCOMMON_PASSWORD=$COMMON_PASSWORD
-          -DIMPLICIT_WAIT=$IMPLICIT_WAIT
-          -DCI=true
+                            -DIMPLICIT_WAIT=$IMPLICIT_WAIT
+                            -DCI=true
       - run:
           name: Create directory for test results
           command: >+
