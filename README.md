@@ -1,8 +1,5 @@
 # qa-java-framework
 =======
-# Lemonfrog
-
-Automation framework designed as a proof of concept for web project - Lemonfrog. It's being actively developed by the members of QA-Selenium workgroup.
 
 ## Technology stack
 * Selenium WebDriver
@@ -20,9 +17,9 @@ cd NAME_OF_FOLDER
 2.Clone our git repo and navigate to project
 ```bash
 git clone REPO_URL_FROM_GITHUB
-cd qa-selenium
+cd qa-java-framework
 ```
-3.Copy `initConfig.properties` file from 1pass lemonfrog vault and paste to `qa-selenium` project folder
+3.Create `initConfig.properties` file and store it only in project's 1pass vault
 
 4a.Compile project files and run tests
 ```bash
@@ -42,25 +39,4 @@ mvn test -Dcucumber.options="--tags @{name of tag, with upper/lowercase letters}
 * Merge the PR to master
 
 ## Initial project structure
-
-```bash
-└── lemonfrog
-    ├── src
-    │   ├── main
-    │   │   └── java
-    │   │       ├── base
-    │   │       │   ├── PageBase.java
-    │   │       │   ├── SectionBase.java
-    │   │       │   ├── TestBase.java
-    │   │       │   └── UserType.java
-    │   │       └── pages
-    │   └── test
-    │       ├── java
-    │       │   ├── runners
-    │       │   └── steps
-    │       └── resources
-    │           └── features   
-    ├── pom.xml
-    ├── README.md
-    └── .gitignore
-```
+//TODO
