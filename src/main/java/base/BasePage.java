@@ -11,7 +11,7 @@ import utilities.PropertiesLoader;
 public abstract class BasePage {
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
     private static String baseUrl;
-    protected String relativeUrl;
+    protected String relativeUrl = "";
     protected PropertiesLoader propertiesLoader;
     private WebDriver driver;
 
