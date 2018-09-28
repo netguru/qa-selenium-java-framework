@@ -61,5 +61,19 @@ public class PropertiesLoader {
         return Integer.parseInt(properties.getProperty("IMPLICIT_WAIT"));
     }
 
+    public String getProvider() {
+        return properties.getProperty("PROVIDER");
+    }
 
+    public String getPassword() {
+        return properties.getProperty("PASSWORD");}
+
+
+    public String getCookieName() {
+        return properties.getProperty("COOKIE_NAME");
+    }
+
+    public String getCookieValue() {
+        return properties.getProperty("COOKIE_VALUE");
+    }
 }

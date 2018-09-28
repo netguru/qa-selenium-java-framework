@@ -44,6 +44,7 @@ public class DriverManager {
                 log.warn("Wrong browser type \"" + browserType + "\". Initializing Chrome");
                 break;
         }
+
     }
 
     public void initDriver() {
@@ -52,6 +53,7 @@ public class DriverManager {
         }
         setImplicitWait();
         setAndGoToBaseUrl();
+        cookieAddition();
     }
 
     public WebDriver getDriver() {
@@ -81,6 +83,13 @@ public class DriverManager {
     private void setAndGoToBaseUrl() {
         String baseUrl = propertiesLoader.getBaseUrl().toLowerCase();
         driver.navigate().to(baseUrl);
+    }
+
+    private void cookieAddition() {
+        String cookieName = propertiesLoader.getCookieName();
+        String cookieValue = propertiesLoader.getCookieValue();
+        Cookie cookie = new Cookie(cookieName, cookieValue);
+        driver.manage().addCookie(cookie);
     }
 
 }
