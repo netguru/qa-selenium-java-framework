@@ -11,14 +11,15 @@ import utilities.PropertiesLoader;
 public abstract class BasePage {
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
     private static String baseUrl;
-    protected String relativeUrl = "";
+    protected String relativeUrl;
     protected PropertiesLoader propertiesLoader;
     private WebDriver driver;
 
 
-    public BasePage(WebDriver driver) {
+    public BasePage(WebDriver driver, String relativeUrl) {
         propertiesLoader = new PropertiesLoader();
         baseUrl = propertiesLoader.getBaseUrl();
+        this.relativeUrl = relativeUrl;
         this.driver = driver;
 
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
