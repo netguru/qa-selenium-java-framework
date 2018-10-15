@@ -17,6 +17,12 @@ public abstract class BasePage {
 
 
     public BasePage(WebDriver driver, String relativeUrl) {
+        if (!relativeUrl.startsWith("/")) {
+            log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
+                    "\" does not start with " + "\"/\". Make sure it's valid!");
+            relativeUrl = "/" + relativeUrl;
+        }
+
         propertiesLoader = new PropertiesLoader();
         baseUrl = propertiesLoader.getBaseUrl();
         this.relativeUrl = relativeUrl;
