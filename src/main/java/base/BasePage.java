@@ -15,7 +15,6 @@ public abstract class BasePage {
     protected PropertiesLoader propertiesLoader;
     private WebDriver driver;
 
-
     public BasePage(WebDriver driver, String relativeUrl) {
         if (!relativeUrl.startsWith("/")) {
             log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
@@ -31,6 +30,10 @@ public abstract class BasePage {
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
 
         log.debug(getClass().getName() + " -> Initializing elements");
+    }
+
+    public BasePage(WebDriver driver) {
+        this(driver, "/#");
     }
 
     public abstract boolean isInitialized();
