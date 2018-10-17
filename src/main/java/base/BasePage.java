@@ -47,7 +47,8 @@ public abstract class BasePage {
             log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
                     "\" contains \"\\\" instead of \"/\". Make sure it's valid!");
             relativeUrl.replace("\\", "/");
-        } else if (!relativeUrl.startsWith("/")) {
+        }
+        if (!relativeUrl.startsWith("/")) {
             // Relative url: "relativeUrl" in class "className" does not start with "/". Make sure it's valid!
             log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
                     "\" does not start with \"/\". Make sure it's valid!");
