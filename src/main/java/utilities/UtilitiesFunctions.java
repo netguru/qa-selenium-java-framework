@@ -21,7 +21,7 @@ public final class UtilitiesFunctions {
         String timeToPrint = dateTimeFormatter.format(currentTime);
 
         try {
-            File screenSource = ((TakesScreenshot) Context.getDriverManager().getDriver()).getScreenshotAs(OutputType.FILE);
+            File screenSource = ((TakesScreenshot) Context.driverManager.getDriver()).getScreenshotAs(OutputType.FILE);
             FileHandler.copy(
                     screenSource,
                     new File("screenshots/" + scenario.getName() + "_" + timeToPrint + "_failScreen.png")
