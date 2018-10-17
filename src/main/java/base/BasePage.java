@@ -16,15 +16,9 @@ public abstract class BasePage {
     private WebDriver driver;
 
     public BasePage(WebDriver driver, String relativeUrl) {
-        if (!relativeUrl.startsWith("/")) {
-            log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
-                    "\" does not start with " + "\"/\". Make sure it's valid!");
-            relativeUrl = "/" + relativeUrl;
-        }
-
         propertiesLoader = new PropertiesLoader();
         baseUrl = propertiesLoader.getBaseUrl();
-        this.relativeUrl = relativeUrl;
+        this.relativeUrl = validateAndFormatRelativeUrl(relativeUrl);
         this.driver = driver;
 
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
@@ -45,5 +39,26 @@ public abstract class BasePage {
 
     public String getUrl() {
         return baseUrl + "/" + relativeUrl;
+    }
+
+    private String validateAndFormatRelativeUrl(String relativeUrl) {
+        if (relativeUrl.startsWith("\\")) {
+            // Relative url: "relativeUrl" in class "className" starts with "\" instead of "/". Make sure it's valid!
+            log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
+                    "\" starts with \"\\\" instead of \"/\". Make sure it's valid!");
+            relativeUrl.replace("\\", "/");
+        } else if (!relativeUrl.startsWith("/")) {
+            // Relative url: "relativeUrl" in class "className" does not start with "/". Make sure it's valid!
+            log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
+                    "\" does not start with \"/\". Make sure it's valid!");
+            relativeUrl = "/" + relativeUrl;
+        }
+
+        if (relativeUrl.endsWith("/") || relativeUrl.endsWith("\\")) {
+            log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
+                    "ends with a slash. Make sure it's valid!");
+            relativeUrl = relativeUrl.substring(0, relativeUrl.length() - 1);
+        }
+        return relativeUrl;
     }
 }
