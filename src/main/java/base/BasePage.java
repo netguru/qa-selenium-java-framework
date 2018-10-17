@@ -42,10 +42,10 @@ public abstract class BasePage {
     }
 
     private String validateAndFormatRelativeUrl(String relativeUrl) {
-        if (relativeUrl.startsWith("\\")) {
-            // Relative url: "relativeUrl" in class "className" starts with "\" instead of "/". Make sure it's valid!
+        if (relativeUrl.contains("\\")) {
+            // Relative url: "relativeUrl" in class "className" contains "\" instead of "/". Make sure it's valid!
             log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
-                    "\" starts with \"\\\" instead of \"/\". Make sure it's valid!");
+                    "\" contains \"\\\" instead of \"/\". Make sure it's valid!");
             relativeUrl.replace("\\", "/");
         } else if (!relativeUrl.startsWith("/")) {
             // Relative url: "relativeUrl" in class "className" does not start with "/". Make sure it's valid!
@@ -53,12 +53,12 @@ public abstract class BasePage {
                     "\" does not start with \"/\". Make sure it's valid!");
             relativeUrl = "/" + relativeUrl;
         }
-
-        if (relativeUrl.endsWith("/") || relativeUrl.endsWith("\\")) {
+        if (relativeUrl.endsWith("/")) {
             log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
                     "ends with a slash. Make sure it's valid!");
             relativeUrl = relativeUrl.substring(0, relativeUrl.length() - 1);
         }
+
         return relativeUrl;
     }
 }
