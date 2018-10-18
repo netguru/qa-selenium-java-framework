@@ -1,6 +1,5 @@
 package base;
 
-import managers.Context;
 import managers.PageObjectManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
