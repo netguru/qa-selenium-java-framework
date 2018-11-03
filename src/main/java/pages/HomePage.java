@@ -11,7 +11,7 @@ public class HomePage extends BasePage {
   private NGButton logo;
 
   public HomePage(WebDriver driver) {
-    super(driver);
+    super(driver, "");
   }
 
   @Override

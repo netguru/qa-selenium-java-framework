@@ -24,11 +24,11 @@ public final class UtilitiesFunctions {
             File screenSource = ((TakesScreenshot) Context.driverManager.getDriver()).getScreenshotAs(OutputType.FILE);
             FileHandler.copy(
                     screenSource,
-                    new File("screenshots/" + scenario.getName() + "_" + timeToPrint + "_failScreen.png")
+                    new File("screenshots/" + scenario.getName() + "_" + timeToPrint + ".png")
             );
 
         } catch (Exception e) {
-            log.error("Failed to take screenshot on test fail");
+            log.error("Failed to take screenshot");
             e.printStackTrace();
         }
     }
