@@ -51,6 +51,7 @@
                     </dependency>
                 </dependencies>
                 <configuration>
+                    <useSystemClassLoader>false</useSystemClassLoader>
                     <includes>
                         <include>JUnitRunner.java</include>
                     </includes>
