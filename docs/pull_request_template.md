@@ -9,7 +9,7 @@ JIRA Ticket:  *[Insert here a link to the JIRA ticket.]*
 ### Checklist
 - [ ] Do your branch and PR name start with issue key from JirQA?
 - [ ] Do your changes require to update the README.md file? Have you already done that?
-- [ ] If you changed the `initConfig.properties` file remember to update it in 
+- [ ] If you have changed the `initConfig.properties` file remember to update it in 
   * 1password (vault #QA), 
   * `mvn clean test...` command in `.circleci/config.yml` file, 
   * environment variables in CircleCI project.
