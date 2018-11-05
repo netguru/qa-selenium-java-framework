@@ -1,14 +1,14 @@
 package pages;
 
 import base.BasePage;
-import ngelements.NGButton;
+import ngelements.NGTextInput;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
-  @FindBy(xpath = "//a[@href='https://www.netguru.co']")
-  private NGButton logo;
+  @FindBy(xpath = "//*[contains(@class, 'styled__Container-ela1z7-0')]")
+  private NGTextInput searchBar;
 
   public HomePage(WebDriver driver) {
     super(driver);
@@ -16,10 +16,6 @@ public class HomePage extends BasePage {
 
   @Override
   public boolean isInitialized() {
-    return false;
-  }
-
-  public NGButton getLogo() {
-    return logo;
+    return searchBar.isDisplayed();
   }
 }

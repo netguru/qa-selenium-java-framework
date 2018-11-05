@@ -1,8 +1,11 @@
 package base;
 
+import ngelements.NGButton;
+import ngelements.NGTextBlock;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
@@ -15,6 +18,12 @@ public abstract class BasePage {
     protected String relativeUrl;
     protected PropertiesLoader propertiesLoader;
     private WebDriver driver;
+
+    @FindBy(xpath = "//*[contains(@class, 'notification-message')]")
+    NGTextBlock snackbarMessage;
+
+    @FindBy(xpath = "//*[contains(@class, 'Button-sc-1emfup8-0')]")
+    NGButton acceptCookiesButton;
 
     public BasePage(WebDriver driver, String relativeUrl) {
         propertiesLoader = new PropertiesLoader();
@@ -41,6 +50,27 @@ public abstract class BasePage {
 
     public String getUrl() {
         return baseUrl + "/" + language + relativeUrl;
+    }
+
+    public void acceptCookies() {
+        acceptCookiesButton.clickWithActions();
+    }
+
+    public String getSnackbarMessageAndCloseSnackbar() {
+        snackbarMessage.waitUntilIsVisible(2);
+        String message = snackbarMessage.getText();
+        closeSnackBar();
+        return message;
+    }
+
+    public String getSnackbarMessage() {
+        snackbarMessage.waitUntilIsVisible(2);
+        return snackbarMessage.getText();
+    }
+
+    public void closeSnackBar() {
+        snackbarMessage.waitUntilIsClickable(2);
+        snackbarMessage.click();
     }
 
     private String validateAndFormatRelativeUrl(String relativeUrl) {

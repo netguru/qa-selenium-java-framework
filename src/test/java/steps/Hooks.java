@@ -14,6 +14,7 @@ public class Hooks extends BaseTest {
         log.debug(getClass().getName() + " -> Starting tests...");
         BaseTest.pages = Context.pages;
         Context.driverManager.initDriver();
+        dismissCookiesModal();
     }
 
     @After
