@@ -3,5 +3,13 @@ package utilities;
 public enum EnvironmentVariables {
     BROWSER,
     BASE_URL,
-    IMPLICIT_WAIT
+    LANGUAGE,
+    IMPLICIT_WAIT,
+    ADMIN_EMAIL,
+    BO_EMAIL,
+    FD_EMAIL,
+    BASIC_USER_EMAIL,
+    BO_NO_RESTAURANTS_EMAIL,
+    FD_NO_RESTAURANTS_AND_REVIEWS_EMAIL,
+    COMMON_PASSWORD
 }

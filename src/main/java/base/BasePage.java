@@ -11,6 +11,7 @@ import utilities.PropertiesLoader;
 public abstract class BasePage {
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
     private static String baseUrl;
+    private static String language;
     protected String relativeUrl;
     protected PropertiesLoader propertiesLoader;
     private WebDriver driver;
@@ -18,6 +19,7 @@ public abstract class BasePage {
     public BasePage(WebDriver driver, String relativeUrl) {
         propertiesLoader = new PropertiesLoader();
         baseUrl = propertiesLoader.getBaseUrl();
+        language = propertiesLoader.getLanguage();
         this.relativeUrl = validateAndFormatRelativeUrl(relativeUrl);
         this.driver = driver;
 
@@ -38,7 +40,7 @@ public abstract class BasePage {
     }
 
     public String getUrl() {
-        return baseUrl + relativeUrl;
+        return baseUrl + "/" + language + relativeUrl;
     }
 
     private String validateAndFormatRelativeUrl(String relativeUrl) {
