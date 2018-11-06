@@ -38,7 +38,7 @@ public abstract class BasePage {
     }
 
     public String getUrl() {
-        return baseUrl + "/" + relativeUrl;
+        return baseUrl + relativeUrl;
     }
 
     private String validateAndFormatRelativeUrl(String relativeUrl) {
