@@ -51,7 +51,7 @@ public class LoginSteps extends BaseTest {
 
     @Then("^User is not logged in$")
     public void userIsNotLoggedIn() {
-        Assert.assertFalse(pages.getHeaderSection().isUserLoggedIn());
+        Assert.assertTrue(pages.getHeaderSection().isUserLoggedOut());
     }
 
     @Then("^Email error message shows? up on login page: \"([^\"]*)\"$")

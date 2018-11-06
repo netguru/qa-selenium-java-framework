@@ -53,23 +53,23 @@ public abstract class BasePage {
     }
 
     public void acceptCookies() {
-        acceptCookiesButton.clickWithActions();
+        acceptCookiesButton.moveToElementAndClick();
     }
 
     public String getSnackbarMessageAndCloseSnackbar() {
-        snackbarMessage.waitUntilIsVisible(2);
+        snackbarMessage.waitUntilIsVisible(5);
         String message = snackbarMessage.getText();
         closeSnackBar();
         return message;
     }
 
     public String getSnackbarMessage() {
-        snackbarMessage.waitUntilIsVisible(2);
+        snackbarMessage.waitUntilIsVisible(5);
         return snackbarMessage.getText();
     }
 
     public void closeSnackBar() {
-        snackbarMessage.waitUntilIsClickable(2);
+        snackbarMessage.waitUntilIsClickable(5);
         snackbarMessage.click();
     }
 

@@ -25,10 +25,10 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[contains(@class, 'Button__ButtonAnchor-sc-1emfup8-1')]")
     private NGButton createAnAccountButton;
 
-    @FindBy(xpath = "(//*[contains(@class, 'Input__Error-sc-1cfdsff-3')])[1]")
+    @FindBy(xpath = "(//*[contains(@class, 'bwzfXH hjVfwW')])[1]/*[contains(@class, 'Input__Error-sc-1cfdsff-3')]")
     private NGTextBlock emailErrorMessage;
 
-    @FindBy(xpath = "(//*[contains(@class, 'Input__Error-sc-1cfdsff-3')])[2]")
+    @FindBy(xpath = "(//*[contains(@class, 'bwzfXH hjVfwW')])[2]/*[contains(@class, 'Input__Error-sc-1cfdsff-3')]")
     private NGTextBlock passwordErrorMessage;
 
     public LoginPage(WebDriver driver) {

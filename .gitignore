@@ -26,3 +26,6 @@ target/
 
 # Confidential
 initConfig.properties
+
+# Screenshots
+*.png

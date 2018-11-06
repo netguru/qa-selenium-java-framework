@@ -20,6 +20,6 @@ public class RegisterPage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return (passwordConfirmationInput.isDisplayed() && termsAgreementForEmailRegistrationCheckbox.isDisplayed());
+        return passwordConfirmationInput.isDisplayed();
     }
 }

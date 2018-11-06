@@ -11,10 +11,9 @@ public class NGButton extends NGHtmlElement {
         log.info("NGButton: " + this.getName() + " was clicked");
     }
 
-    public void clickWithActions() {
+    public void moveToElementAndClick() {
         Actions actions = new Actions(Context.driverManager.getDriver());
         actions.moveToElement(this.getWrappedElement()).click().perform();
         log.info("NGButton: " + this.getName() + " was clicked");
     }
 }
-
