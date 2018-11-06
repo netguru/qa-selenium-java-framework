@@ -10,6 +10,4 @@ public class Context {
         pages = new PageObjectManager(driverManager.getDriver());
         scenarioContext = new ScenarioContext();
     }
-
-
 }
