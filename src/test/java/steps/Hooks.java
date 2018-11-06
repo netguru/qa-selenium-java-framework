@@ -12,7 +12,8 @@ public class Hooks extends BaseTest {
     @Before
     public void setupTestCase() {
         log.debug(getClass().getName() + " -> Starting tests...");
-        BaseTest.pages = Context.pages;
+        BaseTest.context = new Context();
+        BaseTest.pages = context.pages;
         Context.driverManager.initDriver();
     }
 

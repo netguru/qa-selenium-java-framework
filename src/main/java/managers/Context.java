@@ -1,8 +1,14 @@
 package managers;
 
-public interface Context {
-    DriverManager driverManager = new DriverManager();;
-    PageObjectManager pages = new PageObjectManager(driverManager.getDriver());
-    ScenarioContext scenarioContext = new ScenarioContext();
+public class Context {
+    public static DriverManager driverManager;
+    public PageObjectManager pages;
+    public ScenarioContext scenarioContext;
+
+  public Context() {
+    driverManager = new DriverManager();
+    pages = new PageObjectManager(driverManager.getDriver());
+    scenarioContext = new ScenarioContext();
+  }
 
 }
