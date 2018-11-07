@@ -50,9 +50,9 @@ Feature: Login
     And Password error message shows up on login page: "This field is required"
 
   Scenario: Forgot password button redirects to reset password page
-    When User selects "Forgot your password?" button
+    When User selects "Forgot your password?" button on login page
     Then User is redirected to "reset password" page
 
   Scenario: Forgot password button redirects to reset password page
-    When User selects "Create an account" button
+    When User selects "Create an account" button on login page
     Then User is redirected to "register" page

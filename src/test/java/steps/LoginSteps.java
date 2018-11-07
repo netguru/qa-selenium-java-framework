@@ -44,6 +44,18 @@ public class LoginSteps extends BaseTest {
         pages.getHeaderSection().logOut();
     }
 
+    @When("^User selects? \"([^\"]*)\" button on login page$")
+    public void userSelectsButton(String button) {
+        switch (button.toLowerCase()) {
+            case "forgot your password?":
+                pages.getLoginPage().clickForgotYourPasswordButton();
+                break;
+            case "create an account":
+                pages.getLoginPage().clickCreateAnAccountButton();
+                break;
+        }
+    }
+
     @Then("^User is logged in$")
     public void userIsLoggedIn() {
         Assert.assertTrue(pages.getHeaderSection().isUserLoggedIn());

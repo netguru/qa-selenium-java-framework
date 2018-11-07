@@ -29,18 +29,6 @@ public class NavigationSteps extends BaseTest {
         }
     }
 
-    @When("^User selects? \"([^\"]*)\" button$")
-    public void userSelectsButton(String button) {
-        switch (button.toLowerCase()) {
-            case "forgot your password?":
-                pages.getLoginPage().clickForgotYourPasswordButton();
-                break;
-            case "create an account":
-                pages.getLoginPage().clickCreateAnAccountButton();
-                break;
-        }
-    }
-
     @Then("^User is redirected to \"([^\"]*)\" page$")
     public void userIsRedirectedToPage(String page) {
         switch (page.toLowerCase()) {
