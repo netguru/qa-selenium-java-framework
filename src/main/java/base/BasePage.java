@@ -57,8 +57,7 @@ public abstract class BasePage {
     }
 
     public String getSnackbarMessageAndCloseSnackbar() {
-        snackbarMessage.waitUntilIsVisible(5);
-        String message = snackbarMessage.getText();
+        String message = getSnackbarMessage();
         closeSnackBar();
         return message;
     }
