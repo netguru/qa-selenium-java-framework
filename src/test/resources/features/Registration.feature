@@ -42,4 +42,4 @@ Feature: Registration
 
   Scenario: User can submit new account request with valid data
     When User registers with valid credentials
-    Then Confirm you email message shows up on register page
+    Then Confirm your email message shows up on register page
