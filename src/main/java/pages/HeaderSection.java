@@ -7,16 +7,16 @@ import org.openqa.selenium.support.FindBy;
 
 public class HeaderSection extends BasePage {
 
-    @FindBy(xpath = "//*[contains(@class, 'styled__LogoImage-sc-1luft72-7')]")
+    @FindBy(xpath = "//img[contains(@class, 'styled__LogoImage')]")
     private NGButton logoButton;
 
-    @FindBy(xpath = "//*[contains(@class, 'styled__Link-sc-1luft72-2') and contains(text(), 'Log in')]")
+    @FindBy(xpath = "//a[contains(@class, 'styled__Link') and contains(text(), 'Log in')]")
     private NGButton logInButton;
 
-    @FindBy(xpath = "//*[contains(@class, 'styled__Profile-sc-1luft72-4')]")
+    @FindBy(xpath = "//div[contains(@class, 'styled__Profile')]")
     private NGButton profileButton;
 
-    @FindBy(xpath = "//*[contains(@class, 'styled__Link') and contains(text(), 'Log out')]")
+    @FindBy(xpath = "//a[contains(@class, 'styled__Link') and contains(text(), 'Log out')]")
     private NGButton logOutButton;
 
     public HeaderSection(WebDriver driver) {

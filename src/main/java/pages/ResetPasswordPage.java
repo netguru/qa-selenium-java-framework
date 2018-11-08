@@ -9,16 +9,16 @@ import org.openqa.selenium.support.FindBy;
 
 public class ResetPasswordPage extends BasePage {
 
-    @FindBy(xpath = "//*[contains(@class, 'styled__Message-sc-1mxkpa2-3')]")
+    @FindBy(xpath = "//div[contains(@class, 'Message')]")
     private NGTextBlock styledMessage;
 
-    @FindBy(xpath = "//*[contains(@name, 'email')]")
+    @FindBy(xpath = "//input[contains(@name, 'email')]")
     private NGTextInput emailInput;
 
-    @FindBy(xpath = "//*[contains(@type, 'submit')]")
+    @FindBy(xpath = "//button[contains(@type, 'submit')]")
     private NGButton submitButton;
 
-    @FindBy(xpath = "//*[contains(@class, 'Input__Error')]")
+    @FindBy(xpath = "//span[contains(@class, 'Input__Error')]")
     public NGTextBlock emailErrorMessage;
 
     public ResetPasswordPage(WebDriver driver) {
