@@ -89,6 +89,10 @@ public class PropertiesLoader {
         return properties.getProperty("FD_NO_RESTAURANTS_AND_REVIEWS_EMAIL");
     }
 
+    public String getBasicWithAvatarEmail() {
+        return properties.getProperty("BASIC_WITH_AVATAR_EMAIL");
+    }
+
     public String getCommonPassword() {
         return properties.getProperty("COMMON_PASSWORD");
     }

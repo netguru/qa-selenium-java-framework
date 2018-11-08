@@ -56,6 +56,9 @@ public final class UtilitiesFunctions {
             case FD_NO_RESTAURANTS_AND_REVIEWS:
                 email = propertiesLoader.getFDNoRestaurantsAndReviewsEmail();
                 break;
+            case BASIC_WITH_AVATAR:
+                email = propertiesLoader.getBasicWithAvatarEmail();
+                break;
         }
 
         return email;

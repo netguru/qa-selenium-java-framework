@@ -25,7 +25,7 @@ Feature: Footer
 
   Scenario: User selects Become a Detective button in footer and logs in as BASIC_WITH_AVATAR
     When User selects Become a Detective button in footer
-    And User logs in as  BASIC_WITH_AVATAR
+    And User logs in as BASIC_WITH_AVATAR
     Then User is redirected to "Edit profile - Become a Detective" page
 
   Scenario Outline: User selects Register your business button in footer and logs in as <user>
@@ -41,12 +41,12 @@ Feature: Footer
   Scenario: Become a Detective button is displayed after logging in as BASIC
     Given User is on "login" page
     When User logs in as BASIC
-    Then Become a Detective is displayed in footer
+    Then Become a Detective button is displayed in footer
 
   Scenario Outline: Become a Detective button is not displayed after logging in as <user>
     Given User is on "login" page
     When User logs in as <user>
-    Then Become a Detective is not displayed in footer
+    Then Become a Detective button is not displayed in footer
     Examples:
       | user  |
       | BO    |

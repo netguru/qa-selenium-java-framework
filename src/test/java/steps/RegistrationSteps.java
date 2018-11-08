@@ -9,7 +9,7 @@ import utilities.UtilitiesFunctions;
 
 public class RegistrationSteps extends BaseTest {
 
-    @When("^User registers? with (ADMIN|BO|FD|BASIC|BO_NO_RESTAURANTS|FD_NO_RESTAURANTS_AND_REVIEWS) email$")
+    @When("^User registers? with (ADMIN|BO|FD|BASIC|BO_NO_RESTAURANTS|FD_NO_RESTAURANTS_AND_REVIEWS|BASIC_WITH_AVATAR) email$")
     public void userRegistersWithEmail(String user) {
         String email = UtilitiesFunctions.getUserEmail(UserType.valueOf(user));
         pages.getRegisterPage().registerUser(email, "ValidPassword1!");

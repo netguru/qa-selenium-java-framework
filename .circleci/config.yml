@@ -32,6 +32,7 @@ jobs: # a collection of steps
                             -DBASIC_USER_EMAIL=$BASIC_USER_EMAIL
                             -DBO_NO_RESTAURANTS_EMAIL=$BO_NO_RESTAURANTS_EMAIL
                             -DFD_NO_RESTAURANTS_AND_REVIEWS_EMAIL=$FD_NO_RESTAURANTS_AND_REVIEWS_EMAIL
+                            -DBASIC_WITH_AVATAR_EMAIL=$BASIC_WITH_AVATAR_EMAIL
                             -DCOMMON_PASSWORD=$COMMON_PASSWORD
                             -DCI=true
       - run:
