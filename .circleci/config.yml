@@ -24,7 +24,15 @@ jobs: # a collection of steps
       - run: mvn clean test
                             -DBROWSER=$BROWSER
                             -DBASE_URL=$BASE_URL
+                            -DLANGUAGE=$LANGUAGE
                             -DIMPLICIT_WAIT=$IMPLICIT_WAIT
+                            -DADMIN_EMAIL=$ADMIN_EMAIL
+                            -DBO_EMAIL=$BO_EMAIL
+                            -DFD_EMAIL=$FD_EMAIL
+                            -DBASIC_USER_EMAIL=$BASIC_USER_EMAIL
+                            -DBO_NO_RESTAURANTS_EMAIL=$BO_NO_RESTAURANTS_EMAIL
+                            -DFD_NO_RESTAURANTS_AND_REVIEWS_EMAIL=$FD_NO_RESTAURANTS_AND_REVIEWS_EMAIL
+                            -DCOMMON_PASSWORD=$COMMON_PASSWORD
                             -DCI=true
       - run:
           name: Create directory for test results
