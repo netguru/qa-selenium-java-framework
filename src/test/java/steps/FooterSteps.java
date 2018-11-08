@@ -26,11 +26,15 @@ public class FooterSteps extends BaseTest {
 
     @Then("^Become a Detective button is displayed in footer$")
     public void becomeADetectiveButtonIsDisplayedInFooter() {
+        pages.getFooterSection().waitForBecomeADetectiveButtonToDisappear();
         Assert.assertTrue(pages.getFooterSection().isBecomeADetectiveButtonDisplayed());
+
     }
 
     @Then("^Become a Detective button is not displayed in footer$")
     public void becomeADetectiveButtonIsNotDisplayedInFooter() {
+        pages.getFooterSection().waitForBecomeADetectiveButtonToDisappear();
         Assert.assertFalse(pages.getFooterSection().isBecomeADetectiveButtonDisplayed());
+
     }
 }

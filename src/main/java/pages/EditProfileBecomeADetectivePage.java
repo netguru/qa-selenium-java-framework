@@ -20,7 +20,15 @@ public class EditProfileBecomeADetectivePage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return (sectionTitle.isDisplayed() || applyToBecomeADetectiveButton.isDisplayed());
+        try {
+            return applyToBecomeADetectiveButton.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e1) {
+            try {
+                return sectionTitle.isDisplayed();
+            } catch (org.openqa.selenium.NoSuchElementException e2) {
+                return false;
+            }
+        }
     }
 
     public void clickApplyToBecomeADetectiveButton() {

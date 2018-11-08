@@ -19,7 +19,11 @@ public class FooterSection extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return registerYourBusinessButton.isDisplayed();
+        try {
+            return registerYourBusinessButton.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
     }
 
     public void clickRegisterYourBusinessButton() {
@@ -36,6 +40,13 @@ public class FooterSection extends BasePage {
         } catch (org.openqa.selenium.NoSuchElementException e) {
             return false;
         }
+    }
 
+    public void waitForBecomeADetectiveButtonToDisappear() {
+        try {
+            becomeADetectiveButton.waitUntilIsNotVisible(5);
+        } catch (Exception e) {
+            return;
+        }
     }
 }
