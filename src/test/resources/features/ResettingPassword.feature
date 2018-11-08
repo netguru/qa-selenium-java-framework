@@ -15,5 +15,5 @@ Feature: Resetting password
 
   Scenario: User can submit a valid email
     When User submits a valid email in reset password form
-    Then Snackbar message shows up: "Please check your email to see instructions on how to reset your password"
+    Then Snackbar message shows up: "Please check your email to see instructions on how to reset your password."
     And User is redirected to "home" page

@@ -10,31 +10,31 @@ import org.openqa.selenium.support.FindBy;
 
 public class RegisterPage extends BasePage {
 
-    @FindBy(xpath = "//*[contains(@name, 'email')]")
+    @FindBy(xpath = "//input[contains(@name, 'email')]")
     private NGTextInput emailInput;
 
-    @FindBy(xpath = "//*[@name='password']")
+    @FindBy(xpath = "//input[@name='password']")
     private NGTextInput passwordInput;
 
-    @FindBy(xpath = "//*[contains(@name, 'passwordConfirmation')]")
+    @FindBy(xpath = "//input[contains(@name, 'passwordConfirmation')]")
     private NGTextInput passwordConfirmationInput;
 
-    @FindBy(xpath = "//*[@name='termsAgreement']")
+    @FindBy(xpath = "//input[@name='termsAgreement']")
     private NGButton termsAgreementForEmailRegistrationCheckbox;
 
-    @FindBy(xpath = "//*[contains(@type, 'submit')]")
+    @FindBy(xpath = "//button[contains(@type, 'submit')]")
     private NGButton createAnAccountButton;
 
-    @FindBy(xpath = "(//*[contains(@class, 'sc-bwzfXH hjVfwW')])[1]/*[contains(@class, 'Input__Error')]")
+    @FindBy(xpath = "(//div[contains(@class, 'sc-bwzfXH hjVfwW')])[1]/span[contains(@class, 'Input__Error')]")
     private NGTextBlock emailErrorMessage;
 
-    @FindBy(xpath = "(//*[contains(@class, 'sc-bwzfXH hjVfwW')])[2]/*[contains(@class, 'Input__Error')]")
+    @FindBy(xpath = "(//div[contains(@class, 'sc-bwzfXH hjVfwW')])[2]/span[contains(@class, 'Input__Error')]")
     private NGTextBlock passwordErrorMessage;
 
-    @FindBy(xpath = "(//*[contains(@class, 'sc-bwzfXH hjVfwW')])[3]/*[contains(@class, 'Input__Error')]")
+    @FindBy(xpath = "(//div[contains(@class, 'sc-bwzfXH hjVfwW')])[3]/span[contains(@class, 'Input__Error')]")
     private NGTextBlock passwordConfirmationErrorMessage;
 
-    @FindBy(xpath = "//*[contains(@class, 'Checkbox__Error')]")
+    @FindBy(xpath = "//span[contains(@class, 'Checkbox__Error')]")
     private NGTextBlock termsAgreementForEmailRegistrationErrorMessage;
 
     @FindBy(xpath = "//h4[contains(@class, 'H4-itykkt')]")
