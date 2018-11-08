@@ -60,4 +60,10 @@ public final class UtilitiesFunctions {
 
         return email;
     }
+
+    public static String getCurrentTimeAsString() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        LocalDateTime now = LocalDateTime.now();
+        return dateTimeFormatter.format(now);
+    }
 }

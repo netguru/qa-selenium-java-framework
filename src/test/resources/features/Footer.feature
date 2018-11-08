@@ -47,6 +47,7 @@ Feature: Footer
     Given User is on "login" page
     When User logs in as <user>
     Then Become a Detective is not displayed in footer
+    Examples:
       | user  |
       | BO    |
       | FD    |

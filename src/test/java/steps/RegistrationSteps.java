@@ -44,7 +44,8 @@ public class RegistrationSteps extends BaseTest {
 
     @When("^User registers? with valid credentials$")
     public void userRegistersWithValidCredentials() {
-        pages.getRegisterPage().registerUser("ValidEmail@example.com", "ValidPassword1!");
+        String email = "AutomationUser+" + UtilitiesFunctions.getCurrentTimeAsString() + "@example.com";
+        pages.getRegisterPage().registerUser(email, "ValidPassword1!");
     }
 
     @Then("^User is not registered$")
@@ -74,6 +75,6 @@ public class RegistrationSteps extends BaseTest {
 
     @Then("^Confirm your email message shows? up on register page$")
     public void confirmYouEmailMessageShowsUpOnRegisterPage() {
-        Assert.assertTrue(pages.getRegisterPage().isPageTitleEqual("Confirm your email"));
+        Assert.assertTrue(pages.getRegisterPage().isEmailConfirmationMessageVisible());
     }
 }
