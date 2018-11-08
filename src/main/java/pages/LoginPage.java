@@ -7,6 +7,7 @@ import ngelements.NGTextInput;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import utilities.UserType;
+import utilities.UtilitiesFunctions;
 
 public class LoginPage extends BasePage {
 
@@ -47,32 +48,7 @@ public class LoginPage extends BasePage {
     }
 
     public void logIn(UserType userType) {
-        String email = "";
-
-        switch (userType) {
-            case ADMIN:
-                email = propertiesLoader.getAdminEmail();
-                break;
-            case BO:
-                email = propertiesLoader.getBOEmail();
-                break;
-            case FD:
-                email = propertiesLoader.getFDEmail();
-                break;
-            case BASIC:
-                email = propertiesLoader.getBasicUserEmail();
-                break;
-            case BO_NO_RESTAURANTS:
-                email = propertiesLoader.getBONoRestaurantsEmail();
-                break;
-            case FD_NO_RESTAURANTS_AND_REVIEWS:
-                email = propertiesLoader.getFDNoRestaurantsAndReviewsEmail();
-                break;
-            default:
-                log.error("Given user type: \"" + userType.toString() + "\" does not have a defined email!");
-        }
-
-        logIn(email, propertiesLoader.getCommonPassword());
+        logIn(UtilitiesFunctions.getUserEmail(userType), propertiesLoader.getCommonPassword());
     }
 
     public void provideEmail(String email) {

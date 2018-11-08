@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 
 public final class UtilitiesFunctions {
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
+    private static PropertiesLoader propertiesLoader = new PropertiesLoader();
 
     public static void takeScreenshot(Scenario scenario) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH.mm.ss");
@@ -31,5 +32,32 @@ public final class UtilitiesFunctions {
             log.error("Failed to take screenshot");
             e.printStackTrace();
         }
+    }
+
+    public static String getUserEmail(UserType userType) {
+        String email = "";
+
+        switch (userType) {
+            case ADMIN:
+                email = propertiesLoader.getAdminEmail();
+                break;
+            case BO:
+                email = propertiesLoader.getBOEmail();
+                break;
+            case FD:
+                email = propertiesLoader.getFDEmail();
+                break;
+            case BASIC:
+                email = propertiesLoader.getBasicUserEmail();
+                break;
+            case BO_NO_RESTAURANTS:
+                email = propertiesLoader.getBONoRestaurantsEmail();
+                break;
+            case FD_NO_RESTAURANTS_AND_REVIEWS:
+                email = propertiesLoader.getFDNoRestaurantsAndReviewsEmail();
+                break;
+        }
+
+        return email;
     }
 }
