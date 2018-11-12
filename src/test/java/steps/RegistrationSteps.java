@@ -7,6 +7,8 @@ import org.junit.Assert;
 import utilities.UserType;
 import utilities.UtilitiesFunctions;
 
+import java.sql.Timestamp;
+
 public class RegistrationSteps extends BaseTest {
 
     @When("^User registers? with (ADMIN|BO|FD|BASIC|BO_NO_RESTAURANTS|FD_NO_RESTAURANTS_AND_REVIEWS|BASIC_WITH_AVATAR) email$")
@@ -44,7 +46,8 @@ public class RegistrationSteps extends BaseTest {
 
     @When("^User registers? with valid credentials$")
     public void userRegistersWithValidCredentials() {
-        String email = "AutomationUser+" + UtilitiesFunctions.getCurrentTimeAsString() + "@example.com";
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String email = "AutomationUser+" + timestamp.getTime() + "@example.com";
         pages.getRegisterPage().registerUser(email, "ValidPassword1!");
     }
 
