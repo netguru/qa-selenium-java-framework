@@ -3,7 +3,9 @@ package steps;
 import base.BaseTest;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import managers.ScenarioContext;
 import org.junit.Assert;
+import utilities.ContexType;
 import utilities.UserType;
 import utilities.UtilitiesFunctions;
 
@@ -47,6 +49,8 @@ public class RegistrationSteps extends BaseTest {
     @When("^User registers? with valid credentials$")
     public void userRegistersWithValidCredentials() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        context.scenarioContext.setContext(ContexType.TIMESTAMP_TIME, timestamp.getTime());
+
         String email = "AutomationUser+" + timestamp.getTime() + "@example.com";
         pages.getRegisterPage().registerUser(email, "ValidPassword1!");
     }
