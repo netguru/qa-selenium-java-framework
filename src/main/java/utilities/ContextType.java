@@ -1,5 +1,5 @@
 package utilities;
 
-public enum ContexType {
+public enum ContextType {
     TIMESTAMP_TIME,
 }
