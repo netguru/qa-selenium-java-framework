@@ -51,7 +51,8 @@ public class RegistrationSteps extends BaseTest {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         context.scenarioContext.setContext(ContexType.TIMESTAMP_TIME, timestamp.getTime());
 
-        String email = "AutomationUser+" + timestamp.getTime() + "@example.com";
+        String email = "AutomationUser+"
+                + context.scenarioContext.getContext(ContexType.TIMESTAMP_TIME) + "@example.com";
         pages.getRegisterPage().registerUser(email, "ValidPassword1!");
     }
 
