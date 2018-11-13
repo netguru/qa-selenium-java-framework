@@ -9,12 +9,12 @@ import utilities.UserType;
 
 public class LoginSteps extends BaseTest {
 
-    @Given("^User is logged in as (ADMIN|BO|FD|BASIC|BO_NO_RESTAURANTS|FD_NO_RESTAURANTS_AND_REVIEWS)$")
+    @Given("^User is logged in as (ADMIN|BO|FD|BASIC|BO_NO_RESTAURANTS|FD_NO_RESTAURANTS_AND_REVIEWS|BASIC_WITH_AVATAR)$")
     public void userIsLoggedInAs(String user) {
         pages.getLoginPage().logIn(UserType.valueOf(user));
     }
 
-    @When("^User logs? in as (ADMIN|BO|FD|BASIC|BO_NO_RESTAURANTS|FD_NO_RESTAURANTS_AND_REVIEWS)$")
+    @When("^User logs? in as (ADMIN|BO|FD|BASIC|BO_NO_RESTAURANTS|FD_NO_RESTAURANTS_AND_REVIEWS|BASIC_WITH_AVATAR)$")
     public void userLogsInAs(String user) {
         pages.getLoginPage().logIn(UserType.valueOf(user));
     }

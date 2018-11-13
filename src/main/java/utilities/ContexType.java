@@ -1,5 +1,5 @@
 package utilities;
 
 public enum ContexType {
-    TEST,
+    TIMESTAMP_TIME,
 }

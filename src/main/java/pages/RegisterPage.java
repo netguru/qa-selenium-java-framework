@@ -10,9 +10,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class RegisterPage extends BasePage {
 
-    @FindBy(xpath = "//h1[contains(@class, 'H1-sc-4ckksg-0')]")
-    private NGTextBlock pageTitle;
-
     @FindBy(xpath = "//input[contains(@name, 'email')]")
     private NGTextInput emailInput;
 
@@ -39,6 +36,9 @@ public class RegisterPage extends BasePage {
 
     @FindBy(xpath = "//span[contains(@class, 'Checkbox__Error')]")
     private NGTextBlock termsAgreementForEmailRegistrationErrorMessage;
+
+    @FindBy(xpath = "//h4[contains(@class, 'H4-itykkt')]")
+    private NGTextBlock emailConfirmationMessage;
 
     public RegisterPage(WebDriver driver) {
         super(driver, "/register");
@@ -83,10 +83,6 @@ public class RegisterPage extends BasePage {
         createAnAccountButton.click();
     }
 
-    public boolean isPageTitleEqual(String title) {
-        return title.equals(pageTitle.getText());
-    }
-
     public String getEmailErrorMessage() {
         return emailErrorMessage.getText();
     }
@@ -101,5 +97,9 @@ public class RegisterPage extends BasePage {
 
     public String getTermsAgreementForEmailRegistrationErrorMessage() {
         return termsAgreementForEmailRegistrationErrorMessage.getText();
+    }
+
+    public boolean isEmailConfirmationMessageVisible() {
+        return emailConfirmationMessage.isDisplayed();
     }
 }

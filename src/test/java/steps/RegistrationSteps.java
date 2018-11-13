@@ -3,13 +3,17 @@ package steps;
 import base.BaseTest;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import managers.ScenarioContext;
 import org.junit.Assert;
+import utilities.ContexType;
 import utilities.UserType;
 import utilities.UtilitiesFunctions;
 
+import java.sql.Timestamp;
+
 public class RegistrationSteps extends BaseTest {
 
-    @When("^User registers? with (ADMIN|BO|FD|BASIC|BO_NO_RESTAURANTS|FD_NO_RESTAURANTS_AND_REVIEWS) email$")
+    @When("^User registers? with (ADMIN|BO|FD|BASIC|BO_NO_RESTAURANTS|FD_NO_RESTAURANTS_AND_REVIEWS|BASIC_WITH_AVATAR) email$")
     public void userRegistersWithEmail(String user) {
         String email = UtilitiesFunctions.getUserEmail(UserType.valueOf(user));
         pages.getRegisterPage().registerUser(email, "ValidPassword1!");
@@ -44,7 +48,12 @@ public class RegistrationSteps extends BaseTest {
 
     @When("^User registers? with valid credentials$")
     public void userRegistersWithValidCredentials() {
-        pages.getRegisterPage().registerUser("ValidEmail@example.com", "ValidPassword1!");
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        context.scenarioContext.setContext(ContexType.TIMESTAMP_TIME, timestamp.getTime());
+
+        String email = "AutomationUser+"
+                + context.scenarioContext.getContext(ContexType.TIMESTAMP_TIME) + "@example.com";
+        pages.getRegisterPage().registerUser(email, "ValidPassword1!");
     }
 
     @Then("^User is not registered$")
@@ -74,6 +83,6 @@ public class RegistrationSteps extends BaseTest {
 
     @Then("^Confirm your email message shows? up on register page$")
     public void confirmYouEmailMessageShowsUpOnRegisterPage() {
-        Assert.assertTrue(pages.getRegisterPage().isPageTitleEqual("Confirm your email"));
+        Assert.assertTrue(pages.getRegisterPage().isEmailConfirmationMessageVisible());
     }
 }
