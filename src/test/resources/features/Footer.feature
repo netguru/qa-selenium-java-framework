@@ -1,3 +1,4 @@
+@Footer
 Feature: Footer
 
   Scenario: Footer is not displayed on search page

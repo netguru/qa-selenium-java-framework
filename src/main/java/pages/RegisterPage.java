@@ -46,7 +46,11 @@ public class RegisterPage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return passwordConfirmationInput.isDisplayed();
+        try {
+            return passwordConfirmationInput.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
     }
 
     public void registerUser(String email, String password, String passwordConfirmation, boolean termsAgreement) {

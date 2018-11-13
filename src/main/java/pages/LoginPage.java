@@ -38,7 +38,11 @@ public class LoginPage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return forgotYourPasswordButton.isDisplayed();
+        try {
+            return forgotYourPasswordButton.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
     }
 
     public void logIn(String email, String password) {

@@ -1,3 +1,4 @@
+@ResettingPassword
 Feature: Resetting password
 
   Background:

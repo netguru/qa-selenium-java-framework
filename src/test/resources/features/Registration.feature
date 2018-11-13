@@ -1,3 +1,4 @@
+@Registration
 Feature: Registration
 
   Background:

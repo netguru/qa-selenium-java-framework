@@ -27,7 +27,11 @@ public class ResetPasswordPage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return styledMessage.isDisplayed();
+        try {
+            return styledMessage.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
     }
 
     public void submitEmail(String email) {

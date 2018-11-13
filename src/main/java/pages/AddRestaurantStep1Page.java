@@ -20,6 +20,10 @@ public class AddRestaurantStep1Page extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return (bioInput.isDisplayed() && nextPageButton.isDisplayed());
+        try {
+            return (bioInput.isDisplayed() && nextPageButton.isDisplayed());
+        } catch (org.openqa.selenium.NoSuchElementException e1) {
+            return false;
+        }
     }
 }

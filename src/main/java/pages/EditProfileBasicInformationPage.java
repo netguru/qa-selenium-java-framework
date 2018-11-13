@@ -16,6 +16,10 @@ public class EditProfileBasicInformationPage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return sectionTitle.isDisplayed();
+        try {
+            return sectionTitle.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
     }
 }

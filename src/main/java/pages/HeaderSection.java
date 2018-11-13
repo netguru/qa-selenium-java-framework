@@ -25,7 +25,11 @@ public class HeaderSection extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return logoButton.isDisplayed();
+        try {
+            return logoButton.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
     }
 
     public void logOut() {

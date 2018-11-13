@@ -16,6 +16,10 @@ public class HomePage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        return searchBar.isDisplayed();
+        try {
+            return searchBar.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
     }
 }
