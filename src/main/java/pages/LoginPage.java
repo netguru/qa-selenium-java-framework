@@ -11,25 +11,25 @@ import utilities.UtilitiesFunctions;
 
 public class LoginPage extends BasePage {
 
-    @FindBy(xpath = "//*[contains(@type, 'email')]")
+    @FindBy(xpath = "//input[contains(@type, 'email')]")
     private NGTextInput emailInput;
 
-    @FindBy(xpath = "//*[contains(@type, 'password')]")
+    @FindBy(xpath = "//input[contains(@type, 'password')]")
     private NGTextInput passwordInput;
 
-    @FindBy(xpath = "//*[contains(@type, 'submit')]")
+    @FindBy(xpath = "//button[contains(@type, 'submit')]")
     private NGButton logInButton;
 
-    @FindBy(xpath = "//*[contains(@class, 'styled__ForgetPasswordLink-sc-1mxkpa2-1')]")
+    @FindBy(xpath = "//a[contains(@class, 'ForgetPasswordLink')]")
     private NGButton forgotYourPasswordButton;
 
-    @FindBy(xpath = "//*[contains(@class, 'Button__ButtonAnchor-sc-1emfup8-1')]")
+    @FindBy(xpath = "//a[contains(@class, 'ButtonAnchor')]")
     private NGButton createAnAccountButton;
 
-    @FindBy(xpath = "(//*[contains(@class, 'bwzfXH hjVfwW')])[1]/*[contains(@class, 'Input__Error-sc-1cfdsff-3')]")
+    @FindBy(xpath = "(//div[contains(@class, 'bwzfXH hjVfwW')])[1]/span[contains(@class, 'Input__Error')]")
     private NGTextBlock emailErrorMessage;
 
-    @FindBy(xpath = "(//*[contains(@class, 'bwzfXH hjVfwW')])[2]/*[contains(@class, 'Input__Error-sc-1cfdsff-3')]")
+    @FindBy(xpath = "(//div[contains(@class, 'bwzfXH hjVfwW')])[2]/span[contains(@class, 'Input__Error')]")
     private NGTextBlock passwordErrorMessage;
 
     public LoginPage(WebDriver driver) {
