@@ -1,4 +1,4 @@
-package pages;
+package pages.editprofile;
 
 import base.BasePage;
 import ngelements.NGButton;

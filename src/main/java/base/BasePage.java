@@ -93,4 +93,8 @@ public abstract class BasePage {
 
         return relativeUrl;
     }
+
+    protected WebDriver getDriver() {
+        return this.driver;
+    }
 }

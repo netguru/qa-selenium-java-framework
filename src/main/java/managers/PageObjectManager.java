@@ -2,6 +2,13 @@ package managers;
 
 import org.openqa.selenium.WebDriver;
 import pages.*;
+import pages.addrestaurant.AddRestaurantStep1Page;
+import pages.addrestaurant.AddRestaurantStep2Page;
+import pages.editprofile.EditProfileBasicInformationPage;
+import pages.editprofile.EditProfileBecomeADetectivePage;
+import pages.editrestaurant.EditRestaurantBasicInformationPage;
+import sections.FooterSection;
+import sections.HeaderSection;
 
 public class PageObjectManager {
     private WebDriver driver;
@@ -14,6 +21,8 @@ public class PageObjectManager {
     private EditProfileBasicInformationPage editProfileBasicInformationPage;
     private EditProfileBecomeADetectivePage editProfileBecomeADetectivePage;
     private AddRestaurantStep1Page addRestaurantStep1Page;
+    private AddRestaurantStep2Page addRestaurantStep2Page;
+    private EditRestaurantBasicInformationPage editRestaurantBasicInformationPage;
 
     private HeaderSection headerSection;
     private FooterSection footerSection;
@@ -58,6 +67,18 @@ public class PageObjectManager {
         return (addRestaurantStep1Page == null) ?
                 addRestaurantStep1Page = new AddRestaurantStep1Page(driver) :
                 addRestaurantStep1Page;
+    }
+
+    public AddRestaurantStep2Page getAddRestaurantStep2Page() {
+        return (addRestaurantStep2Page == null) ?
+                addRestaurantStep2Page = new AddRestaurantStep2Page(driver) :
+                addRestaurantStep2Page;
+    }
+
+    public EditRestaurantBasicInformationPage getEditRestaurantBasicInformationPage() {
+        return (editRestaurantBasicInformationPage == null) ?
+                editRestaurantBasicInformationPage = new EditRestaurantBasicInformationPage(driver) :
+                editRestaurantBasicInformationPage;
     }
 
     public HeaderSection getHeaderSection() {

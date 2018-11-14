@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/features"}
+        features = {"src/test/resources/features/AddingRestaurantStep1.feature"}
         , glue = {"steps"}
         , snippets = SnippetType.CAMELCASE
         , plugin = {"pretty"}

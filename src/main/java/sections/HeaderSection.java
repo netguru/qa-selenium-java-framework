@@ -1,4 +1,4 @@
-package pages;
+package sections;
 
 import base.BasePage;
 import ngelements.NGButton;
