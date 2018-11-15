@@ -2,6 +2,7 @@ package sections.editrestaurant;
 
 import base.BasePage;
 import ngelements.NGButton;
+import ngelements.NGTextBlock;
 import ngelements.NGTextInput;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -58,6 +59,33 @@ public class BasicInformationSection extends BasePage {
 
     @FindBy(xpath = "//*[contains(@role, 'option')]")
     private List<NGButton> dropdownOptions;
+
+    @FindBy(xpath = "(//div[contains(@class, 'sc-bwzfXH hjVfwW')])[1]/span[contains(@class, 'Input__Error')]")
+    private NGTextBlock nameErrorMessage;
+
+    @FindBy(xpath = "//div[contains(@role, 'combobox')]/span[contains(@class, 'Input__Error')]")
+    private NGTextBlock countryErrorMessage;
+
+    @FindBy(xpath = "(//div[contains(@class, 'sc-bwzfXH hjVfwW')])[3]/span[contains(@class, 'Input__Error')]")
+    private NGTextBlock postCodeErrorMessage;
+
+    @FindBy(xpath = "(//div[contains(@class, 'sc-bwzfXH hjVfwW')])[4]/span[contains(@class, 'Input__Error')]")
+    private NGTextBlock cityErrorMessage;
+
+    @FindBy(xpath = "(//div[contains(@class, 'sc-bwzfXH hjVfwW')])[5]/span[contains(@class, 'Input__Error')]")
+    private NGTextBlock streetNameErrorMessage;
+
+    @FindBy(xpath = "//span[contains(@class, 'Step1__Error')]")
+    private NGTextBlock typesErrorMessage;
+
+    @FindBy(xpath = "(//div[contains(@role, 'combobox')])[3]/span[contains(@class, 'MultipleSelect__Error')]")
+    private NGTextBlock cuisinesErrorMessage;
+
+    @FindBy(xpath = "(//div[contains(@role, 'combobox')])[4]/span[contains(@class, 'MultipleSelect__Error')]")
+    private NGTextBlock foodAndDrinksErrorMessage;
+
+    @FindBy(xpath = "(//div[contains(@role, 'combobox')])[5]/span[contains(@class, 'MultipleSelect__Error')]")
+    private NGTextBlock perfectForsErrorMessage;
 
     public BasicInformationSection(WebDriver driver) {
         super(driver);
@@ -154,5 +182,41 @@ public class BasicInformationSection extends BasePage {
         } catch (org.openqa.selenium.NoSuchElementException e) {
             return false;
         }
+    }
+
+    public String getNameErrorMessage() {
+        return nameErrorMessage.getText();
+    }
+
+    public String getCountryErrorMessage() {
+        return countryErrorMessage.getText();
+    }
+
+    public String getPostCodeErrorMessage() {
+        return postCodeErrorMessage.getText();
+    }
+
+    public String getCityErrorMessage() {
+        return cityErrorMessage.getText();
+    }
+
+    public String getStreetNameErrorMessage() {
+        return streetNameErrorMessage.getText();
+    }
+
+    public String getTypesErrorMessage() {
+        return typesErrorMessage.getText();
+    }
+
+    public String getCuisinesErrorMessage() {
+        return cuisinesErrorMessage.getText();
+    }
+
+    public String getFoodAndDrinksErrorMessage() {
+        return foodAndDrinksErrorMessage.getText();
+    }
+
+    public String getPerfectForsErrorMessage() {
+        return perfectForsErrorMessage.getText();
     }
 }
