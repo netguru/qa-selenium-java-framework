@@ -11,7 +11,9 @@ public class LoginSteps extends BaseTest {
 
     @Given("^User is logged in as (ADMIN|BO|FD|BASIC|BO_NO_RESTAURANTS|FD_NO_RESTAURANTS_AND_REVIEWS|BASIC_WITH_AVATAR)$")
     public void userIsLoggedInAs(String user) {
+        pages.getLoginPage().goTo();
         pages.getLoginPage().logIn(UserType.valueOf(user));
+        pages.getHeaderSection().isUserLoggedIn();
     }
 
     @When("^User logs? in as (ADMIN|BO|FD|BASIC|BO_NO_RESTAURANTS|FD_NO_RESTAURANTS_AND_REVIEWS|BASIC_WITH_AVATAR)$")

@@ -31,8 +31,16 @@ public class NavigationSteps extends BaseTest {
                 break;
             case "edit profile - become a detective":
                 pages.getEditProfileBecomeADetectivePage().goTo();
+                break;
             case "add restaurant - step 1":
                 pages.getAddRestaurantStep1Page().goTo();
+                break;
+            case "add restaurant - step 2":
+                pages.getAddRestaurantStep2Page().goTo();
+                break;
+            case "edit restaurant - basic information":
+                pages.getEditRestaurantBasicInformationPage().goTo();
+                break;
             default:
                 log.error("There is no such page as: " + page);
                 break;
@@ -64,6 +72,12 @@ public class NavigationSteps extends BaseTest {
                 break;
             case "add restaurant - step 1":
                 Assert.assertTrue(pages.getAddRestaurantStep1Page().isInitialized());
+                break;
+            case "add restaurant - step 2":
+                Assert.assertTrue(pages.getAddRestaurantStep2Page().isInitialized());
+                break;
+            case "edit restaurant - basic information":
+                Assert.assertTrue(pages.getEditRestaurantBasicInformationPage().isInitialized());
                 break;
             default:
                 log.error("There is no such page as: " + page);

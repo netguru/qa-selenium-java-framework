@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class SearchPage extends BasePage {
 
-    @FindBy(xpath = "(//button[contains(text(), 'Clear refinements')])[1]")
+    @FindBy(xpath = "//button[contains(text(), 'Clear refinements')][1]")
     private NGButton clearRefinementsButton;
 
     public SearchPage(WebDriver driver) {
