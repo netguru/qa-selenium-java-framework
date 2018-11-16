@@ -17,7 +17,8 @@
     Given User is logged in as <user>
     And User is on "Add Restaurant - step 1" page
     When User submits form with <fillingSetting> data on Add Restaurant - Step 1 page
-    Then Restaurant's draft is created
+    Then Snackbar message shows up: "Restaurant was updated!"
+    And Restaurant's draft is created
 #TODO: Implement the step below. I can't test it because the one above doesn't pass
 #    And Restaurant's data is correct in Basic Information section on Edit Restaurant page
     Examples:
