@@ -25,13 +25,13 @@ public class RegisterPage extends BasePage {
     @FindBy(xpath = "//button[contains(@type, 'submit')]")
     private NGButton createAnAccountButton;
 
-    @FindBy(xpath = "(//div[contains(@class, 'sc-bwzfXH hjVfwW')])[1]/span[contains(@class, 'Input__Error')]")
+    @FindBy(xpath = "//div[contains(@class, 'sc-bwzfXH hjVfwW')][1]/span[contains(@class, 'Input__Error')]")
     private NGTextBlock emailErrorMessage;
 
-    @FindBy(xpath = "(//div[contains(@class, 'sc-bwzfXH hjVfwW')])[2]/span[contains(@class, 'Input__Error')]")
+    @FindBy(xpath = "//div[contains(@class, 'sc-bwzfXH hjVfwW')][2]/span[contains(@class, 'Input__Error')]")
     private NGTextBlock passwordErrorMessage;
 
-    @FindBy(xpath = "(//div[contains(@class, 'sc-bwzfXH hjVfwW')])[3]/span[contains(@class, 'Input__Error')]")
+    @FindBy(xpath = "//div[contains(@class, 'sc-bwzfXH hjVfwW')][3]/span[contains(@class, 'Input__Error')]")
     private NGTextBlock passwordConfirmationErrorMessage;
 
     @FindBy(xpath = "//span[contains(@class, 'Checkbox__Error')]")
