@@ -2,6 +2,7 @@ package pages.editrestaurant;
 
 import base.BasePage;
 import ngelements.NGButton;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import sections.EditRestaurantColumnSection;
@@ -14,7 +15,7 @@ public class EditRestaurantBasicInformationPage extends BasePage {
     private BasicInformationSection basicInformationSection = new BasicInformationSection(getDriver());
     private EditRestaurantColumnSection columnSection = new EditRestaurantColumnSection(getDriver());
 
-    @FindBy(xpath = "(//div[contains(@role, 'combobox')]/div[contains(@class, 'Dropdown__Button')])[1]")
+    @FindBy(xpath = "//div[contains(@class, 'Header')]/div[contains(@class, 'ePrPrn')]")
     private NGButton restaurantsDropdownButton;
 
     @FindBy(xpath = "//*[contains(@role, 'option')]")
@@ -38,7 +39,7 @@ public class EditRestaurantBasicInformationPage extends BasePage {
 
         for (NGButton option :
                 dropdownOptions) {
-            if(option.getText().equals(restaurant)){
+            if (option.getText().equals(restaurant)) {
                 option.click();
                 return true;
             }

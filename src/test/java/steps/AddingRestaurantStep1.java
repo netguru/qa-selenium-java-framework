@@ -65,6 +65,11 @@ public class AddingRestaurantStep1 extends BaseTest {
         }
     }
 
+    @When("^User submits? form on Add Restaurant - Step 1 page$")
+    public void userSubmitsFormOnAddRestaurantStep1Page() {
+        pages.getAddRestaurantStep1Page().clickNextPageButton();
+    }
+
     @When("^User submits? form with (\\d+) items? selected in" +
             " (types|cuisines|food and drinks|perfect for) on Add Restaurant - Step 1 page$")
     public void userSubmitsFormWithItemsSelectedInOnAddRestaurantStep1Page(int amount, String field) {
@@ -82,11 +87,18 @@ public class AddingRestaurantStep1 extends BaseTest {
                 pages.getAddRestaurantStep1Page().getBasicInformationSection().selectPerfectFors(amount);
                 break;
         }
+
+        pages.getAddRestaurantStep1Page().clickNextPageButton();
     }
 
     @When("^User submits? an? empty form on Add Restaurant - Step 1 page$")
     public void userSubmitsAnEmptyFormOnAddRestaurantStep1Page() {
         pages.getAddRestaurantStep1Page().clickNextPageButton();
+    }
+
+    @When("^User provides? name field on Add Restaurant - Step 1 page$")
+    public void userProvidesFieldOnAddRestaurantStep1Page() {
+        pages.getAddRestaurantStep1Page().getBasicInformationSection().provideName("Name");
     }
 
     @Then("^Restaurant's draft is created$")
