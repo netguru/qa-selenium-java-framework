@@ -78,13 +78,13 @@ public class BasicInformationSection extends BasePage {
     @FindBy(xpath = "//span[contains(@class, 'Step1__Error')]")
     private NGTextBlock typesErrorMessage;
 
-    @FindBy(xpath = "//div[contains(@role, 'combobox')]/div[contains(@class, 'styled__InputWrapper')][1]/following-sibling::span")
+    @FindBy(xpath = "(//div[contains(@role, 'combobox')]/div[contains(@class, 'styled__InputWrapper')])[1]/following-sibling::span")
     private NGTextBlock cuisinesErrorMessage;
 
-    @FindBy(xpath = "//div[contains(@role, 'combobox')]/div[contains(@class, 'styled__InputWrapper')][2]/following-sibling::span")
+    @FindBy(xpath = "(//div[contains(@role, 'combobox')]/div[contains(@class, 'styled__InputWrapper')])[2]/following-sibling::span")
     private NGTextBlock foodAndDrinksErrorMessage;
 
-    @FindBy(xpath = "//div[contains(@role, 'combobox')]/div[contains(@class, 'styled__InputWrapper')][3]/following-sibling::span")
+    @FindBy(xpath = "(//div[contains(@role, 'combobox')]/div[contains(@class, 'styled__InputWrapper')])[3]/following-sibling::span")
     private NGTextBlock perfectForsErrorMessage;
 
     public BasicInformationSection(WebDriver driver) {
