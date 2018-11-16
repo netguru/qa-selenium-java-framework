@@ -13,7 +13,6 @@ public class LoginSteps extends BaseTest {
     public void userIsLoggedInAs(String user) {
         pages.getLoginPage().goTo();
         pages.getLoginPage().logIn(UserType.valueOf(user));
-        // waiting until the user is logged in
         pages.getHeaderSection().isUserLoggedIn();
     }
 

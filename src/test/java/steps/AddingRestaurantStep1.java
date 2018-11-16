@@ -3,6 +3,7 @@ package steps;
 import base.BaseTest;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import utilities.ContextType;
 
@@ -160,5 +161,73 @@ public class AddingRestaurantStep1 extends BaseTest {
                         pages.getAddRestaurantStep1Page().getBasicInformationSection().getPerfectForsErrorMessage());
                 break;
         }
+    }
+
+    @Then("^All error messages are shown on Add Restaurant - Step 1 page$")
+    public void allErrorMessagesAreShownOnAddRestaurantStep1Page() {
+        softAssertions = new SoftAssertions();
+
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getNameErrorMessage()
+                        .equals("This field is required"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getCountryErrorMessage()
+                        .equals("This field is requried"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getPostCodeErrorMessage()
+                        .equals("This field is requried"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getCityErrorMessage()
+                        .equals("This field is requried"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getStreetNameErrorMessage()
+                        .equals("This field is requried"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getTypesErrorMessage()
+                        .equals("You have to choose from 1 to 3 items"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getCuisinesErrorMessage()
+                        .equals("You have to choose from 1 to 5 items"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getFoodAndDrinksErrorMessage()
+                        .equals("You have to choose from 1 to 6 items"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getPerfectForsErrorMessage()
+                        .equals("You have to choose from 3 to 10 items"));
+
+        softAssertions.assertAll();
+    }
+
+    @Then("^All error messages except name are shown on Add Restaurant - Step 1 page$")
+    public void allErrorMessagesExceptNameAreShownOnAddRestaurantStep1Page() {
+        softAssertions = new SoftAssertions();
+
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getCountryErrorMessage()
+                        .equals("This field is requried"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getPostCodeErrorMessage()
+                        .equals("This field is requried"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getCityErrorMessage()
+                        .equals("This field is requried"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getStreetNameErrorMessage()
+                        .equals("This field is requried"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getTypesErrorMessage()
+                        .equals("You have to choose from 1 to 3 items"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getCuisinesErrorMessage()
+                        .equals("You have to choose from 1 to 5 items"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getFoodAndDrinksErrorMessage()
+                        .equals("You have to choose from 1 to 6 items"));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getPerfectForsErrorMessage()
+                        .equals("You have to choose from 3 to 10 items"));
+
+        softAssertions.assertAll();
+
     }
 }

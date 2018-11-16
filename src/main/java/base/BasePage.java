@@ -17,7 +17,7 @@ public abstract class BasePage {
     private static String language;
     protected String relativeUrl;
     protected PropertiesLoader propertiesLoader;
-    private WebDriver driver;
+    protected WebDriver driver;
 
     @FindBy(xpath = "//*[contains(@class, 'notification-message')]")
     NGTextBlock snackbarMessage;
@@ -92,9 +92,5 @@ public abstract class BasePage {
         }
 
         return relativeUrl;
-    }
-
-    protected WebDriver getDriver() {
-        return this.driver;
     }
 }

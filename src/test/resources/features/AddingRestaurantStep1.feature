@@ -96,15 +96,7 @@
     Given User is logged in as <user>
     And User is on "Add Restaurant - step 1" page
     When User submits an empty form on Add Restaurant - Step 1 page
-    Then name error message shows up on Add Restaurant - Step 1 page: "This field is required"
-    And country error message shows up on Add Restaurant - Step 1 page: "This field is required"
-    And post code error message shows up on Add Restaurant - Step 1 page: "This field is required"
-    And city error message shows up on Add Restaurant - Step 1 page: "This field is required"
-    And street name error message shows up on Add Restaurant - Step 1 page: "This field is required"
-    And types error message shows up on Add Restaurant - Step 1 page: "You have to choose from 1 to 3 items"
-    And cuisines error message shows up on Add Restaurant - Step 1 page: "You have to choose from 1 to 5 items"
-    And food and drinks error message shows up on Add Restaurant - Step 1 page: "You have to choose from 1 to 6 items"
-    And perfect for error message shows up on Add Restaurant - Step 1 page: "You have to choose from 3 to 10 items"
+    Then All error messages are shown on Add Restaurant - Step 1 page
     Examples:
       | user |
       | BO   |
@@ -115,14 +107,7 @@
     And User is on "Add Restaurant - step 1" page
     When User submits an empty form on Add Restaurant - Step 1 page
     And User provides name field on Add Restaurant - Step 1 page
-    Then country error message shows up on Add Restaurant - Step 1 page: "This field is required"
-    And post code error message shows up on Add Restaurant - Step 1 page: "This field is required"
-    And city error message shows up on Add Restaurant - Step 1 page: "This field is required"
-    And street name error message shows up on Add Restaurant - Step 1 page: "This field is required"
-    And types error message shows up on Add Restaurant - Step 1 page: "You have to choose from 1 to 3 items"
-    And cuisines error message shows up on Add Restaurant - Step 1 page: "You have to choose from 1 to 5 items"
-    And food and drinks error message shows up on Add Restaurant - Step 1 page: "You have to choose from 1 to 6 items"
-    And perfect for error message shows up on Add Restaurant - Step 1 page: "You have to choose from 3 to 10 items"
+    Then All error messages except name are shown on Add Restaurant - Step 1 page
     Examples:
       | user |
       | BO   |

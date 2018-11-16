@@ -100,6 +100,39 @@ public class BasicInformationSection extends BasePage {
         }
     }
 
+    public void provideMinimumData(String timestamp) {
+        provideName("AutomationBusiness+" + timestamp);
+        selectCountry("Poland");
+        providePostCode("PostCode+" + timestamp);
+        provideCity("City+" + timestamp);
+        provideStreetName("StreetName+" + timestamp);
+
+        selectTypesCheckboxes(1);
+        selectCuisines(1);
+        selectFoodAndDrinks(1);
+        selectPerfectFors(3);
+    }
+
+    public void provideMaximumData(String timestamp) {
+        provideName("AutomationBusiness+" + timestamp);
+        provideTagline("Tagline+" + timestamp);
+        selectCountry("Poland");
+        selectRegion("Mazowieckie");
+        providePostCode("PostCode+" + timestamp);
+        provideCity("City+" + timestamp);
+        provideStreetName("StreetName+" + timestamp);
+        provideStreetNumber("StreetNumber+" + timestamp);
+
+        selectTypesCheckboxes(3);
+        selectCuisines(5);
+        selectFoodAndDrinks(6);
+        selectPerfectFors(10);
+        selectDiets(1);
+
+        provideOwnerRole("OwnerRole+" + timestamp);
+        provideBio("Bio+" + timestamp);
+    }
+
     public void provideName(String name) {
         nameInput.sendKeys(name);
     }

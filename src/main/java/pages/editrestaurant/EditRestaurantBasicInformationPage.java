@@ -12,8 +12,8 @@ import java.util.List;
 
 public class EditRestaurantBasicInformationPage extends BasePage {
 
-    private BasicInformationSection basicInformationSection = new BasicInformationSection(getDriver());
-    private EditRestaurantColumnSection columnSection = new EditRestaurantColumnSection(getDriver());
+    private BasicInformationSection basicInformationSection = new BasicInformationSection(driver);
+    private EditRestaurantColumnSection columnSection = new EditRestaurantColumnSection(driver);
 
     @FindBy(xpath = "//div[contains(@class, 'Header')]/div[contains(@class, 'ePrPrn')]")
     private NGButton restaurantsDropdownButton;

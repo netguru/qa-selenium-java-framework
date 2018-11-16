@@ -140,6 +140,11 @@
             <artifactId>htmlelements-java</artifactId>
             <version>1.18</version> <!-- 1.18+ is SELENIUM 3.5.1+ compatible -->
         </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.11.1</version>
+        </dependency>
     </dependencies>
 
 </project>
