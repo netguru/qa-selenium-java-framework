@@ -1,6 +1,13 @@
 package ngelements;
 
+import managers.Context;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+
 public class NGCheckbox extends NGHtmlElement {
+
+    @FindBy(xpath = "self::*/../following-sibling::span")
+    private NGTextBlock validator;
 
     public void select() {
         if (!this.isSelected()) {
@@ -26,5 +33,9 @@ public class NGCheckbox extends NGHtmlElement {
         } else {
             this.deselect();
         }
+    }
+
+    public NGTextBlock getValidator() {
+        return validator;
     }
 }

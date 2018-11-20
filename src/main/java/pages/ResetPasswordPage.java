@@ -18,9 +18,6 @@ public class ResetPasswordPage extends BasePage {
     @FindBy(xpath = "//button[contains(@type, 'submit')]")
     private NGButton submitButton;
 
-    @FindBy(xpath = "//span[contains(@class, 'Input__Error')]")
-    public NGTextBlock emailErrorMessage;
-
     public ResetPasswordPage(WebDriver driver) {
         super(driver, "/reset-password");
     }
@@ -48,6 +45,6 @@ public class ResetPasswordPage extends BasePage {
     }
 
     public String getEmailErrorMessage() {
-        return emailErrorMessage.getText();
+        return emailInput.getValidator().getText();
     }
 }

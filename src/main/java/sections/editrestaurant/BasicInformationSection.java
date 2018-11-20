@@ -60,32 +60,8 @@ public class BasicInformationSection extends BasePage {
     @FindBy(xpath = "//*[contains(@role, 'option')]")
     private List<NGButton> dropdownOptions;
 
-    @FindBy(xpath = "//div[contains(@class, 'sc-bwzfXH hjVfwW')][1]/span[contains(@class, 'Input__Error')]")
-    private NGTextBlock nameErrorMessage;
-
-    @FindBy(xpath = "//div[contains(@role, 'combobox')]/span[contains(@class, 'Input__Error')]")
-    private NGTextBlock countryErrorMessage;
-
-    @FindBy(xpath = "//div[contains(@class, 'sc-bwzfXH hjVfwW')][3]/span[contains(@class, 'Input__Error')]")
-    private NGTextBlock postCodeErrorMessage;
-
-    @FindBy(xpath = "//div[contains(@class, 'sc-bwzfXH hjVfwW')][4]/span[contains(@class, 'Input__Error')]")
-    private NGTextBlock cityErrorMessage;
-
-    @FindBy(xpath = "//div[contains(@class, 'sc-bwzfXH hjVfwW')][5]/span[contains(@class, 'Input__Error')]")
-    private NGTextBlock streetNameErrorMessage;
-
     @FindBy(xpath = "//span[contains(@class, 'Step1__Error')]")
     private NGTextBlock typesErrorMessage;
-
-    @FindBy(xpath = "(//div[contains(@role, 'combobox')]/div[contains(@class, 'styled__InputWrapper')])[1]/following-sibling::span")
-    private NGTextBlock cuisinesErrorMessage;
-
-    @FindBy(xpath = "(//div[contains(@role, 'combobox')]/div[contains(@class, 'styled__InputWrapper')])[2]/following-sibling::span")
-    private NGTextBlock foodAndDrinksErrorMessage;
-
-    @FindBy(xpath = "(//div[contains(@role, 'combobox')]/div[contains(@class, 'styled__InputWrapper')])[3]/following-sibling::span")
-    private NGTextBlock perfectForsErrorMessage;
 
     public BasicInformationSection(WebDriver driver) {
         super(driver);
@@ -218,23 +194,23 @@ public class BasicInformationSection extends BasePage {
     }
 
     public String getNameErrorMessage() {
-        return nameErrorMessage.getText();
+        return nameInput.getValidator().getText();
     }
 
     public String getCountryErrorMessage() {
-        return countryErrorMessage.getText();
+        return countryInput.getValidator().getText();
     }
 
     public String getPostCodeErrorMessage() {
-        return postCodeErrorMessage.getText();
+        return postCodeInput.getValidator().getText();
     }
 
     public String getCityErrorMessage() {
-        return cityErrorMessage.getText();
+        return cityInput.getValidator().getText();
     }
 
     public String getStreetNameErrorMessage() {
-        return streetNameErrorMessage.getText();
+        return streetNameInput.getValidator().getText();
     }
 
     public String getTypesErrorMessage() {
@@ -242,14 +218,14 @@ public class BasicInformationSection extends BasePage {
     }
 
     public String getCuisinesErrorMessage() {
-        return cuisinesErrorMessage.getText();
+        return cuisinesInput.getValidator().getText();
     }
 
     public String getFoodAndDrinksErrorMessage() {
-        return foodAndDrinksErrorMessage.getText();
+        return foodAndDrinksInput.getValidator().getText();
     }
 
     public String getPerfectForsErrorMessage() {
-        return perfectForsErrorMessage.getText();
+        return perfectForsInput.getValidator().getText();
     }
 }

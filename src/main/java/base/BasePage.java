@@ -44,7 +44,7 @@ public abstract class BasePage {
     public abstract boolean isInitialized();
 
     public void goTo() {
-        driver.navigate().to(getUrl());
+        driver.get(getUrl());
         log.info("Navigating to: " + getClass().getName());
     }
 

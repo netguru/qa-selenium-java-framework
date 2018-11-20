@@ -20,22 +20,10 @@ public class RegisterPage extends BasePage {
     private NGTextInput passwordConfirmationInput;
 
     @FindBy(xpath = "//input[@name='termsAgreement']")
-    private NGButton termsAgreementForEmailRegistrationCheckbox;
+    private NGCheckbox termsAgreementForEmailRegistrationCheckbox;
 
     @FindBy(xpath = "//button[contains(@type, 'submit')]")
     private NGButton createAnAccountButton;
-
-    @FindBy(xpath = "//div[contains(@class, 'sc-bwzfXH hjVfwW')][1]/span[contains(@class, 'Input__Error')]")
-    private NGTextBlock emailErrorMessage;
-
-    @FindBy(xpath = "//div[contains(@class, 'sc-bwzfXH hjVfwW')][2]/span[contains(@class, 'Input__Error')]")
-    private NGTextBlock passwordErrorMessage;
-
-    @FindBy(xpath = "//div[contains(@class, 'sc-bwzfXH hjVfwW')][3]/span[contains(@class, 'Input__Error')]")
-    private NGTextBlock passwordConfirmationErrorMessage;
-
-    @FindBy(xpath = "//span[contains(@class, 'Checkbox__Error')]")
-    private NGTextBlock termsAgreementForEmailRegistrationErrorMessage;
 
     @FindBy(xpath = "//h4[contains(@class, 'H4-itykkt')]")
     private NGTextBlock emailConfirmationMessage;
@@ -88,19 +76,19 @@ public class RegisterPage extends BasePage {
     }
 
     public String getEmailErrorMessage() {
-        return emailErrorMessage.getText();
+        return emailInput.getValidator().getText();
     }
 
     public String getPasswordErrorMessage() {
-        return passwordErrorMessage.getText();
+        return passwordInput.getValidator().getText();
     }
 
     public String getPasswordConfirmationErrorMessage() {
-        return passwordConfirmationErrorMessage.getText();
+        return passwordConfirmationInput.getValidator().getText();
     }
 
     public String getTermsAgreementForEmailRegistrationErrorMessage() {
-        return termsAgreementForEmailRegistrationErrorMessage.getText();
+        return termsAgreementForEmailRegistrationCheckbox.getValidator().getText();
     }
 
     public boolean isEmailConfirmationMessageVisible() {

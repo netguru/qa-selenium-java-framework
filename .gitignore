@@ -11,8 +11,6 @@
 .metadata
 
 # Maven
-log/
-logs/
 target/
 
 # Package Files
@@ -26,6 +24,3 @@ target/
 
 # Confidential
 initConfig.properties
-
-# Screenshots
-*.png

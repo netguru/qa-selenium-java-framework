@@ -42,7 +42,10 @@ jobs: # a collection of steps
             then mkdir ./target; fi
 
       - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
-          path: target/
+          paths:
+           - target/
+           - logs/
+           - screenshots/
 
       - store_artifacts: # store the uberjar as an artifact
           path: target/

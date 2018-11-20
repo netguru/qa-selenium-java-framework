@@ -26,12 +26,6 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//a[contains(@class, 'ButtonAnchor')]")
     private NGButton createAnAccountButton;
 
-    @FindBy(xpath = "//div[contains(@class, 'bwzfXH hjVfwW')][1]/span[contains(@class, 'Input__Error')]")
-    private NGTextBlock emailErrorMessage;
-
-    @FindBy(xpath = "//div[contains(@class, 'bwzfXH hjVfwW')][2]/span[contains(@class, 'Input__Error')]")
-    private NGTextBlock passwordErrorMessage;
-
     public LoginPage(WebDriver driver) {
         super(driver, "/login");
     }
@@ -76,10 +70,10 @@ public class LoginPage extends BasePage {
     }
 
     public String getEmailErrorMessage() {
-        return emailErrorMessage.getText();
+        return emailInput.getValidator().getText();
     }
 
     public String getPasswordErrorMessage() {
-        return passwordErrorMessage.getText();
+        return passwordInput.getValidator().getText();
     }
 }
