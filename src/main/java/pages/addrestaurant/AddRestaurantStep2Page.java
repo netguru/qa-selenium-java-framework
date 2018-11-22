@@ -2,33 +2,58 @@ package pages.addrestaurant;
 
 import base.BasePage;
 import ngelements.NGButton;
-import ngelements.NGTextInput;
+import ngelements.NGTextBlock;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import sections.editrestaurant.ContactInformationSection;
 
 public class AddRestaurantStep2Page extends BasePage {
 
-    @FindBy(xpath = "//input[contains(@name, 'phone')]")
-    private NGTextInput phoneInput;
+    private ContactInformationSection contactInformationSection;
+
+    @FindBy(xpath = "//h3[contains(text(),'Contact information')]")
+    private NGTextBlock title;
 
     @FindBy(xpath = "//button[contains(text(), 'Previous step')]")
     private NGButton previousStepButton;
 
+    @FindBy(xpath = "//button[contains(text(), 'Next step')]")
+    private NGButton nextStepButton;
+
     public AddRestaurantStep2Page(WebDriver driver) {
         super(driver, "/add#2");
+        contactInformationSection = new ContactInformationSection(driver);
     }
 
     @Override
     public boolean isInitialized() {
         try {
-            return (phoneInput.isDisplayed() && previousStepButton.isDisplayed());
+            return (title.isDisplayed());
         } catch (org.openqa.selenium.NoSuchElementException e) {
             return false;
         }
     }
 
-    @Override
-    public void goTo() {
-        // TODO: get to step 1, complete the form, get to next step
+    public void submitFormWithRequiredData() {
+        contactInformationSection.provideRequiredData();
+        nextStepButton.click();
     }
+
+    public void submitFormWithMaximumData(String timestamp) {
+        contactInformationSection.provideMaximumData(timestamp);
+        nextStepButton.click();
+    }
+
+    public void clickNextButton() {
+        nextStepButton.click();
+    }
+
+    public void clickPreviousButton() {
+        previousStepButton.click();
+    }
+
+    public ContactInformationSection getContactInformationSection() {
+        return contactInformationSection;
+    }
+
 }

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import pages.*;
 import pages.addrestaurant.AddRestaurantStep1Page;
 import pages.addrestaurant.AddRestaurantStep2Page;
+import pages.addrestaurant.AddRestaurantStep3Page;
 import pages.editprofile.EditProfileBasicInformationPage;
 import pages.editprofile.EditProfileBecomeADetectivePage;
 import pages.editrestaurant.EditRestaurantBasicInformationPage;
@@ -22,6 +23,7 @@ public class PageObjectManager {
     private EditProfileBecomeADetectivePage editProfileBecomeADetectivePage;
     private AddRestaurantStep1Page addRestaurantStep1Page;
     private AddRestaurantStep2Page addRestaurantStep2Page;
+    private AddRestaurantStep3Page addRestaurantStep3Page;
     private EditRestaurantBasicInformationPage editRestaurantBasicInformationPage;
 
     private HeaderSection headerSection;
@@ -73,6 +75,12 @@ public class PageObjectManager {
         return (addRestaurantStep2Page == null) ?
                 addRestaurantStep2Page = new AddRestaurantStep2Page(driver) :
                 addRestaurantStep2Page;
+    }
+
+    public AddRestaurantStep3Page getAddRestaurantStep3Page() {
+        return (addRestaurantStep3Page == null) ?
+                addRestaurantStep3Page = new AddRestaurantStep3Page(driver) :
+                addRestaurantStep3Page;
     }
 
     public EditRestaurantBasicInformationPage getEditRestaurantBasicInformationPage() {

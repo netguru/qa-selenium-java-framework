@@ -3,7 +3,6 @@ package steps;
 import base.BaseTest;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import org.junit.Assert;
 
 public class NavigationSteps extends BaseTest {
@@ -37,6 +36,9 @@ public class NavigationSteps extends BaseTest {
                 break;
             case "add restaurant - step 2":
                 pages.getAddRestaurantStep2Page().goTo();
+                break;
+            case "addRestaurant - step 3":
+                pages.getAddRestaurantStep3Page().goTo();
                 break;
             case "edit restaurant - basic information":
                 pages.getEditRestaurantBasicInformationPage().goTo();
@@ -75,6 +77,9 @@ public class NavigationSteps extends BaseTest {
                 break;
             case "add restaurant - step 2":
                 Assert.assertTrue(pages.getAddRestaurantStep2Page().isInitialized());
+                break;
+            case "add restaurant - step 3":
+                Assert.assertTrue(pages.getAddRestaurantStep3Page().isInitialized());
                 break;
             case "edit restaurant - basic information":
                 Assert.assertTrue(pages.getEditRestaurantBasicInformationPage().isInitialized());
