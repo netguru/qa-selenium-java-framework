@@ -1,6 +1,7 @@
 package steps;
 
 import base.BaseTest;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.assertj.core.api.SoftAssertions;
@@ -9,22 +10,17 @@ import utilities.ContextType;
 
 import java.sql.Timestamp;
 
-public class AddingRestaurantStep1 extends BaseTest {
+public class AddingRestaurantStep1Steps extends BaseTest {
+
+    @Given("^User submitted a? form with (minimum|maximum) data on Add Restaurant - Step 1 page$")
+    public void userSubmittedFormWithDataOnAddRestaurantStep1Page(String fillingSetting) {
+        pages.getAddRestaurantStep1Page().goTo();
+        submitFormWithData(fillingSetting);
+    }
 
     @When("^User submits? form with (minimum|maximum) data on Add Restaurant - Step 1 page$")
     public void userSubmitsFormWithDataOnAddRestaurantStep1Page(String fillingSetting) {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        context.scenarioContext.setContext(ContextType.TIMESTAMP_TIME, timestamp.getTime());
-
-        switch (fillingSetting.toLowerCase()) {
-            case "minimum":
-                pages.getAddRestaurantStep1Page().submitFormWithMinimumData
-                        ((context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)).toString());
-                break;
-            case "maximum":
-                pages.getAddRestaurantStep1Page().submitFormWithMaximumData
-                        ((context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)).toString());
-        }
+        submitFormWithData(fillingSetting);
     }
 
     @When("^User selects? a? country with regions? on Add Restaurant - Step 1 page$")
@@ -102,12 +98,27 @@ public class AddingRestaurantStep1 extends BaseTest {
         pages.getAddRestaurantStep1Page().getBasicInformationSection().provideName("Name");
     }
 
+    @When("^User goes back to 1st step in Add Restaurant form$")
+    public void userGoesBackTo1stStepInAddRestaurantForm() {
+        pages.getAddRestaurantStep2Page().clickPreviousButton();
+    }
+
     @Then("^Restaurant's draft is created$")
     public void restaurantsDraftIsCreated() {
         String expectedRestaurant = "AutomationBusiness+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME);
 
         pages.getEditRestaurantBasicInformationPage().goTo();
         Assert.assertTrue(pages.getEditRestaurantBasicInformationPage().findAndSelectRestaurant(expectedRestaurant));
+    }
+
+    @Then("^Restaurant's (minimum|maximum) data is correct in Basic Information section on Edit Restaurant page$")
+    public void restaurantsDataIsCorrectInBasicInformationSectionOnEditRestaurantPage(String fillingSetting) {
+        restaurantDataIsCorrectInBasicInformationSection(fillingSetting);
+    }
+
+    @Then("^Restaurant's (minimum|maximum) data is correct on Add Restaurant - Step 1 page$")
+    public void restaurantsDataIsCorrectOnAddRestaurantStep1Page(String fillingSetting) {
+        restaurantDataIsCorrectInBasicInformationSection(fillingSetting);
     }
 
     @Then("^Region field is not displayed on Add Restaurant - Step 1 page$")
@@ -228,6 +239,61 @@ public class AddingRestaurantStep1 extends BaseTest {
                         .equals("You have to choose from 3 to 10 items"));
 
         softAssertions.assertAll();
+    }
 
+    private void submitFormWithData(String fillingSetting) {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        context.scenarioContext.setContext(ContextType.TIMESTAMP_TIME, timestamp.getTime());
+
+        switch (fillingSetting.toLowerCase()) {
+            case "minimum":
+                pages.getAddRestaurantStep1Page().submitFormWithMinimumData
+                        ((context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)).toString());
+                break;
+            case "maximum":
+                pages.getAddRestaurantStep1Page().submitFormWithMaximumData
+                        ((context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)).toString());
+        }
+    }
+
+    private void restaurantDataIsCorrectInBasicInformationSection(String fillingSetting) {
+        softAssertions = new SoftAssertions();
+
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getNameInputText()
+                        .equals("Name+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getCountryInputText()
+                        .equals("Country+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getPostCodeInputText()
+                        .equals("PostCode+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getCityInputText()
+                        .equals("City+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)));
+        softAssertions.assertThat(
+                pages.getAddRestaurantStep1Page().getBasicInformationSection().getStreetNameInputText()
+                        .equals("StreetName+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)));
+
+        if (fillingSetting.toLowerCase().equals("minimum")) {
+            softAssertions.assertThat(
+                    pages.getAddRestaurantStep1Page().getBasicInformationSection().getTaglineInputText()
+                            .equals("Tagline+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)));
+            softAssertions.assertThat(
+                    pages.getAddRestaurantStep1Page().getBasicInformationSection().getRegionInputText()
+                            .equals("Region+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)));
+            softAssertions.assertThat(
+                    pages.getAddRestaurantStep1Page().getBasicInformationSection().getStreetNumberInputText()
+                            .equals("StreetNumber+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)));
+            softAssertions.assertThat(
+                    pages.getAddRestaurantStep1Page().getBasicInformationSection().getOwnerRoleInputText()
+                            .equals("OwnerRole+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)));
+            softAssertions.assertThat(
+                    pages.getAddRestaurantStep1Page().getBasicInformationSection().getBioInputText()
+                            .equals("Bio+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME)));
+
+        }
+
+        softAssertions.assertAll();
     }
 }

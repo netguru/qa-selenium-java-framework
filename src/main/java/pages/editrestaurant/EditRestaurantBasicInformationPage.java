@@ -2,7 +2,6 @@ package pages.editrestaurant;
 
 import base.BasePage;
 import ngelements.NGButton;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import sections.EditRestaurantColumnSection;

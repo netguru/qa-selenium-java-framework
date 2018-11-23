@@ -1,7 +1,7 @@
 @AddingRestaurant-Step1
   Feature: Adding restaurant - step 1
 
-  Scenario Outline: User can go to next step after filling up all required fields
+  Scenario Outline: User can go to next step after filling up fields
     Given User is logged in as <user>
     And User is on "Add Restaurant - step 1" page
     When User submits form with <fillingSetting> data on Add Restaurant - Step 1 page
@@ -19,8 +19,20 @@
     When User submits form with <fillingSetting> data on Add Restaurant - Step 1 page
     Then Snackbar message shows up: "Restaurant was updated!"
     And Restaurant's draft is created
-#TODO: Implement the step below. I can't test it because the one above doesn't pass
-#    And Restaurant's data is correct in Basic Information section on Edit Restaurant page
+    And Restaurant's <fillingSetting> data is correct in Basic Information section on Edit Restaurant page
+    Examples:
+      | user | fillingSetting   |
+      | BO   | minimum          |
+      | BO   | maximum          |
+      | FD   | minimum          |
+      | FD   | maximum          |
+
+  Scenario Outline: Restaurant's data is shown correctly after going back to 1st step
+    Given User is logged in as <user>
+    And User submitted a form with <fillingSetting> data on Add Restaurant - Step 1 page
+    When Snackbar message shows up: "Restaurant was updated!"
+    And User goes back to 1st step in Add Restaurant form
+    Then Restaurant's <fillingSetting> data is correct on Add Restaurant - Step 1 page
     Examples:
       | user | fillingSetting   |
       | BO   | minimum          |

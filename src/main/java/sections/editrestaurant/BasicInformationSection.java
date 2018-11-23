@@ -228,4 +228,44 @@ public class BasicInformationSection extends BasePage {
     public String getPerfectForsErrorMessage() {
         return perfectForsInput.getValidator().getText();
     }
+
+    public String getNameInputText() {
+        return nameInput.getText();
+    }
+
+    public String getTaglineInputText() {
+        return taglineInput.getText();
+    }
+
+    public String getCountryInputText() {
+        return countryInput.getText();
+    }
+
+    public String getRegionInputText() {
+        return regionInput.getText();
+    }
+
+    public String getPostCodeInputText() {
+        return postCodeInput.getText();
+    }
+
+    public String getCityInputText() {
+        return cityInput.getText();
+    }
+
+    public String getStreetNameInputText() {
+        return streetNameInput.getText();
+    }
+
+    public String getStreetNumberInputText() {
+        return streetNumberInput.getText();
+    }
+
+    public String getOwnerRoleInputText() {
+        return ownerRoleInput.getText();
+    }
+
+    public String getBioInputText() {
+        return bioInput.getText();
+    }
 }
