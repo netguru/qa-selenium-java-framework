@@ -19,11 +19,7 @@ public class AddRestaurantStep1Page extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        try {
-            return (basicInformationSection.isInitialized() && nextPageButton.isDisplayed());
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return (basicInformationSection.isInitialized() && nextPageButton.isDisplayed());
     }
 
     public void submitFormWithMinimumData(String timestamp) {

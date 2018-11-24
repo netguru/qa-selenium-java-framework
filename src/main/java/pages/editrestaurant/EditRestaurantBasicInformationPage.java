@@ -2,7 +2,6 @@ package pages.editrestaurant;
 
 import base.BasePage;
 import ngelements.NGButton;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import sections.EditRestaurantColumnSection;
@@ -27,11 +26,7 @@ public class EditRestaurantBasicInformationPage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        try {
-            return (basicInformationSection.isInitialized() && columnSection.isInitialized());
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return (basicInformationSection.isInitialized() && columnSection.isInitialized());
     }
 
     public boolean findAndSelectRestaurant(String restaurant) {

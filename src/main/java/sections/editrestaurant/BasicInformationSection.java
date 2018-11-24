@@ -69,11 +69,7 @@ public class BasicInformationSection extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        try {
-            return bioInput.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return bioInput.isDisplayed();
     }
 
     public void provideMinimumData(String timestamp) {

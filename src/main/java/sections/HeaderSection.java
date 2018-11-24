@@ -25,11 +25,7 @@ public class HeaderSection extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        try {
-            return logoButton.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return logoButton.isDisplayed();
     }
 
     public void logOut() {
@@ -56,18 +52,10 @@ public class HeaderSection extends BasePage {
     }
 
     public boolean isUserLoggedIn() {
-        try {
-            return profileButton.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return profileButton.isDisplayed();
     }
 
     public boolean isUserLoggedOut() {
-        try {
-            return logInButton.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return logInButton.isDisplayed();
     }
 }
