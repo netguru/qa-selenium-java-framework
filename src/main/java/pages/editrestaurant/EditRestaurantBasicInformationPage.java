@@ -39,6 +39,7 @@ public class EditRestaurantBasicInformationPage extends BasePage {
 
     public boolean isRestaurantExist(String restaurantName) {
         NGButton restaurantButton = getRestaurantsDropdownButtonByName(restaurantName);
+        closeRestaurantDropdown();
 
         if (restaurantButton != null) {
             return true;
@@ -69,6 +70,10 @@ public class EditRestaurantBasicInformationPage extends BasePage {
     }
 
     private void expandRestaurantsDropdown() {
+        restaurantsDropdownButton.click();
+    }
+
+    private void closeRestaurantDropdown() {
         restaurantsDropdownButton.click();
     }
 }
