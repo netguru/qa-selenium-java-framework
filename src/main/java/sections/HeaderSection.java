@@ -43,8 +43,7 @@ public class HeaderSection extends BasePage {
 
     public void clickProfileButton() {
         profileButton.click();
-        // Waiting until the dropdown extends
-        logOutButton.waitUntilIsClickable(5);
+        waitUntilProfileDropdownExtends();
     }
 
     public void clickLogOutButton() {
@@ -57,5 +56,9 @@ public class HeaderSection extends BasePage {
 
     public boolean isUserLoggedOut() {
         return logInButton.isDisplayed();
+    }
+
+    private void waitUntilProfileDropdownExtends() {
+        logOutButton.waitUntilIsClickable(5);
     }
 }
