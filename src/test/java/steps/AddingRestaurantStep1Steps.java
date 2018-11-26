@@ -108,11 +108,14 @@ public class AddingRestaurantStep1Steps extends BaseTest {
         String expectedRestaurant = "AutomationBusiness+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME);
 
         pages.getEditRestaurantBasicInformationPage().goTo();
-        Assert.assertTrue(pages.getEditRestaurantBasicInformationPage().findAndSelectRestaurant(expectedRestaurant));
+        Assert.assertTrue(pages.getEditRestaurantBasicInformationPage().isRestaurantExist(expectedRestaurant));
     }
 
     @Then("^Restaurant's (minimum|maximum) data is correct in Basic Information section on Edit Restaurant page$")
     public void restaurantsDataIsCorrectInBasicInformationSectionOnEditRestaurantPage(String fillingSetting) {
+        String restaurantToSelect = "AutomationBusiness+" + context.scenarioContext.getContext(ContextType.TIMESTAMP_TIME);
+        pages.getEditRestaurantBasicInformationPage().selectRestaurantByName(restaurantToSelect);
+
         restaurantDataIsCorrectInBasicInformationSection(fillingSetting);
     }
 

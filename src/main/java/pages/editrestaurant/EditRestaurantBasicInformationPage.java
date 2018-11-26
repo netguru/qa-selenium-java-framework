@@ -33,22 +33,18 @@ public class EditRestaurantBasicInformationPage extends BasePage {
         }
     }
 
-    public boolean findAndSelectRestaurant(String restaurant) {
-        expandRestaurantsDropdown();
-
-        for (NGButton option :
-                dropdownOptions) {
-            if (option.getText().equals(restaurant)) {
-                option.click();
-                return true;
-            }
-        }
-
-        return false;
+    public void selectRestaurantByName(String restaurantName) {
+        getRestaurantsDropdownButtonByName(restaurantName).click();
     }
 
-    public void expandRestaurantsDropdown() {
-        restaurantsDropdownButton.click();
+    public boolean isRestaurantExist(String restaurantName) {
+        NGButton restaurantButton = getRestaurantsDropdownButtonByName(restaurantName);
+
+        if (restaurantButton != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public BasicInformationSection getBasicInformationSection() {
@@ -57,5 +53,22 @@ public class EditRestaurantBasicInformationPage extends BasePage {
 
     public EditRestaurantColumnSection getColumnSection() {
         return this.columnSection;
+    }
+
+    private NGButton getRestaurantsDropdownButtonByName(String restaurantName) {
+        expandRestaurantsDropdown();
+
+        for (NGButton option :
+                dropdownOptions) {
+            if (option.getText().equals(restaurantName)) {
+                return option;
+            }
+        }
+
+        return null;
+    }
+
+    private void expandRestaurantsDropdown() {
+        restaurantsDropdownButton.click();
     }
 }
