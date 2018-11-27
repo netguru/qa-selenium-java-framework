@@ -13,6 +13,9 @@ public class HeaderSection extends BasePage {
     @FindBy(xpath = "//a[contains(@class, 'styled__Link') and contains(text(), 'Log in')]")
     private NGButton logInButton;
 
+    @FindBy(xpath = "//a[contains(text(), 'Add your business')]")
+    private NGButton addRestaurantButton;
+
     @FindBy(xpath = "//div[contains(@class, 'styled__Profile')]")
     private NGButton profileButton;
 
@@ -41,6 +44,10 @@ public class HeaderSection extends BasePage {
         logInButton.click();
     }
 
+    public void clickAddRestaurantButton() {
+        addRestaurantButton.click();
+    }
+
     public void clickProfileButton() {
         profileButton.click();
         waitUntilProfileDropdownExtends();
@@ -60,5 +67,17 @@ public class HeaderSection extends BasePage {
 
     private void waitUntilProfileDropdownExtends() {
         logOutButton.waitUntilIsClickable(5);
+    }
+
+    public boolean isAddRestaurantButtonDisplayed() {
+        return addRestaurantButton.isDisplayed();
+    }
+
+    public void waitForAddRestaurantButtonToDisappear() {
+        try {
+            addRestaurantButton.waitUntilIsNotVisible(5);
+        } catch (Exception e) {
+            return;
+        }
     }
 }
