@@ -28,11 +28,7 @@ public class HeaderSection extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        try {
-            return logoButton.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return logoButton.isDisplayed();
     }
 
     public void logOut() {
@@ -54,8 +50,7 @@ public class HeaderSection extends BasePage {
 
     public void clickProfileButton() {
         profileButton.click();
-        // Waiting until the dropdown extends
-        logOutButton.waitUntilIsClickable(5);
+        waitUntilProfileDropdownExtends();
     }
 
     public void clickLogOutButton() {
@@ -63,27 +58,19 @@ public class HeaderSection extends BasePage {
     }
 
     public boolean isUserLoggedIn() {
-        try {
-            return profileButton.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return profileButton.isDisplayed();
     }
 
     public boolean isUserLoggedOut() {
-        try {
-            return logInButton.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return logInButton.isDisplayed();
+    }
+
+    private void waitUntilProfileDropdownExtends() {
+        logOutButton.waitUntilIsClickable(5);
     }
 
     public boolean isAddRestaurantButtonDisplayed() {
-        try {
-            return addRestaurantButton.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return addRestaurantButton.isDisplayed();
     }
 
     public void waitForAddRestaurantButtonToDisappear() {

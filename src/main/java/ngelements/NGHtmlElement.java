@@ -37,4 +37,12 @@ class NGHtmlElement extends HtmlElement {
         WebDriverWait webDriverWait = new WebDriverWait(Context.driverManager.getDriver(), secondsForTimeout);
         webDriverWait.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(getWrappedElement())));
     }
+
+    public boolean isDisplayed() {
+        try {
+            return getWrappedElement().isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
+    }
 }

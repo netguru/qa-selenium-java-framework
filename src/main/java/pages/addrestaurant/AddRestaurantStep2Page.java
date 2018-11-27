@@ -27,11 +27,7 @@ public class AddRestaurantStep2Page extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        try {
-            return (title.isDisplayed());
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return title.isDisplayed();
     }
 
     public void submitFormWithRequiredData() {
