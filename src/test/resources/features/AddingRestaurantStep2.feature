@@ -1,7 +1,6 @@
 @AddingRestaurantStep2
 Feature: Adding restaurant - step 2
 
-
   Scenario Outline: User can go to next step after filling up all required fields
     Given User is logged in as <user>
     And User is on "Add Restaurant - step 2" page
