@@ -36,11 +36,7 @@ public class ContactInformationSection extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        try {
-            return phoneInput.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return phoneInput.isDisplayed();
     }
 
     public void provideMaximumData(String timestamp) {
