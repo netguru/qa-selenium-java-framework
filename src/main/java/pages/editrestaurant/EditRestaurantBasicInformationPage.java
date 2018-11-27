@@ -59,14 +59,8 @@ public class EditRestaurantBasicInformationPage extends BasePage {
     private NGButton getRestaurantsDropdownButtonByName(String restaurantName) {
         expandRestaurantsDropdown();
 
-        for (NGButton option :
-                dropdownOptions) {
-            if (option.getText().equals(restaurantName)) {
-                return option;
-            }
-        }
-
-        return null;
+        return dropdownOptions.stream().filter(option -> option.getText().equals(restaurantName))
+                .findFirst().orElse(null);
     }
 
     private void expandRestaurantsDropdown() {
