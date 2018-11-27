@@ -16,10 +16,6 @@ public class EditRestaurantColumnSection extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        try {
-            return basicInformationButton.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return basicInformationButton.isDisplayed();
     }
 }

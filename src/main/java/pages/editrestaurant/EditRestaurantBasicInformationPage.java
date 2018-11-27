@@ -26,11 +26,7 @@ public class EditRestaurantBasicInformationPage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        try {
-            return (basicInformationSection.isInitialized() && columnSection.isInitialized());
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return (basicInformationSection.isInitialized() && columnSection.isInitialized());
     }
 
     public void selectRestaurantByName(String restaurantName) {

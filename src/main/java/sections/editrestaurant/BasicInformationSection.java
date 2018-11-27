@@ -69,11 +69,7 @@ public class BasicInformationSection extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        try {
-            return bioInput.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return bioInput.isDisplayed();
     }
 
     public void provideMinimumData(String timestamp) {
@@ -119,12 +115,12 @@ public class BasicInformationSection extends BasePage {
 
     public void selectCountry(String country) {
         countryInput.sendKeys(country);
-        dropdownOptions.get(0).click();
+        selectFirstOptionFromDropdown();
     }
 
     public void selectRegion(String region) {
         regionInput.sendKeys(region);
-        dropdownOptions.get(0).click();
+        selectFirstOptionFromDropdown();
     }
 
     public void providePostCode(String postCode) {
@@ -150,31 +146,19 @@ public class BasicInformationSection extends BasePage {
     }
 
     public void selectCuisines(int amount) {
-        for (int i = 0; i < amount; i++) {
-            cuisinesInput.sendKeys(" " + Keys.BACK_SPACE);
-            dropdownOptions.get(0).click();
-        }
+        selectOptionsFromField(cuisinesInput, amount);
     }
 
     public void selectFoodAndDrinks(int amount) {
-        for (int i = 0; i < amount; i++) {
-            foodAndDrinksInput.sendKeys(" " + Keys.BACK_SPACE);
-            dropdownOptions.get(0).click();
-        }
+        selectOptionsFromField(foodAndDrinksInput, amount);
     }
 
     public void selectPerfectFors(int amount) {
-        for (int i = 0; i < amount; i++) {
-            perfectForsInput.sendKeys(" " + Keys.BACK_SPACE);
-            dropdownOptions.get(0).click();
-        }
+        selectOptionsFromField(perfectForsInput, amount);
     }
 
     public void selectDiets(int amount) {
-        for (int i = 0; i < amount; i++) {
-            dietsInput.sendKeys(" " + Keys.BACK_SPACE);
-            dropdownOptions.get(0).click();
-        }
+        selectOptionsFromField(dietsInput, amount);
     }
 
     public void provideOwnerRole(String ownerRole) {
@@ -186,11 +170,7 @@ public class BasicInformationSection extends BasePage {
     }
 
     public boolean isRegionFieldDisplayed() {
-        try {
-            return regionInput.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return regionInput.isDisplayed();
     }
 
     public String getNameErrorMessage() {
@@ -267,5 +247,16 @@ public class BasicInformationSection extends BasePage {
 
     public String getBioInputText() {
         return bioInput.getText();
+    }
+
+    private void selectOptionsFromField(NGTextInput field, int amount) {
+        for (int i = 0; i < amount; i++) {
+            field.sendKeys(" " + Keys.BACK_SPACE);
+            selectFirstOptionFromDropdown();
+        }
+    }
+
+    private void selectFirstOptionFromDropdown() {
+        dropdownOptions.get(0).click();
     }
 }

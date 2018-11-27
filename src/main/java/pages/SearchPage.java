@@ -16,10 +16,6 @@ public class SearchPage extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        try {
-            return clearRefinementsButton.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return clearRefinementsButton.isDisplayed();
     }
 }

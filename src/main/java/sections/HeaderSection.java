@@ -13,6 +13,9 @@ public class HeaderSection extends BasePage {
     @FindBy(xpath = "//a[contains(@class, 'styled__Link') and contains(text(), 'Log in')]")
     private NGButton logInButton;
 
+    @FindBy(xpath = "//a[contains(text(), 'Add your business')]")
+    private NGButton addRestaurantButton;
+
     @FindBy(xpath = "//div[contains(@class, 'styled__Profile')]")
     private NGButton profileButton;
 
@@ -25,11 +28,7 @@ public class HeaderSection extends BasePage {
 
     @Override
     public boolean isInitialized() {
-        try {
-            return logoButton.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return logoButton.isDisplayed();
     }
 
     public void logOut() {
@@ -45,10 +44,13 @@ public class HeaderSection extends BasePage {
         logInButton.click();
     }
 
+    public void clickAddRestaurantButton() {
+        addRestaurantButton.click();
+    }
+
     public void clickProfileButton() {
         profileButton.click();
-        // Waiting until the dropdown extends
-        logOutButton.waitUntilIsClickable(5);
+        waitUntilProfileDropdownExtends();
     }
 
     public void clickLogOutButton() {
@@ -56,18 +58,26 @@ public class HeaderSection extends BasePage {
     }
 
     public boolean isUserLoggedIn() {
-        try {
-            return profileButton.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+        return profileButton.isDisplayed();
     }
 
     public boolean isUserLoggedOut() {
+        return logInButton.isDisplayed();
+    }
+
+    private void waitUntilProfileDropdownExtends() {
+        logOutButton.waitUntilIsClickable(5);
+    }
+
+    public boolean isAddRestaurantButtonDisplayed() {
+        return addRestaurantButton.isDisplayed();
+    }
+
+    public void waitForAddRestaurantButtonToDisappear() {
         try {
-            return logInButton.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
+            addRestaurantButton.waitUntilIsNotVisible(5);
+        } catch (Exception e) {
+            return;
         }
     }
 }
