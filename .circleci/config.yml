@@ -21,7 +21,7 @@ jobs: # a collection of steps
             - ~/.m2
           key: circleci-selenium-{{ checksum "pom.xml" }}
       # run the actual tests
-      - run: mvn clean verify
+      - run: mvn clean test
                             -DBROWSER=$BROWSER
                             -DBASE_URL=$BASE_URL
                             -DLANGUAGE=$LANGUAGE
@@ -35,6 +35,8 @@ jobs: # a collection of steps
                             -DBASIC_WITH_AVATAR_EMAIL=$BASIC_WITH_AVATAR_EMAIL
                             -DCOMMON_PASSWORD=$COMMON_PASSWORD
                             -DCI=true
+      - run: mvn verify -DskipTests
+
       - run:
           name: Create directory for test results
           command: >+
