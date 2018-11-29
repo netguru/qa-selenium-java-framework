@@ -18,6 +18,6 @@ public class HomePageSteps extends BaseTest {
 
   @Then("User sees logo")
   public void logoIsVisible () {
-    Assert.assertFalse(pages.getHomePage().getLogo().isDisplayed());
+    Assert.assertTrue(pages.getHomePage().getLogo().isDisplayed());
   }
 }
