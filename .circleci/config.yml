@@ -21,7 +21,7 @@ jobs: # a collection of steps
             - ~/.m2
           key: circleci-selenium-{{ checksum "pom.xml" }}
       # run the actual tests
-      - run: mvn clean test
+      - run: mvn clean verify
                             -DBROWSER=$BROWSER
                             -DBASE_URL=$BASE_URL
                             -DIMPLICIT_WAIT=$IMPLICIT_WAIT
