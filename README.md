@@ -23,11 +23,21 @@ cd qa-java-framework
 
 4a.Compile project files and run tests
 ```bash
-mvn clean install test -Dcucumber.options="--tags @{name of tag, with upper/lowercase letters}"
+mvn clean test -Dcucumber.options="--tags @{name of tag, with upper/lowercase letters}"
 ```
 4b.To run tests from previous build type
 ```bash
 mvn test -Dcucumber.options="--tags @{name of tag, with upper/lowercase letters}"
+```
+
+5.To run tests with html reporting tool use 
+ 5a. after running `test` phase run: 
+```bash
+mvn verify -DskipTests
+```
+5b. or using syntax from step 4 run:
+```bash
+mvn clean verify -Dcucumber.options="--tags @{name of tag, with upper/lowercase letters}"
 ```
 
 ## Git Branching Model

@@ -26,7 +26,8 @@ public final class UtilitiesFunctions {
                     screenSource,
                     new File("screenshots/" + scenario.getName() + "_" + timeToPrint + ".png")
             );
-
+            byte[] screenSource2 = ((TakesScreenshot) Context.driverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
+            scenario.embed(screenSource2, "image/png");
         } catch (Exception e) {
             log.error("Failed to take screenshot");
             e.printStackTrace();
