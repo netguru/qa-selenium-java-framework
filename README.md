@@ -1,5 +1,4 @@
 # qa-java-framework
-=======
 
 ## Technology stack
 * Selenium WebDriver
@@ -48,5 +47,6 @@ mvn clean verify -Dcucumber.options="--tags @{name of tag, with upper/lowercase 
 * If changes are needed, the author of PR will apply them
 * Merge the PR to master
 
-## Initial project structure
-//TODO
+## License
+
+See the [LICENSE](LICENSE) file for license rights and limitations (MIT).
