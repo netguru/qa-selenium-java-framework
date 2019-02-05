@@ -4,16 +4,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 import utilities.PropertiesLoader;
 
-public abstract class BasePage {
+public abstract class BasePage extends LoadableComponent<BasePage> {
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
     private static String baseUrl;
     protected String relativeUrl;
     protected PropertiesLoader propertiesLoader;
-    private WebDriver driver;
+    protected WebDriver driver;
 
     public BasePage(WebDriver driver, String relativeUrl) {
         propertiesLoader = new PropertiesLoader();
@@ -27,14 +28,13 @@ public abstract class BasePage {
     }
 
     public BasePage(WebDriver driver) {
-        this(driver, "/#");
+        this(driver, "");
     }
 
-    public abstract boolean isInitialized();
-
-    public void goTo() {
-        driver.navigate().to(getUrl());
+    @Override
+    public BasePage get() {
         log.info("Navigating to: " + getClass().getName());
+        return super.get();
     }
 
     public String getUrl() {
