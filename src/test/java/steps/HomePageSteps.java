@@ -13,7 +13,7 @@ public class HomePageSteps extends BaseTest {
 
   @When("User navigates to homepage")
   public void navigateToHomepageUrl () {
-    pages.getHomePage().goTo();
+    pages.getHomePage().get();
   }
 
   @Then("User sees logo")
