@@ -31,10 +31,11 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
         this(driver, "");
     }
 
-//    public void goTo() {
-//        driver.navigate().to(getUrl());
-//        log.info("Navigating to: " + getClass().getName());
-//    }
+    @Override
+    public BasePage get() {
+        log.info("Navigating to: " + getClass().getName());
+        return super.get();
+    }
 
     public String getUrl() {
         return baseUrl + relativeUrl;
