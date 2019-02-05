@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
-  @FindBy(xpath = "//a[@href='https://www.netguru.co']")
+  @FindBy(xpath = "//a[@href='https://www.netguru.com']")
   private NGButton logo;
 
   public HomePage(WebDriver driver) {
