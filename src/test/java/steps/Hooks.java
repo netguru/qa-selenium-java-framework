@@ -19,8 +19,10 @@ public class Hooks extends BaseTest {
 
     @After
     public void ceaseTestCase(Scenario scenario) {
-        if (scenario.isFailed())
+        if (scenario.isFailed()) {
+            UtilitiesFunctions.takePageSource(scenario);
             UtilitiesFunctions.takeScreenshot(scenario);
+        }
         context.driverManager.quit();
         log.debug(getClass().getName() + " -> Ending tests...");
     }

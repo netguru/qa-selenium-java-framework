@@ -8,17 +8,37 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.io.FileHandler;
 
-import java.io.File;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public final class UtilitiesFunctions {
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
 
+
+
+    public static void takePageSource(Scenario scenario) {
+        String pageSource = Context.driverManager.getDriver().getPageSource();
+
+        String timeToPrint = getCurrentTime();
+
+        Path path = Paths.get("pageSources/" + scenario.getName() + "_" + timeToPrint + ".html");
+
+        try {
+            Files.createFile(path);
+            Files.write(path, pageSource.getBytes());
+            scenario.embed(pageSource.getBytes(), "text/html");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void takeScreenshot(Scenario scenario) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH.mm.ss");
-        LocalDateTime currentTime = LocalDateTime.now();
-        String timeToPrint = dateTimeFormatter.format(currentTime);
+        String timeToPrint = getCurrentTime();
 
         try {
             File screenSource = ((TakesScreenshot) Context.driverManager.getDriver()).getScreenshotAs(OutputType.FILE);
@@ -32,5 +52,11 @@ public final class UtilitiesFunctions {
             log.error("Failed to take screenshot");
             e.printStackTrace();
         }
+    }
+
+    private static String getCurrentTime() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH.mm.ss");
+        LocalDateTime currentTime = LocalDateTime.now();
+        return dateTimeFormatter.format(currentTime);
     }
 }
