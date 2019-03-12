@@ -167,6 +167,11 @@
             <artifactId>htmlelements-java</artifactId>
             <version>1.18</version> <!-- 1.18+ is SELENIUM 3.5.1+ compatible -->
         </dependency>
+        <dependency>
+            <groupId>com.pojosontheweb</groupId>
+            <artifactId>monte-repack</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
 </project>
