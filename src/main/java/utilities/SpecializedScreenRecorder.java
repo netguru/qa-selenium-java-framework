@@ -8,7 +8,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class SpecializedScreenRecorder extends ScreenRecorder {
 
@@ -34,7 +33,7 @@ public class SpecializedScreenRecorder extends ScreenRecorder {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 "yyyy-MM-dd HH:mm:ss");
 
-        return new File(movieFolder, name + "-" + dateFormat.format(new Date()) + "."
+        return new File(movieFolder, name + "."
                 + Registry.getInstance().getExtension(fileFormat));
     }
 }

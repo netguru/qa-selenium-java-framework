@@ -24,7 +24,7 @@ public class DriverManager {
         log.info("Initializing browser: " + browserType);
         switch (browserType) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();
+                WebDriverManager.chromedriver().version("73").setup();
                 driver = new ChromeDriver();
                 break;
             case "firefox":
