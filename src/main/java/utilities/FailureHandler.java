@@ -122,7 +122,7 @@ public final class FailureHandler {
         String timeToPrint = getCurrentTime();
 
         File oldFile = new File(videosDir + recordingVideoName + ".avi");
-        File target = new File(videosDir + scenario.getName() + "_" + timeToPrint + ".3gp");
+        File target = new File(videosDir + scenario.getName() + "_" + timeToPrint + ".mp4");
 
         try {
             target.createNewFile();
@@ -135,13 +135,13 @@ public final class FailureHandler {
         VideoAttributes video = new VideoAttributes();
         video.setCodec("mpeg4");
         EncodingAttributes attrs = new EncodingAttributes();
-        attrs.setFormat("3gp");
+        attrs.setFormat("mp4");
         attrs.setVideoAttributes(video);
         Encoder encoder = new Encoder();
         try {
             encoder.encode(source, target, attrs);
         } catch (EncoderException e) {
-            log.info("File couldn't be encoded to 3gp");
+            log.info("File couldn't be encoded to mp4");
             e.printStackTrace();
         }
     }
