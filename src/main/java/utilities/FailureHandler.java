@@ -23,16 +23,16 @@ import java.time.format.DateTimeFormatter;
 import static org.monte.media.FormatKeys.*;
 import static org.monte.media.VideoFormatKeys.*;
 
-public final class FailureHandler {
+public class FailureHandler {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
     private final static String recordingVideoName = "Recorded";
+    private final static String videosDir = "videos/";
+    private final static String pageSourcesDir = "pageSources/";
+    private final static String screenshotsDir = "screenshots/";
     private static SpecializedScreenRecorder screenRecorder;
-    private static String videosDir = "videos/";
-    private static String pageSourcesDir = "pageSources/";
-    private static String screenshotsDir = "screenshots/";
 
-    public static void takePageSource(Scenario scenario) {
+    public void takePageSource(Scenario scenario) {
         String pageSource = Context.driverManager.getDriver().getPageSource();
 
         String timeToPrint = getCurrentTime();
@@ -50,7 +50,7 @@ public final class FailureHandler {
 
     }
 
-    public static void takeScreenshot(Scenario scenario) {
+    public void takeScreenshot(Scenario scenario) {
         String timeToPrint = getCurrentTime();
 
         try {
@@ -67,7 +67,7 @@ public final class FailureHandler {
         }
     }
 
-    public static SpecializedScreenRecorder setUpScreenRecorder() {
+    public void setUpScreenRecorder() {
         GraphicsConfiguration gc = GraphicsEnvironment
                 .getLocalGraphicsEnvironment()
                 .getDefaultScreenDevice()
@@ -96,10 +96,9 @@ public final class FailureHandler {
         } catch (AWTException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
-    public static void startVideoRecord() {
+    public void startVideoRecord() {
         try {
             screenRecorder.start();
         } catch (IOException e) {
@@ -108,7 +107,7 @@ public final class FailureHandler {
         }
     }
 
-    public static void stopVideoRecord(Scenario scenario) {
+    public void stopVideoRecord(Scenario scenario) {
         try {
             screenRecorder.stop();
         } catch (IOException e) {
@@ -121,7 +120,7 @@ public final class FailureHandler {
         removeVideo(new File(videosDir + recordingVideoName + ".avi"));
     }
 
-    private static void encodeVideoToFlv(Scenario scenario) {
+    private void encodeVideoToFlv(Scenario scenario) {
         String timeToPrint = getCurrentTime();
 
         File oldFile = new File(videosDir + recordingVideoName + ".avi");
@@ -149,7 +148,7 @@ public final class FailureHandler {
         }
     }
 
-    private static void removeVideo(File file) {
+    private void removeVideo(File file) {
         try {
             file.delete();
         } catch (Exception e) {
@@ -158,7 +157,7 @@ public final class FailureHandler {
         }
     }
 
-    private static String getCurrentTime() {
+    private String getCurrentTime() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH.mm.ss");
         LocalDateTime currentTime = LocalDateTime.now();
         return dateTimeFormatter.format(currentTime);

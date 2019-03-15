@@ -9,24 +9,25 @@ import utilities.FailureHandler;
 
 public class Hooks extends BaseTest {
 
+    private FailureHandler failureHandler = new FailureHandler();
 
     @Before
     public void setupTestCase() {
-        FailureHandler.setUpScreenRecorder();
+        failureHandler.setUpScreenRecorder();
         log.debug(getClass().getName() + " -> Starting tests...");
         BaseTest.context = new Context();
         BaseTest.pages = context.pages;
-        FailureHandler.startVideoRecord();
+        failureHandler.startVideoRecord();
         context.driverManager.initDriver();
     }
 
     @After
     public void ceaseTestCase(Scenario scenario) {
         if (scenario.isFailed()) {
-            FailureHandler.takePageSource(scenario);
-            FailureHandler.takeScreenshot(scenario);
+            failureHandler.takePageSource(scenario);
+            failureHandler.takeScreenshot(scenario);
         }
-        FailureHandler.stopVideoRecord(scenario);
+        failureHandler.stopVideoRecord(scenario);
         context.driverManager.quit();
         log.debug(getClass().getName() + " -> Ending tests...");
     }
