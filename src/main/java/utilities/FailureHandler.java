@@ -29,19 +29,22 @@ public final class FailureHandler {
     private final static String recordingVideoName = "Recorded";
     private static SpecializedScreenRecorder screenRecorder;
     private static String videosDir = "videos/";
+    private static String pageSourcesDir = "pageSources/";
+    private static String screenshotsDir = "screenshots/";
 
     public static void takePageSource(Scenario scenario) {
         String pageSource = Context.driverManager.getDriver().getPageSource();
 
         String timeToPrint = getCurrentTime();
 
-        Path path = Paths.get("pageSources/" + scenario.getName() + "_" + timeToPrint + ".html");
+        Path path = Paths.get(pageSourcesDir + scenario.getName() + "_" + timeToPrint + ".html");
 
         try {
             Files.createFile(path);
             Files.write(path, pageSource.getBytes());
             scenario.embed(pageSource.getBytes(), "text/html");
         } catch (IOException e) {
+            log.error("Failed to take screenshot");
             e.printStackTrace();
         }
 
@@ -54,7 +57,7 @@ public final class FailureHandler {
             File screenSource = ((TakesScreenshot) Context.driverManager.getDriver()).getScreenshotAs(OutputType.FILE);
             FileHandler.copy(
                     screenSource,
-                    new File("screenshots/" + scenario.getName() + "_" + timeToPrint + ".png")
+                    new File(screenshotsDir + scenario.getName() + "_" + timeToPrint + ".png")
             );
             byte[] screenSource2 = ((TakesScreenshot) Context.driverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenSource2, "image/png");
