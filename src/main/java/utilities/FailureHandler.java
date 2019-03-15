@@ -9,6 +9,7 @@ import org.monte.media.math.Rational;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.io.FileHandler;
+import ws.schild.jave.*;
 
 import java.awt.*;
 import java.io.File;
@@ -110,20 +111,45 @@ public final class FailureHandler {
             log.info("Failed to stop video recording");
             e.printStackTrace();
         }
-        renameVideoFile(scenario);
+        encodeVideoToFlv(scenario);
     }
 
-    private static void renameVideoFile(Scenario scenario) {
+    private static void encodeVideoToFlv(Scenario scenario) {
         String timeToPrint = getCurrentTime();
         String directory = "videos/";
 
         File oldFile = new File(directory + recordingVideoName + ".avi");
-        File newFile = new File(directory + scenario.getName() + "_" + timeToPrint + ".avi");
+        File target = new File(directory + scenario.getName() + "_" + timeToPrint + ".3gp");
 
-        boolean success = oldFile.renameTo(newFile);
+        try {
+            target.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        if (!success) {
-            log.error("Failed to save video file with correct name");
+        MultimediaObject source = new MultimediaObject(oldFile);
+
+        VideoAttributes video = new VideoAttributes();
+        video.setCodec("mpeg4");
+        EncodingAttributes attrs = new EncodingAttributes();
+        attrs.setFormat("3gp");
+        attrs.setVideoAttributes(video);
+        Encoder encoder = new Encoder();
+        try {
+            encoder.encode(source, target, attrs);
+        } catch (EncoderException e) {
+            log.info("File couldn't be encoded to 3gp");
+            e.printStackTrace();
+        }
+        removeVideo(oldFile);
+    }
+
+    private static void removeVideo(File file) {
+        try {
+            file.delete();
+        } catch (Exception e) {
+            log.info("Record file wasn't deleted");
+            e.printStackTrace();
         }
     }
 
