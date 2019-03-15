@@ -28,6 +28,7 @@ public final class FailureHandler {
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
     private final static String recordingVideoName = "Recorded";
     private static SpecializedScreenRecorder screenRecorder;
+    private static String videosDir = "videos/";
 
     public static void takePageSource(Scenario scenario) {
         String pageSource = Context.driverManager.getDriver().getPageSource();
@@ -111,15 +112,17 @@ public final class FailureHandler {
             log.info("Failed to stop video recording");
             e.printStackTrace();
         }
-        encodeVideoToFlv(scenario);
+        if(scenario.isFailed()) {
+            encodeVideoToFlv(scenario);
+        }
+        removeVideo(new File(videosDir + recordingVideoName + ".avi"));
     }
 
     private static void encodeVideoToFlv(Scenario scenario) {
         String timeToPrint = getCurrentTime();
-        String directory = "videos/";
 
-        File oldFile = new File(directory + recordingVideoName + ".avi");
-        File target = new File(directory + scenario.getName() + "_" + timeToPrint + ".3gp");
+        File oldFile = new File(videosDir + recordingVideoName + ".avi");
+        File target = new File(videosDir + scenario.getName() + "_" + timeToPrint + ".3gp");
 
         try {
             target.createNewFile();
@@ -141,7 +144,6 @@ public final class FailureHandler {
             log.info("File couldn't be encoded to 3gp");
             e.printStackTrace();
         }
-        removeVideo(oldFile);
     }
 
     private static void removeVideo(File file) {

@@ -25,8 +25,8 @@ public class Hooks extends BaseTest {
         if (scenario.isFailed()) {
             FailureHandler.takePageSource(scenario);
             FailureHandler.takeScreenshot(scenario);
-            FailureHandler.stopVideoRecord(scenario);
         }
+        FailureHandler.stopVideoRecord(scenario);
         context.driverManager.quit();
         log.debug(getClass().getName() + " -> Ending tests...");
     }
