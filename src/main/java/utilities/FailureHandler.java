@@ -79,6 +79,15 @@ public class FailureHandler {
 
         Rectangle captureSize = new Rectangle(0, 0, width, height);
 
+        String os = System.getProperty("os.name").toLowerCase();
+        String videosDir = null;
+        if (os.startsWith("Windows")) {
+            videosDir = "videos\\";
+        } else {
+            videosDir = "videos/";
+        }
+
+
         try {
             screenRecorder = new SpecializedScreenRecorder(gc, captureSize,
                     new Format(MediaTypeKey, MediaType.FILE, MimeTypeKey, MIME_AVI),
@@ -89,7 +98,7 @@ public class FailureHandler {
                             KeyFrameIntervalKey, 15 * 60),
                     new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, "black",
                             FrameRateKey, Rational.valueOf(30)),
-                    null, new File("videos/"), recordingVideoName);
+                    null, new File(videosDir), recordingVideoName);
         } catch (IOException e) {
             log.info("Failed to initialize video recording");
             e.printStackTrace();
