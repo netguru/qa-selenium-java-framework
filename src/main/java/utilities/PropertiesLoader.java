@@ -61,5 +61,12 @@ public class PropertiesLoader {
         return Integer.parseInt(properties.getProperty("IMPLICIT_WAIT"));
     }
 
+    public String getZAPAddress() { return properties.getProperty("ZAP_ADDRESS"); }
+
+    public String getZAPPort() { return properties.getProperty("ZAP_PORT"); }
+
+    public String getZAPApiKey() { return properties.getProperty("ZAP_API_KEY"); }
+
+    public String getStagingPassword() { return properties.getProperty("STAGING_PASSWORD"); }
 
 }

@@ -4,10 +4,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import utilities.PropertiesLoader;
 
@@ -25,7 +28,18 @@ public class DriverManager {
         switch (browserType) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+                // Chrome Options
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--incognito");
+                capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+                // Setup Proxy
+                if (propertiesLoader.getZAPAddress() != null) {
+                    log.info("Setup proxy for " + browserType + " on " + propertiesLoader.getZAPAddress() +
+                            ":" + propertiesLoader.getZAPPort());
+                    setupProxy(capabilities);
+                }
+                driver = new ChromeDriver(capabilities);
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
@@ -81,6 +95,14 @@ public class DriverManager {
     private void setAndGoToBaseUrl() {
         String baseUrl = propertiesLoader.getBaseUrl().toLowerCase();
         driver.navigate().to(baseUrl);
+    }
+
+    private void setupProxy(DesiredCapabilities capabilities) {
+        Proxy proxy = new Proxy();
+        proxy.setHttpProxy(propertiesLoader.getZAPAddress() + ":" + propertiesLoader.getZAPPort());
+        proxy.setFtpProxy(propertiesLoader.getZAPAddress() + ":" + propertiesLoader.getZAPPort());
+        proxy.setSslProxy(propertiesLoader.getZAPAddress() + ":" + propertiesLoader.getZAPPort());
+        capabilities.setCapability("proxy", proxy);
     }
 
 }

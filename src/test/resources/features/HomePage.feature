@@ -5,3 +5,9 @@ Feature: Homepage
     Given User opens browser
     When User navigates to homepage
     Then User sees logo
+
+  # Scenario: Spider scan
+    # Given User opens browser
+    # When User navigates to homepage
+    # And User is login into staging
+    # Then Spider scan is launched

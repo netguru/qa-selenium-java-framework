@@ -17,6 +17,7 @@ public class Hooks extends BaseTest {
         log.debug(getClass().getName() + " -> Starting tests...");
         BaseTest.context = new Context();
         BaseTest.pages = context.pages;
+        BaseTest.zapManager = context.zapManager;
         failureHandler.startVideoRecord();
         context.driverManager.initDriver();
     }
