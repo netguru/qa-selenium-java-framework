@@ -62,4 +62,9 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
 
         return relativeUrl;
     }
+
+    // this method returns current url - sometimes we can use it in assertions
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
 }
