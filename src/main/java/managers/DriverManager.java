@@ -99,9 +99,10 @@ public class DriverManager {
 
     private void setupProxy(DesiredCapabilities capabilities) {
         Proxy proxy = new Proxy();
-        proxy.setHttpProxy(propertiesLoader.getZAPAddress() + ":" + propertiesLoader.getZAPPort());
-        proxy.setFtpProxy(propertiesLoader.getZAPAddress() + ":" + propertiesLoader.getZAPPort());
-        proxy.setSslProxy(propertiesLoader.getZAPAddress() + ":" + propertiesLoader.getZAPPort());
+        String server = propertiesLoader.getZAPAddress() + ":" + propertiesLoader.getZAPPort();
+        proxy.setHttpProxy(server);
+        proxy.setFtpProxy(server);
+        proxy.setSslProxy(server);
         capabilities.setCapability("proxy", proxy);
     }
 

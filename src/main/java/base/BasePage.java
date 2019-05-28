@@ -16,6 +16,8 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
     protected String relativeUrl;
     protected PropertiesLoader propertiesLoader;
     protected WebDriver driver;
+    private By.ByXPath passwordInput = new By.ByXPath("//input[@type='password']");
+    private By.ByXPath submitButton = new By.ByXPath("//button[@type='submit']");
 
     public BasePage(WebDriver driver, String relativeUrl) {
         propertiesLoader = new PropertiesLoader();
@@ -70,8 +72,8 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
             log.warn("Trying to login into staging without password");
             return;
         }
-        driver.findElement(By.xpath("//input[@type='password']")).sendKeys(password);
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        driver.findElement(passwordInput).sendKeys(password);
+        driver.findElement(submitButton).click();
         log.info("Logged in into staging");
     }
 }
