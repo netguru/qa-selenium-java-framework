@@ -35,10 +35,10 @@ public class ZAPManager {
         return clientApi;
     }
 
-    public void spiderScan(String targetUrl) {
+    public void spiderScan(String targetUrl, int maxDepth) {
         try {
             //set it to prevent freezing scanner
-            clientApi.spider.setOptionMaxDepth(1);
+            clientApi.spider.setOptionMaxDepth(maxDepth);
             log.info("Start scanning");
             ApiResponse resp = clientApi.spider.scan(targetUrl, null, null, null, null);
 
@@ -51,7 +51,7 @@ public class ZAPManager {
             while (progress < 100) {
                 Thread.sleep(5000);
                 progress = Integer.parseInt(((ApiResponseElement) clientApi.spider.status(scanId)).getValue());
-                if(progress % 10 == 0 && info != progress) {
+                if (progress % 10 == 0 && info != progress) {
                     log.info("Current progress: " + progress);
                     info = progress;
                 }

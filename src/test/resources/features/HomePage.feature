@@ -10,4 +10,4 @@ Feature: Homepage
     # Given User opens browser
     # When User navigates to homepage
     # And User is login into staging
-    # Then Spider scan is launched
+    # Then Spider scan is launched with Max Depth set to 1

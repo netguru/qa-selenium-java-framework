@@ -26,8 +26,8 @@ public class HomePageSteps extends BaseTest {
         Assert.assertTrue(pages.getHomePage().getLogo().isDisplayed());
     }
 
-    @Then("Spider scan is launched")
-    public void spiderScanLaunched() {
-        zapManager.spiderScan(pages.getHomePage().getUrl());
+    @Then("Spider scan is launched with Max Depth set to (\\d+)")
+    public void spiderScanLaunched(int maxDepth) {
+        zapManager.spiderScan(pages.getHomePage().getUrl(), maxDepth);
     }
 }
