@@ -84,6 +84,10 @@
                     <includes>
                         <include>JUnitRunner.java</include>
                     </includes>
+                    <systemPropertyVariables>
+                        <propertyName>propertyValue</propertyName>
+                        <reportDirectory>${project.build.directory}</reportDirectory>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
             <plugin>
