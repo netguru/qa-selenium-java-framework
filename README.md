@@ -39,6 +39,9 @@ mvn verify -DskipTests
 mvn clean verify -Dcucumber.options="--tags @{name of tag, with upper/lowercase letters}"
 ```
 
+## To run OWASP Zap Daemon
+```docker run -u zap -p 8899:8899 -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0 -port 8899 -config api.key=SECRETKEY -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true```
+
 ## Git Branching Model
 * Create new branch per feature/test - describe it with JIRA ticket + description with dashes (eg. QA-188-initial-project-setup)
 * Commit changes often and try to describe them well

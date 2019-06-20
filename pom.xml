@@ -84,6 +84,10 @@
                     <includes>
                         <include>JUnitRunner.java</include>
                     </includes>
+                    <systemPropertyVariables>
+                        <propertyName>propertyValue</propertyName>
+                        <reportDirectory>${project.build.directory}</reportDirectory>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
             <plugin>
@@ -181,6 +185,11 @@
             <groupId>ws.schild</groupId>
             <artifactId>jave-all-deps</artifactId>
             <version>2.4.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.zaproxy</groupId>
+            <artifactId>zap-clientapi</artifactId>
+            <version>1.6.0</version>
         </dependency>
     </dependencies>
 
