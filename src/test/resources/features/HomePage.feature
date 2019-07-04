@@ -1,3 +1,4 @@
+@test
 Feature: Homepage
   As random user I want to go to homepage and see all available information
 

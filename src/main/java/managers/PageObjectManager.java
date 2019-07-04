@@ -1,7 +1,7 @@
 package managers;
 
 import org.openqa.selenium.WebDriver;
-import pages.*;
+import pages.HomePage;
 
 public class PageObjectManager {
     private WebDriver driver;
