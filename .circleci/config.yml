@@ -26,6 +26,8 @@ jobs: # a collection of steps
                             -DBASE_URL=$BASE_URL
                             -DIMPLICIT_WAIT=$IMPLICIT_WAIT
                             -DCI=true
+
+      - run: gradle generateCucumberReports
       - run:
           name: Create directory for test results
           command: >+
