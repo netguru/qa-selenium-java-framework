@@ -3,7 +3,7 @@
 ## Technology stack
 * Selenium WebDriver
 * Java SE 8
-* Maven
+* Gradle
 * JUnit
 * Cucumber
 
@@ -20,23 +20,23 @@ cd qa-java-framework
 ```
 3.Create `initConfig.properties` file and store it only in project's 1pass vault
 
-4a.Compile project files and run tests
+4a.Compile project files and run all tests
 ```bash
-mvn clean test -Dcucumber.options="--tags @{name of tag, with upper/lowercase letters}"
+gradle clean cucumber
 ```
-4b.To run tests from previous build type
+4b.To run tests for specific tags
 ```bash
-mvn test -Dcucumber.options="--tags @{name of tag, with upper/lowercase letters}"
+gradle clean cucumber -PmyTags="@tag1,@tag2,..."
 ```
 
 5.To run tests with html reporting tool use 
- 5a. after running `test` phase run: 
+ 5a. after running `test` phase run:
 ```bash
-mvn verify -DskipTests
+gradle generateCucumberReports
 ```
 5b. or using syntax from step 4 run:
 ```bash
-mvn clean verify -Dcucumber.options="--tags @{name of tag, with upper/lowercase letters}"
+mvn clean cucumber generateCucumberReports
 ```
 
 ## To run OWASP Zap Daemon

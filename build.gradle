@@ -12,20 +12,17 @@ repositories {
 
 dependencies {
     compile 'org.zaproxy:zap-clientapi:1.6.0'
-    compile 'junit:junit:4.12'
     compile 'org.apache.logging.log4j:log4j-api:2.11.0'
     compile 'org.apache.logging.log4j:log4j-core:2.11.0'
     compile 'io.github.bonigarcia:webdrivermanager:3.4.0'
     compile 'ru.yandex.qatools.htmlelements:htmlelements-java:1.18'
     compile 'com.pojosontheweb:monte-repack:1.0'
     compile 'ws.schild:jave-core:2.4.6'
-    compile 'ws.schild:jave-all-deps:2.4.6'
-    compile group: 'info.cukes', name: 'cucumber-junit', version: '1.2.5'
+    compile 'info.cukes:cucumber-junit:1.2.5'
     compile 'info.cukes:cucumber-java8:1.2.5'
     compile 'info.cukes:cucumber-testng:1.2.5'
-    compile 'org.testng:testng:6.14.3'
     compile 'org.seleniumhq.selenium:selenium-java:3.14.0'
-    compile group: 'net.masterthought', name: 'cucumber-reporting', version: '4.7.0'
+    compile 'net.masterthought:cucumber-reporting:4.7.0'
 
 }
 
@@ -57,7 +54,7 @@ task cucumber() {
         javaexec {
             main = "cucumber.api.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            def tags = "@test"
+            def tags = "~@wip"
             if (project.hasProperty('myTags')) {
                 tags = myTags
             }
