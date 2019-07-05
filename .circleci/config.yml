@@ -14,6 +14,7 @@ jobs: # a collection of steps
       - restore_cache: # restore the saved cache after the first run or if `build.gradle` has changed
           key: circleci-selenium-{{ checksum "build.gradle" }}
 
+      - run: gradle compileJava
       - run: gradle --offline # gets the project dependencies
 
       - save_cache: # saves the project dependencies
