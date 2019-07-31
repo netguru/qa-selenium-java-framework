@@ -2,8 +2,8 @@ package managers;
 
 public class Context {
     public static DriverManager driverManager;
+    public static ScenarioContext scenarioContext;
     public PageObjectManager pages;
-    public ScenarioContext scenarioContext;
     public ZAPManager zapManager;
 
     public Context() {
