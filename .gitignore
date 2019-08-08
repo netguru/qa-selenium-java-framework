@@ -10,10 +10,12 @@
 .DS_Store
 .metadata
 
-# Maven
+# Gradle
 log/
 logs/
 target/
+build/
+.gradle/
 
 # Package Files
 *.jar
@@ -22,7 +24,6 @@ target/
 *.zip
 *.tar.gz
 *.rar
-
 
 # Confidential
 initConfig.properties
