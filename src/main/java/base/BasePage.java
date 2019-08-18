@@ -36,7 +36,7 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
     }
 
     public BasePage(WebDriver driver) {
-        this(driver, "");
+        this(driver, "/");
     }
 
     @Override
@@ -75,7 +75,7 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
         }
         if (relativeUrl.endsWith("/")) {
             log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
-                    "ends with a slash. Make sure it's valid!");
+                    "\" ends with a slash. Make sure it's valid!");
             relativeUrl = relativeUrl.substring(0, relativeUrl.length() - 1);
         }
 

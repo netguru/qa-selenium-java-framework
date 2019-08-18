@@ -20,12 +20,6 @@ public class UtilitiesFunctions {
     public static void switchToOtherTab() {
         WebDriver driver = Context.driverManager.getDriver();
 
-        try {
-            Thread.sleep(2000);
-        } catch (java.lang.InterruptedException e) {
-            log.error(e);
-        }
-
         String currentTab = driver.getWindowHandle();
         Set<String> handles = driver.getWindowHandles();
         if (handles.size() < 2) {

@@ -30,7 +30,12 @@ public class JSExecutor {
         log.info(String.format("Scrolled to point (%d, %d) on the page", pointX, pointY));
     }
 
-    public JavascriptExecutor getJavaScriptExecutor() {
+    public void executeScript(String script) {
+        js.executeScript(script);
+        log.info(String.format("Executed script: \"%s\"", script));
+    }
+
+    public JavascriptExecutor getExecutor() {
         return js;
     }
 }

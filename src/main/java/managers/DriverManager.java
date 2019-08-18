@@ -3,7 +3,6 @@ package managers;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -69,10 +68,9 @@ public class DriverManager {
 
     public void waitForPageToLoad() {
         ExpectedCondition<Boolean> isLoaded = (WebDriver driver) ->
-                ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+                (Context.jsExecutor.getExecutor()).executeScript("return document.readyState").toString().equals("complete");
 
         try {
-            Thread.sleep(1000);
             wait.until(isLoaded);
         } catch (Throwable error) {
             log.error("Timeout on waiting for page to load");

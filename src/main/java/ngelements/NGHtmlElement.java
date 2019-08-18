@@ -12,7 +12,7 @@ import ru.yandex.qatools.htmlelements.element.HtmlElement;
 class NGHtmlElement extends HtmlElement {
 
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
-    private JavascriptExecutor js = Context.jsExecutor.getJavaScriptExecutor();
+    protected JavascriptExecutor js = Context.jsExecutor.getExecutor();
 
     public void waitUntilIsVisible(Integer secondsForTimeout) {
         WebDriverWait webDriverWait = new WebDriverWait(Context.driverManager.getDriver(), secondsForTimeout);
