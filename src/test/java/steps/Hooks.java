@@ -5,6 +5,7 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import managers.Context;
+import managers.JSExecutor;
 import utilities.FailureHandler;
 
 public class Hooks extends BaseTest {
@@ -18,6 +19,7 @@ public class Hooks extends BaseTest {
         BaseTest.context = new Context();
         BaseTest.pages = context.pages;
         BaseTest.zapManager = context.zapManager;
+        BaseTest.jsExecutor = context.jsExecutor;
         failureHandler.startVideoRecord();
         context.driverManager.initDriver();
     }

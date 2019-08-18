@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features"}
         , glue = {"steps"}
         , snippets = SnippetType.CAMELCASE
-        , plugin = {"pretty", "html:target/cucumber-reports/html", "json:target/cucumber-reports/json/cucumber.json" }
+        , plugin = {"pretty", "html:target/cucumber-reports/html", "json:target/cucumber-reports/json/cucumber.json"}
 )
 public class JUnitRunner {
 }

@@ -1,9 +1,10 @@
 package base;
 
+import managers.Context;
+import managers.JSExecutor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
@@ -17,17 +18,17 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
     protected String relativeUrl;
     protected PropertiesLoader propertiesLoader;
     protected WebDriver driver;
-    private JavascriptExecutor js;
+    protected JSExecutor jsExecutor;
+
     private By.ByXPath passwordInput = new By.ByXPath("//input[@type='password']");
     private By.ByXPath submitButton = new By.ByXPath("//button[@type='submit']");
 
     public BasePage(WebDriver driver, String relativeUrl) {
         propertiesLoader = new PropertiesLoader();
+        jsExecutor = Context.jsExecutor;
         baseUrl = propertiesLoader.getBaseUrl();
         this.relativeUrl = validateAndFormatRelativeUrl(relativeUrl);
         this.driver = driver;
-
-        js = (JavascriptExecutor) driver;
 
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
 
@@ -46,21 +47,6 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
 
     public String getUrl() {
         return baseUrl + relativeUrl;
-    }
-
-    public void scrollToBottom() {
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        log.info("Scrolled to bottom of the page");
-    }
-
-    public void scrollToTop() {
-        js.executeScript("window.scrollTo(0, 0)");
-        log.info("Scrolled to top of the page");
-    }
-
-    public void scrollTo(int pointX, int pointY) {
-        js.executeScript(String.format("window.scrollTo(%d, %d)", pointX, pointY));
-        log.info(String.format("Scrolled to point (%d, %d) on the page", pointX, pointY));
     }
 
     public void loginIntoStaging() {

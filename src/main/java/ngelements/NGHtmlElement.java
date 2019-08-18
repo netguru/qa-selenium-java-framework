@@ -12,7 +12,7 @@ import ru.yandex.qatools.htmlelements.element.HtmlElement;
 class NGHtmlElement extends HtmlElement {
 
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
-    private JavascriptExecutor js = (JavascriptExecutor) Context.driverManager.getDriver();
+    private JavascriptExecutor js = Context.jsExecutor.getJavaScriptExecutor();
 
     public void waitUntilIsVisible(Integer secondsForTimeout) {
         WebDriverWait webDriverWait = new WebDriverWait(Context.driverManager.getDriver(), secondsForTimeout);
@@ -50,5 +50,4 @@ class NGHtmlElement extends HtmlElement {
                 this.getWrappedElement(), attributeName, attributeValue);
         log.info(attributeName + " attribute of " + getName() + " element was changed to: " + attributeValue);
     }
-
 }

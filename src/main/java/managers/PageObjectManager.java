@@ -3,7 +3,7 @@ package managers;
 import base.BasePage;
 import exceptions.PageNotFoundException;
 import org.openqa.selenium.WebDriver;
-import pages.*;
+import pages.HomePage;
 
 public class PageObjectManager {
     private WebDriver driver;
@@ -30,5 +30,4 @@ public class PageObjectManager {
 
         return page;
     }
-
 }
