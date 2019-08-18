@@ -1,9 +1,11 @@
 package managers;
 
 import base.BasePage;
-import exceptions.PageNotFoundException;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
+
+import java.lang.reflect.Method;
 
 public class PageObjectManager {
     private WebDriver driver;
@@ -17,17 +19,16 @@ public class PageObjectManager {
         return (homePage == null) ? homePage = new HomePage(this.driver) : homePage;
     }
 
-    public BasePage getPageByName(String pageName) throws PageNotFoundException {
-        BasePage page = null;
+    public BasePage getPageByName(String pageName) {
+        pageName = pageName.replace(" ", "");
 
-        switch (pageName.toLowerCase()) {
-            case "home page":
-                page = getHomePage();
-                break;
-            default:
-                throw new PageNotFoundException("There is no such page: " + pageName);
+        try {
+            Method method = PageObjectManager.class.getMethod("get" + pageName + "Page");
+            return (BasePage) method.invoke(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail(e.getMessage());
+            return null;
         }
-
-        return page;
     }
 }
