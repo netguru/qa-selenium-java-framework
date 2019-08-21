@@ -4,8 +4,7 @@
 * Selenium WebDriver
 * Java SE 8
 * Gradle
-* JUnit
-* Cucumber
+* TestNG
 
 ## How to run tests
 1.Open up terminal and create project folder
