@@ -40,7 +40,7 @@ public class PropertiesLoader {
         try {
             properties.load(new FileInputStream(propertiesPath));
         } catch (IOException e) {
-            log.warn("Failed to load '" + propertiesPath + "' file.");
+            log.error(String.format("Failed to load `%s` file", propertiesPath));
         }
         return properties;
     }
@@ -52,7 +52,7 @@ public class PropertiesLoader {
     public String getBaseUrl() {
         return properties.getProperty("BASE_URL");
     }
-    
+
     public String getBrowserType() {
         return properties.getProperty("BROWSER");
     }
@@ -61,12 +61,20 @@ public class PropertiesLoader {
         return Integer.parseInt(properties.getProperty("IMPLICIT_WAIT"));
     }
 
-    public String getZAPAddress() { return properties.getProperty("ZAP_ADDRESS"); }
+    public String getZAPAddress() {
+        return properties.getProperty("ZAP_ADDRESS");
+    }
 
-    public String getZAPPort() { return properties.getProperty("ZAP_PORT"); }
+    public String getZAPPort() {
+        return properties.getProperty("ZAP_PORT");
+    }
 
-    public String getZAPApiKey() { return properties.getProperty("ZAP_API_KEY"); }
+    public String getZAPApiKey() {
+        return properties.getProperty("ZAP_API_KEY");
+    }
 
-    public String getStagingPassword() { return properties.getProperty("STAGING_PASSWORD"); }
+    public String getStagingPassword() {
+        return properties.getProperty("STAGING_PASSWORD");
+    }
 
 }

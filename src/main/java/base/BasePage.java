@@ -16,18 +16,14 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
     protected String relativeUrl;
     protected PropertiesLoader propertiesLoader;
     protected WebDriver driver;
-    private By.ByXPath passwordInput = new By.ByXPath("//input[@type='password']");
-    private By.ByXPath submitButton = new By.ByXPath("//button[@type='submit']");
 
     public BasePage(WebDriver driver, String relativeUrl) {
         propertiesLoader = new PropertiesLoader();
         baseUrl = propertiesLoader.getBaseUrl();
         this.relativeUrl = validateAndFormatRelativeUrl(relativeUrl);
         this.driver = driver;
-
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
-
-        log.debug(getClass().getName() + " -> Initializing elements");
+        log.debug(String.format("%s -> Initializing elements", getClass().getName()));
     }
 
     public BasePage(WebDriver driver) {
@@ -36,7 +32,7 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
 
     @Override
     public BasePage get() {
-        log.info("Navigating to: " + getClass().getName());
+        log.info(String.format("Navigating to: %s", getClass().getName()));
         return super.get();
     }
 
@@ -44,7 +40,7 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
         return baseUrl + relativeUrl;
     }
 
-    private String validateAndFormatRelativeUrl(String relativeUrl) {
+    private String validateAndFormatRelativeUrl(String relativeUrl) {   //TODO: refactor or remove
         if (relativeUrl.contains("\\")) {
             // Relative url: "relativeUrl" in class "className" contains "\" instead of "/". Make sure it's valid!
             log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
@@ -64,16 +60,5 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
         }
 
         return relativeUrl;
-    }
-
-    public void loginIntoStaging() {
-        String password = propertiesLoader.getStagingPassword();
-        if (password == null) {
-            log.warn("Trying to login into staging without password");
-            return;
-        }
-        driver.findElement(passwordInput).sendKeys(password);
-        driver.findElement(submitButton).click();
-        log.info("Logged in into staging");
     }
 }

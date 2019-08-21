@@ -30,4 +30,10 @@ class NGHtmlElement extends HtmlElement {
         WebDriverWait webDriverWait = new WebDriverWait(Context.driverManager.getDriver(), secondsForTimeout);
         webDriverWait.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(getWrappedElement())));
     }
+
+    @Override
+    public void click() {
+        this.getWrappedElement().click();
+        log.info(String.format("%s was clicked", getName()));
+    }
 }

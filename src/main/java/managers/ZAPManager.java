@@ -30,7 +30,7 @@ public class ZAPManager {
         }
         this.clientApi = new ClientApi(zapAddress,
                 Integer.parseInt(zapPort), zapApiKey);
-        log.info("Proxy client Api created");
+        log.info("Proxy client API created");
     }
 
     public ClientApi getClientApi() {
@@ -41,7 +41,7 @@ public class ZAPManager {
         try {
             //set it to prevent freezing scanner
             clientApi.spider.setOptionMaxDepth(maxDepth);
-            log.info("Start scanning");
+            log.info("Start spider scanning");
             ApiResponse resp = clientApi.spider.scan(targetUrl, null, null, null, null);
 
             // The scan now returns a scan id to support concurrent scanning
@@ -54,14 +54,14 @@ public class ZAPManager {
                 Thread.sleep(5000);
                 progress = Integer.parseInt(((ApiResponseElement) clientApi.spider.status(scanId)).getValue());
                 if (progress % 10 == 0 && info != progress) {
-                    log.info("Current progress: " + progress);
+                    log.info(String.format("Current progress: %d", progress));
                     info = progress;
                 }
             }
 
             // Give the passive scanner a chance to complete
             Thread.sleep(2000);
-            log.info("Spider scan for " + targetUrl + " completed");
+            log.info(String.format("Spider scan for %s completed", targetUrl));
             saveHTMLReport(new String(clientApi.core.htmlreport(), StandardCharsets.UTF_8));
         } catch (Exception e) {
             log.error(e);
