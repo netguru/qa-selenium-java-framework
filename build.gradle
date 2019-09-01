@@ -16,8 +16,17 @@ dependencies {
     compile 'org.apache.logging.log4j:log4j-core:2.11.0'
     compile 'io.github.bonigarcia:webdrivermanager:3.4.0'
     compile 'ru.yandex.qatools.htmlelements:htmlelements-java:1.18'
-    compile 'com.pojosontheweb:monte-repack:1.0'    //ScreenRecorder
-    compile 'ws.schild:jave-core:2.4.6'             //ScreenRecorder
+    compile 'com.pojosontheweb:monte-repack:1.0'
+    compile 'ws.schild:jave-core:2.4.6'
+    compile 'ws.schild:jave-all-deps:2.6.0'
+    compile 'ws.schild:jave-native-linux64:2.4.6'
+    compile 'ws.schild:jave-native-linux32:2.4.6'
+    compile 'ws.schild:jave-native-osx64:2.4.6'
+    compile 'ws.schild:jave-native-win64:2.4.6'
+    compile 'ws.schild:jave-native-win32:2.4.6'
+    compile 'info.cukes:cucumber-junit:1.2.5'
+    compile 'info.cukes:cucumber-java8:1.2.5'
+    compile 'info.cukes:cucumber-testng:1.2.5'
     compile 'org.seleniumhq.selenium:selenium-java:3.14.0'
     compile group: 'org.testng', name: 'testng', version: '6.14.3'  //TODO: fix syntax
 }

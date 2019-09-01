@@ -32,7 +32,7 @@ public class BaseTest {
             failureHandler.takePageSource(method.getName());
             failureHandler.takeScreenshot(method.getName());
             failureHandler.takeBrowserLogs(method.getName());
-//            failureHandler.encodeVideoToFlv(method.getName()); //TODO: fix NPE
+            failureHandler.encodeVideoToFlv(method.getName());
         }
         failureHandler.removeVideo();
     }
