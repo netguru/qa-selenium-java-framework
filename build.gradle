@@ -53,14 +53,16 @@ cleanTest {
 }
 
 test {
+    dependsOn 'cleanTest'
     useTestNG() {
         useDefaultListeners = true
         outputDirectory = file("$project.projectDir//build//reports//testng-report")
         String suitesProperty = "runSuites"
 
-        suites 'src/test/resources/suites/gui-suite.xml'
-
         if (!project.hasProperty(suitesProperty) || project.findProperty(suitesProperty) == "gui") {
+            suites 'src/test/resources/suites/gui-suite.xml'
+        }
+        else{
             suites 'src/test/resources/suites/gui-suite.xml'
         }
 

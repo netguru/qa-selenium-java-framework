@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="GUI tests" parallel="classes" thread-count="1">
+<suite name="GUI tests" parallel="classes" thread-count="2">
     <test name="Placeholder tests">
         <packages>
             <package name="tests"></package>
