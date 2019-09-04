@@ -37,7 +37,7 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
     }
 
     public String getUrl() {
-        return baseUrl + relativeUrl;
+        return String.join(baseUrl, relativeUrl);
     }
 
     private String validateAndFormatRelativeUrl(String relativeUrl) {   //TODO: refactor or remove

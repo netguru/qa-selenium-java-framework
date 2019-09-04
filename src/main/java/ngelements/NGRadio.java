@@ -20,9 +20,9 @@ public class NGRadio extends NGHtmlElement {
     public void selectByValue(String value) {
         WebElement matchingButton = this.getButtons().stream().filter((b) ->
                 value.equals(b.getAttribute("value"))).findFirst().orElseThrow(() ->
-                new NoSuchElementException("Cannot locate radio button with value: " + value));
+                new NoSuchElementException(String.format("Cannot locate radio button with value: %s", value)));
         this.selectButton(matchingButton);
-        log.info("Radio button: " + getName() + " selected element by value: " + value);
+        log.info(String.format("Radio button: %s selected element by value: %s", getName(), value));
     }
 
     public void selectByIndex(int index) {
@@ -30,10 +30,10 @@ public class NGRadio extends NGHtmlElement {
         if (index >= 0 && index < buttons.size()) {
             this.selectButton(buttons.get(index));
         } else {
-            log.info("Cannot locate radio button with value: " + Integer.toString(index));
-            throw new NoSuchElementException("Cannot locate radio button with index: " + Integer.toString(index));
+            throw new NoSuchElementException(String.format("Cannot locate radio button with index: %d", index));
         }
-        log.info("Radio button: " + getName() + " selected element by index: " + Integer.toString(index));
+
+        log.info(String.format("Radio button: %s selected element by index: %s", getName(), index));
 
     }
 

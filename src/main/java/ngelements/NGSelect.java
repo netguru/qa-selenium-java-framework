@@ -13,9 +13,9 @@ public class NGSelect extends NGHtmlElement {
     public boolean isMultiple() {
         boolean multiple = this.getSelect().isMultiple();
         if (multiple) {
-            log.debug("Select: " + getName() + " is multiple");
+            log.debug(String.format("Select: %s is multiple", getName()));
         } else {
-            log.debug("Select: " + getName() + " isn't multiple");
+            log.debug(String.format("Select: %s isn't multiple", getName()));
         }
         return multiple;
     }
@@ -38,17 +38,17 @@ public class NGSelect extends NGHtmlElement {
 
     public void selectByVisibleText(String text) {
         this.getSelect().selectByVisibleText(text);
-        log.info("Select by text: " + text);
+        log.info(String.format("Select by text: %s", text));
     }
 
     public void selectByIndex(int index) {
         this.getSelect().selectByIndex(index);
-        log.info("Selected by index: " + Integer.toString(index));
+        log.info(String.format("Selected by index: %d", index));
     }
 
     public void selectByValue(String value) {
         this.getSelect().selectByValue(value);
-        log.info("Selected by value: " + value);
+        log.info(String.format("Selected by value: %s", value));
     }
 
     public void deselectAll() {
@@ -58,17 +58,17 @@ public class NGSelect extends NGHtmlElement {
 
     public void deselectByValue(String value) {
         this.getSelect().deselectByValue(value);
-        log.info("Deselected by value: " + value);
+        log.info(String.format("Deselected by value: %s", value));
     }
 
     public void deselectByIndex(int index) {
         this.getSelect().deselectByIndex(index);
-        log.info("Deselected by index: " + Integer.toString(index));
+        log.info(String.format("Deselected by index: %d", index));
     }
 
     public void deselectByVisibleText(String text) {
         this.getSelect().deselectByVisibleText(text);
-        log.info("Deselected by text: " + text);
+        log.info(String.format("Deselect by text: %s", text));
     }
 
 }
