@@ -28,10 +28,8 @@ public class BaseTest {
         failureHandler = new FailureHandler(driverManager.getDriver());
         pages = new PageObjectManager(driverManager.getDriver());
         zapManager = new ZAPManager();
-        failureHandler.setUpScreenRecorder();
-
+        failureHandler.setUpAndStartScreenRecorder(method.getName());
         log.info(String.format("Starting test: `%s.%s`", this.getClass().getName(), method.getName()));
-        failureHandler.startVideoRecord();
     }
 
     @AfterMethod(alwaysRun = true)

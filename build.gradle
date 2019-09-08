@@ -49,6 +49,7 @@ cleanTest {
     delete fileTree(dir: "${rootDir}/pageSources/", include: "*.html")
     println "Cleaned ${rootDir}/pageSources/"
     delete fileTree(dir: "${rootDir}/videos/", include: "*.mp4")
+    delete fileTree(dir: "${rootDir}/videos/", include: "*.avi")
     println "Cleaned ${rootDir}/videos/"
 }
 
