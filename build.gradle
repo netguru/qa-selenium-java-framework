@@ -11,6 +11,13 @@ repositories {
 }
 
 dependencies {
+    compile group: 'io.rest-assured', name: 'rest-assured', version: '4.1.1'
+    compile group: 'io.rest-assured', name: 'json-path', version: '4.1.1'
+    compile group: 'io.rest-assured', name: 'json-schema-validator', version: '4.1.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.9'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.9'
+
+
     compile 'org.zaproxy:zap-clientapi:1.6.0'
     compile 'org.apache.logging.log4j:log4j-api:2.11.0'
     compile 'org.apache.logging.log4j:log4j-core:2.11.0'
@@ -62,8 +69,7 @@ test {
 
         if (!project.hasProperty(suitesProperty) || project.findProperty(suitesProperty) == "gui") {
             suites 'src/test/resources/suites/gui-suite.xml'
-        }
-        else{
+        } else {
             suites 'src/test/resources/suites/gui-suite.xml'
         }
 

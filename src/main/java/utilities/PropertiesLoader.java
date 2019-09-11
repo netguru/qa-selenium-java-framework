@@ -53,6 +53,10 @@ public class PropertiesLoader {
         return properties.getProperty("BASE_URL");
     }
 
+    public String getBaseApiUrl(){
+        return properties.getProperty("BASE_API_URL");
+    }
+
     public String getBrowserType() {
         return properties.getProperty("BROWSER");
     }

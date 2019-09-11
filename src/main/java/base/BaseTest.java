@@ -1,5 +1,8 @@
 package base;
 
+import base.api.RequestBuilder;
+import io.restassured.RestAssured;
+import io.restassured.specification.RequestSpecification;
 import managers.DriverManager;
 import managers.PageObjectManager;
 import managers.ZAPManager;
@@ -10,48 +13,33 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import utilities.FailureHandler;
+import utilities.PropertiesLoader;
 
 import java.lang.reflect.Method;
 
 public class BaseTest {
-
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
     protected DriverManager driverManager;
-    private FailureHandler failureHandler;
+    protected FailureHandler failureHandler;
     protected PageObjectManager pages;
     protected ZAPManager zapManager;
 
-    @BeforeMethod(alwaysRun = true)
-    public void beforeMethod(Method method) {
-        driverManager = new DriverManager();
-        failureHandler = new FailureHandler(driverManager.getDriver());
-        pages = new PageObjectManager(driverManager.getDriver());
-        zapManager = new ZAPManager();
-        failureHandler.setUpAndStartScreenRecorder(method.getName());
-        log.info(String.format("Starting test: `%s.%s`", this.getClass().getName(), method.getName()));
+    @BeforeSuite(alwaysRun = true)
+    public void baseSetup() {
+        RestAssured.requestSpecification = getRequestSpecification();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void afterMethod(ITestResult result, Method method) {
-        failureHandler.stopVideoRecord();
-        if (result.getStatus() == ITestResult.FAILURE) {
-            failureHandler.takePageSource(method.getName());
-            failureHandler.takeScreenshot(method.getName());
-            failureHandler.takeBrowserLogs(method.getName());
-            failureHandler.encodeVideoToFlv(method.getName());
-        }
-        failureHandler.removeVideo();
+    public RequestSpecification getRequestSpecification() {
+        return new RequestBuilder().getBasicRequestSpecBuilder()
+                .setBaseUri(new PropertiesLoader().getBaseApiUrl())
+                .setConfig(RequestBuilder.getBasicRequestConfig())
+                .build();
     }
-
     @BeforeClass
     public void beforeClass() {
 
-    }
-
-    @AfterClass
-    public void afterClass() {
-        driverManager.quit();
     }
 
 }
