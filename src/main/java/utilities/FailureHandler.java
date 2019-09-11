@@ -43,7 +43,7 @@ import static org.monte.media.VideoFormatKeys.QualityKey;
 public class FailureHandler {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
-    private final static String recordingVideoName = "Recorded";
+    private String recordingVideoName = "Recorded";
     private static String videosDir = "videos/";
     private final static String pageSourcesDir = "pageSources/";
     private final static String screenshotsDir = "screenshots/";
@@ -123,7 +123,7 @@ public class FailureHandler {
 
     }
 
-    public void setUpScreenRecorder() {
+    public void setUpAndStartScreenRecorder(String name) {
         GraphicsConfiguration gc = GraphicsEnvironment
                 .getLocalGraphicsEnvironment()
                 .getDefaultScreenDevice()
@@ -134,6 +134,7 @@ public class FailureHandler {
         int height = screenSize.height;
 
         Rectangle captureSize = new Rectangle(0, 0, width, height);
+        recordingVideoName = String.format("%s_raw", name);
 
         try {
             screenRecorder = new SpecializedScreenRecorder(gc, captureSize,
@@ -146,19 +147,11 @@ public class FailureHandler {
                     new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, "black",
                             FrameRateKey, Rational.valueOf(30)),
                     null, new File(getPath(videosDir)), recordingVideoName);
+            screenRecorder.start();
         } catch (IOException e) {
             log.info("Failed to initialize video recording");
             e.printStackTrace();
         } catch (AWTException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void startVideoRecord() {
-        try {
-            screenRecorder.start();
-        } catch (IOException e) {
-            log.info("Failed to start video recording");
             e.printStackTrace();
         }
     }

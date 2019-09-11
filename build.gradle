@@ -49,12 +49,24 @@ cleanTest {
     delete fileTree(dir: "${rootDir}/pageSources/", include: "*.html")
     println "Cleaned ${rootDir}/pageSources/"
     delete fileTree(dir: "${rootDir}/videos/", include: "*.mp4")
+    delete fileTree(dir: "${rootDir}/videos/", include: "*.avi")
     println "Cleaned ${rootDir}/videos/"
 }
 
 test {
+    dependsOn 'cleanTest'
     useTestNG() {
         useDefaultListeners = true
+        outputDirectory = file("$project.projectDir//build//reports//testng-report")
+        String suitesProperty = "runSuites"
+
+        if (!project.hasProperty(suitesProperty) || project.findProperty(suitesProperty) == "gui") {
+            suites 'src/test/resources/suites/gui-suite.xml'
+        }
+        else{
+            suites 'src/test/resources/suites/gui-suite.xml'
+        }
+
     }
     testLogging {
         events "PASSED", "FAILED", "SKIPPED"
