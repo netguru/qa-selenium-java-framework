@@ -1,6 +1,8 @@
 package managers;
 
 import base.BasePage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
@@ -8,6 +10,9 @@ import pages.HomePage;
 import java.lang.reflect.Method;
 
 public class PageObjectManager {
+
+    protected static final Logger log = LogManager.getLogger(Logger.class.getName());
+
     private WebDriver driver;
     private HomePage homePage;
 
@@ -21,14 +26,18 @@ public class PageObjectManager {
 
     public BasePage getPageByName(String pageName) {
         pageName = pageName.replace(" ", "");
+        String methodName = "get" + pageName + "Page";
+
+        BasePage page = null;
 
         try {
-            Method method = PageObjectManager.class.getMethod("get" + pageName + "Page");
-            return (BasePage) method.invoke(this);
+            Method method = PageObjectManager.class.getMethod(methodName);
+            page = (BasePage) method.invoke(this);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("There is no such method: " + methodName);
             Assert.fail(e.getMessage());
-            return null;
         }
+
+        return page;
     }
 }

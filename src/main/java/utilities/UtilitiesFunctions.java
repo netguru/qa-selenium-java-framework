@@ -13,8 +13,8 @@ public class UtilitiesFunctions {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
 
-    public static WebElement getWebElement(String xpath) {
-        return Context.driverManager.getDriver().findElement(By.xpath(xpath));
+    public static WebElement getWebElementBy(By by) {
+        return Context.driverManager.getDriver().findElement(by);
     }
 
     public static void switchToOtherTab() {
