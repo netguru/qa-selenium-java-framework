@@ -31,7 +31,10 @@ import static org.monte.media.FormatKeys.MIME_AVI;
 import static org.monte.media.FormatKeys.MediaType;
 import static org.monte.media.FormatKeys.MediaTypeKey;
 import static org.monte.media.FormatKeys.MimeTypeKey;
-import static org.monte.media.VideoFormatKeys.*;
+import static org.monte.media.VideoFormatKeys.CompressorNameKey;
+import static org.monte.media.VideoFormatKeys.DepthKey;
+import static org.monte.media.VideoFormatKeys.ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE;
+import static org.monte.media.VideoFormatKeys.QualityKey;
 
 public class FailureHandler {
 
