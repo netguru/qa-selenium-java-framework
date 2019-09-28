@@ -136,7 +136,7 @@ public class FailureHandler {
             log.info("Failed to stop video recording");
             e.printStackTrace();
         }
-        if(scenario.isFailed()) {
+        if (scenario.isFailed()) {
             encodeVideoToFlv(scenario);
         }
         removeVideo(new File(videosDir + recordingVideoName + ".avi"));

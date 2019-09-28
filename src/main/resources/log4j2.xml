@@ -23,7 +23,7 @@
     </Appenders>
 
     <Loggers>
-        <Root level="info" additivity="false">
+        <Root level="warn" additivity="false">
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="FILE"/>
         </Root>

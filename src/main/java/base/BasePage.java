@@ -1,5 +1,7 @@
 package base;
 
+import managers.Context;
+import managers.JSExecutor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -16,11 +18,14 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
     protected String relativeUrl;
     protected PropertiesLoader propertiesLoader;
     protected WebDriver driver;
+    protected JSExecutor jsExecutor;
+
     private By.ByXPath passwordInput = new By.ByXPath("//input[@type='password']");
     private By.ByXPath submitButton = new By.ByXPath("//button[@type='submit']");
 
     public BasePage(WebDriver driver, String relativeUrl) {
         propertiesLoader = new PropertiesLoader();
+        jsExecutor = Context.jsExecutor;
         baseUrl = propertiesLoader.getBaseUrl();
         this.relativeUrl = validateAndFormatRelativeUrl(relativeUrl);
         this.driver = driver;
@@ -31,7 +36,7 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
     }
 
     public BasePage(WebDriver driver) {
-        this(driver, "");
+        this(driver, "/");
     }
 
     @Override
@@ -42,6 +47,17 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
 
     public String getUrl() {
         return baseUrl + relativeUrl;
+    }
+
+    public void loginIntoStaging() {
+        String password = propertiesLoader.getStagingPassword();
+        if (password == null) {
+            log.warn("Trying to login into staging without password");
+            return;
+        }
+        driver.findElement(passwordInput).sendKeys(password);
+        driver.findElement(submitButton).click();
+        log.info("Logged in into staging");
     }
 
     private String validateAndFormatRelativeUrl(String relativeUrl) {
@@ -59,21 +75,10 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
         }
         if (relativeUrl.endsWith("/")) {
             log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
-                    "ends with a slash. Make sure it's valid!");
+                    "\" ends with a slash. Make sure it's valid!");
             relativeUrl = relativeUrl.substring(0, relativeUrl.length() - 1);
         }
 
         return relativeUrl;
-    }
-
-    public void loginIntoStaging() {
-        String password = propertiesLoader.getStagingPassword();
-        if (password == null) {
-            log.warn("Trying to login into staging without password");
-            return;
-        }
-        driver.findElement(passwordInput).sendKeys(password);
-        driver.findElement(submitButton).click();
-        log.info("Logged in into staging");
     }
 }

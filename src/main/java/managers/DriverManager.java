@@ -11,11 +11,15 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.PropertiesLoader;
 
 import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
+
+    public WebDriverWait wait;
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
     private WebDriver driver;
@@ -26,19 +30,7 @@ public class DriverManager {
         log.info("Initializing browser: " + browserType);
         switch (browserType) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();
-                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-                // Chrome Options
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--incognito");
-                capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-                // Setup Proxy
-                if (propertiesLoader.getZAPAddress() != null) {
-                    log.info("Setup proxy for " + browserType + " on " + propertiesLoader.getZAPAddress() +
-                            ":" + propertiesLoader.getZAPPort());
-                    setupProxy(capabilities);
-                }
-                driver = new ChromeDriver(capabilities);
+                initializeChrome();
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
@@ -52,11 +44,12 @@ public class DriverManager {
                 driver = new EdgeDriver();
                 break;
             default:
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                initializeChrome();
                 log.warn("Wrong browser type \"" + browserType + "\". Initializing Chrome");
                 break;
         }
+
+        wait = new WebDriverWait(driver, propertiesLoader.getImplicitWait());
     }
 
     public void initDriver() {
@@ -71,6 +64,17 @@ public class DriverManager {
         if (driver == null)
             log.error("DriverManager not initialized!");
         return driver;
+    }
+
+    public void waitForPageToLoad() {
+        ExpectedCondition<Boolean> isLoaded = (WebDriver driver) ->
+                (Context.jsExecutor.getExecutor()).executeScript("return document.readyState").toString().equals("complete");
+
+        try {
+            wait.until(isLoaded);
+        } catch (Throwable error) {
+            log.error("Timeout on waiting for page to load");
+        }
     }
 
     private void maximize() {
@@ -94,6 +98,22 @@ public class DriverManager {
     private void setAndGoToBaseUrl() {
         String baseUrl = propertiesLoader.getBaseUrl().toLowerCase();
         driver.navigate().to(baseUrl);
+    }
+
+    private void initializeChrome() {
+        WebDriverManager.chromedriver().setup();
+        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        // Chrome Options
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");
+        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        // Setup Proxy
+        if (propertiesLoader.getZAPAddress() != null) {
+            log.info("Setup proxy for Chrome on " + propertiesLoader.getZAPAddress() +
+                    ":" + propertiesLoader.getZAPPort());
+            setupProxy(capabilities);
+        }
+        driver = new ChromeDriver(capabilities);
     }
 
     private void setupProxy(DesiredCapabilities capabilities) {
