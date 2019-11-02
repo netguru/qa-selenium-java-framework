@@ -15,6 +15,19 @@ public class JSExecutor {
         js = (JavascriptExecutor) driver;
     }
 
+    public boolean waitForJQueryToLoad() {
+        try {
+            return (Long) executeScript("return jQuery.active") == 0;
+        } catch (Exception e) {
+            // no jQuery present
+            return true;
+        }
+    }
+
+    public boolean waitForJSToLoad() {
+        return executeScript("return document.readyState").toString().equals("complete");
+    }
+
     public void scrollToBottom() {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         log.info("Scrolled to bottom of the page");
@@ -30,9 +43,11 @@ public class JSExecutor {
         log.info(String.format("Scrolled to point (%d, %d) on the page", pointX, pointY));
     }
 
-    public void executeScript(String script) {
-        js.executeScript(script);
+    public Object executeScript(String script, Object... objects) {
+        Object returnValue = js.executeScript(script);
         log.info(String.format("Executed script: \"%s\"", script));
+
+        return returnValue;
     }
 
     public JavascriptExecutor getExecutor() {
