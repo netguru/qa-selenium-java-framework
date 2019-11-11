@@ -20,8 +20,8 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
     protected WebDriver driver;
     protected JSExecutor jsExecutor;
 
-    private By.ByXPath passwordInput = new By.ByXPath("//input[@type='password']");
-    private By.ByXPath submitButton = new By.ByXPath("//button[@type='submit']");
+    private By passwordInput = By.xpath("//input[@type='password']");
+    private By submitButton = By.xpath("//button[@type='submit']");
 
     public BasePage(WebDriver driver, String relativeUrl) {
         propertiesLoader = new PropertiesLoader();
