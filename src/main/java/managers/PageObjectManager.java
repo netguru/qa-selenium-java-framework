@@ -34,7 +34,7 @@ public class PageObjectManager {
             Method method = PageObjectManager.class.getMethod(methodName);
             page = (BasePage) method.invoke(this);
         } catch (Exception e) {
-            log.error("There is no such method: " + methodName);
+            log.error(String.format("There is no such method: %s", methodName));
             Assert.fail(e.getMessage());
         }
 

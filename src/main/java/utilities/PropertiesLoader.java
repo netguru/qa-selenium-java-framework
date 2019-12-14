@@ -40,7 +40,7 @@ public class PropertiesLoader {
         try {
             properties.load(new FileInputStream(propertiesPath));
         } catch (IOException e) {
-            log.warn("Failed to load '" + propertiesPath + "' file.");
+            log.warn(String.format("Failed to load '%s' file.", propertiesPath));
         }
         return properties;
     }

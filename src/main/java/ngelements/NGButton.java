@@ -5,7 +5,7 @@ public class NGButton extends NGHtmlElement {
     @Override
     public void click() {
         this.getWrappedElement().click();
-        log.info("NGButton: " + this.getName() + " was clicked");
+        log.info(String.format("NGButton: %s was clicked", this.getName()));
     }
 }
 

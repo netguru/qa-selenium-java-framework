@@ -32,7 +32,7 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
 
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
 
-        log.debug(getClass().getName() + " -> Initializing elements");
+        log.debug(String.format("%s -> Initializing elements", getClass().getName()));
     }
 
     public BasePage(WebDriver driver) {
@@ -41,7 +41,7 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
 
     @Override
     public BasePage get() {
-        log.info("Navigating to: " + getClass().getName());
+        log.info(String.format("Navigating to: %s", getClass().getName()));
         return super.get();
     }
 
@@ -62,20 +62,18 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
 
     private String validateAndFormatRelativeUrl(String relativeUrl) {
         if (relativeUrl.contains("\\")) {
-            // Relative url: "relativeUrl" in class "className" contains "\" instead of "/". Make sure it's valid!
-            log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
-                    "\" contains \"\\\" instead of \"/\". Make sure it's valid!");
+            log.warn(String.format("Relative url: \"%s\" in class \"%s\" contains\"\\\" instead of \"/\". Make sure it's valid!",
+                    relativeUrl, getClass().getName()));
             relativeUrl.replace("\\", "/");
         }
         if (!relativeUrl.startsWith("/")) {
-            // Relative url: "relativeUrl" in class "className" does not start with "/". Make sure it's valid!
-            log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
-                    "\" does not start with \"/\". Make sure it's valid!");
+            log.warn(String.format("Relative url: \"%s\" in class \"%s\" does not start with \"/\". Make sure it's valid!",
+                    relativeUrl, getClass().getName()));
             relativeUrl = "/" + relativeUrl;
         }
         if (relativeUrl.endsWith("/")) {
-            log.warn("Relative url: \"" + relativeUrl + "\" in class \"" + getClass().getName() +
-                    "\" ends with a slash. Make sure it's valid!");
+            log.warn(String.format("Relative url: \"%s\" in class \"%s\" ends with a slash. Make sure it's valid!",
+                    relativeUrl, getClass().getName()));
             relativeUrl = relativeUrl.substring(0, relativeUrl.length() - 1);
         }
 
