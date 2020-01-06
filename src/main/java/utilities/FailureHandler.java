@@ -40,9 +40,9 @@ public class FailureHandler {
 
     private static final Logger log = LogManager.getLogger(Logger.class.getName());
     private final static String recordingVideoName = "Recorded";
-    private final static String videosDir = "videos/";
-    private final static String pageSourcesDir = "pageSources/";
-    private final static String screenshotsDir = "screenshots/";
+    private final static String videosDir = "videos" + File.separator;
+    private final static String pageSourcesDir = "pageSources" + File.separator;
+    private final static String screenshotsDir = "screenshots" + File.separator;
     private static SpecializedScreenRecorder screenRecorder;
 
     public void takePageSource(Scenario scenario) {
@@ -92,14 +92,8 @@ public class FailureHandler {
 
         Rectangle captureSize = new Rectangle(0, 0, width, height);
 
-        String os = System.getProperty("os.name").toLowerCase();
         String videosDir = null;
-        if (os.startsWith("Windows")) {
-            videosDir = "videos\\";
-        } else {
-            videosDir = "videos/";
-        }
-
+        videosDir = "videos" + File.separator;
 
         try {
             screenRecorder = new SpecializedScreenRecorder(gc, captureSize,

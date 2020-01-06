@@ -43,12 +43,16 @@ tasks.withType(JavaCompile) {
 }
 
 clean {
-    delete fileTree(dir: "${rootDir}/screenshots/", include: "*.png")
-    println "${rootDir}/screenshots/"
-    delete fileTree(dir: "${rootDir}/logs/", include: "*.html")
-    println "${rootDir}/logs/"
-    delete fileTree(dir: "${rootDir}/pageSources/", include: "*.html")
-    println "${rootDir}/logs/"
+    String screenshotsPath = "${rootDir}" + File.separator + "screenshots" + File.separator
+    String logsPath = "${rootDir}" + File.separator + "logs" + File.separator
+    String pageSourcesPath = "${rootDir}" + File.separator + "pageSources" + File.separator
+
+    delete fileTree(dir: screenshotsPath, include: "*.png")
+    println screenshotsPath
+    delete fileTree(dir: logsPath, include: "*.html")
+    println logsPath
+    delete fileTree(dir: pageSourcesPath, include: "*.html")
+    println pageSourcesPath
 }
 
 configurations {
@@ -65,15 +69,21 @@ task cucumber() {
             if (project.hasProperty('myTags')) {
                 tags = myTags
             }
-            args = ['--plugin', 'pretty', '--plugin', 'json:target/cucumber-reports/json/cucumber.json',
+            String reports = "json:target" + File.separator + "cucumber-reports" + File.separator + "json" + File.separator + "cucumber.json"
+            String features = "src" + File.separator + "test" + File.separator + "resources/" + File.separator + "features"
+
+            args = ['--plugin', 'pretty', '--plugin', reports,
                     '--tags', tags,
-                    '--glue', 'steps', 'src/test/resources/features']
+                    '--glue', 'steps', features]
         }
     }
 }
 
 cucumberReports {
-    outputDir = file('target/cucumber/html')
+    String outputPath = "target" + File.separator + "cucumber" + File.separator + "html"
+    String reportsPath = "target" + File.separator + "cucumber-reports" + File.separator + "json" + File.separator + "cucumber.json"
+
+    outputDir = file(outputPath)
     buildId = '0'
-    reports = files('target/cucumber-reports/json/cucumber.json')
+    reports = files(reportsPath)
 }
