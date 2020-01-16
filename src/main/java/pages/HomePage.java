@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
 
-    private By logoButton = By.xpath("//a[@href='https://www.netguru.com']");
+    private By logoButton = By.id("sign");
 
     public HomePage(WebDriver driver) {
         super(driver);
