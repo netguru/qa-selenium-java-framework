@@ -22,8 +22,8 @@ public class JSExecutor {
 
         try {
             return Context.driverManager.wait.until(jQueryLoaded);
-        }catch (Exception e){
-            // no jQuery present
+        } catch (Exception e) {
+            log.debug("No JQuery present");
             return true;
         }
     }
