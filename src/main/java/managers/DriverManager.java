@@ -66,17 +66,6 @@ public class DriverManager {
         return driver;
     }
 
-    public void waitForPageToLoad() {
-        ExpectedCondition<Boolean> isLoaded = (WebDriver driver) ->
-                (Context.jsExecutor.getExecutor()).executeScript("return document.readyState").toString().equals("complete");
-
-        try {
-            wait.until(isLoaded);
-        } catch (Throwable error) {
-            log.error("Timeout on waiting for page to load");
-        }
-    }
-
     private void maximize() {
         driver.manage().window().maximize();
         log.info("Maximizing browser window");

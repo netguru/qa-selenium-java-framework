@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 
 public class JSExecutor {
 
@@ -13,6 +14,24 @@ public class JSExecutor {
 
     public JSExecutor(WebDriver driver) {
         js = (JavascriptExecutor) driver;
+    }
+
+    public boolean waitForJQueryToLoad() {
+        ExpectedCondition<Boolean> jQueryLoaded = (WebDriver driver) ->
+                (Long) executeScript("return jQuery.active") == 0;
+
+        try {
+            return Context.driverManager.wait.until(jQueryLoaded);
+        } catch (Exception e) {
+            log.debug("No JQuery present");
+            return true;
+        }
+    }
+
+    public boolean waitForJSToLoad() {
+        ExpectedCondition<Boolean> jsLoaded = (WebDriver driver) ->
+                executeScript("return document.readyState").toString().equals("complete");
+        return Context.driverManager.wait.until(jsLoaded);
     }
 
     public void scrollToBottom() {
@@ -30,9 +49,11 @@ public class JSExecutor {
         log.info(String.format("Scrolled to point (%d, %d) on the page", pointX, pointY));
     }
 
-    public void executeScript(String script) {
-        js.executeScript(script);
+    public Object executeScript(String script, Object... objects) {
+        Object returnValue = js.executeScript(script);
         log.info(String.format("Executed script: \"%s\"", script));
+
+        return returnValue;
     }
 
     public JavascriptExecutor getExecutor() {
