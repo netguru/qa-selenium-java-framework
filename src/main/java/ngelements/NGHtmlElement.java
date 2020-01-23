@@ -37,17 +37,17 @@ class NGHtmlElement extends HtmlElement {
     public void moveToElementAndClick() {
         Actions actions = new Actions(Context.driverManager.getDriver());
         actions.moveToElement(getWrappedElement()).click().perform();
-        log.info("Element: " + getName() + " was clicked");
+        log.info(String.format("Element: %s was clicked", getName()));
     }
 
     public void scrollTo() {
         js.executeScript("arguments[0].scrollIntoView();", this.getWrappedElement());
-        log.info(("Element: " + getName() + " was scrolled into view"));
+        log.info(String.format("Element: %s was scrolled into view", getName()));
     }
 
     public void setAttribute(String attributeName, String attributeValue) {
         js.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);",
                 this.getWrappedElement(), attributeName, attributeValue);
-        log.info(attributeName + " attribute of " + getName() + " element was changed to: " + attributeValue);
+        log.info(String.format("%s attribute of %s element was changed to: %s", attributeName, getName(), attributeValue));
     }
 }

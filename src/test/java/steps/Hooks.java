@@ -15,7 +15,7 @@ public class Hooks extends BaseTest {
     @Before
     public void setupTestCase() {
         failureHandler.setUpScreenRecorder();
-        log.debug(getClass().getName() + " -> Starting tests...");
+        log.debug(String.format("%s -> Starting tests...", getClass().getName()));
         BaseTest.context = new Context();
         BaseTest.pages = context.pages;
         BaseTest.zapManager = context.zapManager;
@@ -32,7 +32,7 @@ public class Hooks extends BaseTest {
         }
         failureHandler.stopVideoRecord(scenario);
         context.driverManager.quit();
-        log.debug(getClass().getName() + " -> Ending tests...");
+        log.debug(String.format("%s -> Ending tests...", getClass().getName()));
     }
 
 }

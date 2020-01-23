@@ -5,18 +5,18 @@ public class NGCheckbox extends NGHtmlElement {
     public void select() {
         if (!this.isSelected()) {
             this.getWrappedElement().click();
-            log.info("Element: " + getName() + " is checked");
+            log.info(String.format("Element: %s is checked", getName()));
         } else {
-            log.info("Element: " + getName() + " was already checked");
+            log.info(String.format("Element: %s was already checked", getName()));
         }
     }
 
     public void deselect() {
         if (this.isSelected()) {
             this.getWrappedElement().click();
-            log.info("Element: " + getName() + " is unchecked");
+            log.info(String.format("Element: %s is unchecked", getName()));
         } else {
-            log.info("Element: " + getName() + " was already unchecked");
+            log.info(String.format("Element: %s was already unchecked", getName()));
         }
     }
 

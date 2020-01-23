@@ -27,7 +27,7 @@ public class DriverManager {
 
     public DriverManager() {
         String browserType = propertiesLoader.getBrowserType().toLowerCase();
-        log.info("Initializing browser: " + browserType);
+        log.info(String.format("Initializing browser: %s", browserType));
         switch (browserType) {
             case "chrome":
                 initializeChrome();
@@ -45,7 +45,7 @@ public class DriverManager {
                 break;
             default:
                 initializeChrome();
-                log.warn("Wrong browser type \"" + browserType + "\". Initializing Chrome");
+                log.warn(String.format("Wrong browser type \"%s\". Initializing Chrome", browserType));
                 break;
         }
 
@@ -74,7 +74,7 @@ public class DriverManager {
     private void setImplicitWait() {
         int seconds = propertiesLoader.getImplicitWait();
         driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
-        log.debug("Setting implicit wait to " + seconds + "seconds");
+        log.debug(String.format("Setting implicit wait to %s seconds", seconds));
     }
 
     public void quit() {
@@ -98,8 +98,8 @@ public class DriverManager {
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
         // Setup Proxy
         if (propertiesLoader.getZAPAddress() != null) {
-            log.info("Setup proxy for Chrome on " + propertiesLoader.getZAPAddress() +
-                    ":" + propertiesLoader.getZAPPort());
+            log.info(String.format("Setup proxy for Chrome on %s : %s",
+                    propertiesLoader.getZAPAddress(), propertiesLoader.getZAPPort()));
             setupProxy(capabilities);
         }
         driver = new ChromeDriver(capabilities);

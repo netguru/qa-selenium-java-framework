@@ -27,7 +27,7 @@ public class SpecializedScreenRecorder extends ScreenRecorder {
         if (!movieFolder.exists()) {
             movieFolder.mkdirs();
         } else if (!movieFolder.isDirectory()) {
-            throw new IOException("\"" + movieFolder + "\" is not a directory.");
+            throw new IOException(String.format("\"%s\" is not a directory.", movieFolder));
         }
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(
